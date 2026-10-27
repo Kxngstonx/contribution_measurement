@@ -152,11 +152,15 @@ def format_seconds(seconds: float) -> str:
     return texts.TIME_SECONDS.format(s=seconds)
 
 
-def reduction(gt_seconds: float, our_seconds: float) -> tuple[float, float]:
-    """(percent reduction, speed-up factor) of `our_seconds` against `gt_seconds`."""
+def ratio_percent(gt_seconds: float, our_seconds: float) -> str:
+    """`our_seconds` as a percentage of `gt_seconds`, e.g. "0.0059%" or "64.1%"."""
 
-    ours = max(float(our_seconds), 1e-9)
-    return 100.0 * (1.0 - ours / float(gt_seconds)), float(gt_seconds) / ours
+    pct = 100.0 * float(our_seconds) / float(gt_seconds)
+    if pct >= 10:
+        return f"{pct:.1f}%"
+    if pct >= 0.1:
+        return f"{pct:.2f}%"
+    return f"{pct:.2g}%"
 
 
 def time_figure(result, method_title: str, figsize=(14.5, 3.6)) -> Figure:
@@ -190,9 +194,8 @@ def time_figure(result, method_title: str, figsize=(14.5, 3.6)) -> Figure:
     for bar, value in zip(bars, values):
         ax.annotate(format_seconds(value), (bar.get_x() + bar.get_width() / 2, value),
                     textcoords="offset points", xytext=(0, 4), ha="center", fontsize=12)
-    pct, factor = reduction(gt, ours)
     ax.text(0.5, 0.9, texts.FIG_TIME_SUMMARY.format(
-                gt=format_seconds(gt), ours=format_seconds(ours), pct=pct, factor=factor),
+                gt=format_seconds(gt), ours=format_seconds(ours), ratio=ratio_percent(gt, ours)),
             transform=ax.transAxes, ha="center", va="top", fontsize=13, fontweight="bold")
     ax.tick_params(axis="x", labelsize=12)
     fig.suptitle(texts.FIG_TIME_TITLE.format(method=method_title), fontsize=15)
