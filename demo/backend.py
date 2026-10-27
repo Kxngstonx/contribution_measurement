@@ -136,8 +136,7 @@ def stored_parzen_phi(key: str) -> np.ndarray:
 
 
 def stored_trac_row(key: str, seed_index: int = 0) -> dict:
-    dataset = key.split("_", 1)[0]
-    path = config.TRAC_JSON[dataset]
+    path = config.TRAC_JSON
     if path not in _TRAC_ROWS:
         _TRAC_ROWS[path] = json.loads(path.read_text())["rows"]
     for row in _TRAC_ROWS[path]:
@@ -147,8 +146,7 @@ def stored_trac_row(key: str, seed_index: int = 0) -> dict:
 
 
 def stored_trac_trajectory(key: str, seed_index: int = 0):
-    dataset = key.split("_", 1)[0]
-    directory = config.TRAC_TRAJ_DIR[dataset]
+    directory = config.TRAC_TRAJ_DIR
     for name in (f"{key}__epoch_gamma__seed{seed_index}.json", f"{key}__seed{seed_index}.json"):
         path = directory / name
         if path.is_file():

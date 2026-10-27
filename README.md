@@ -29,7 +29,7 @@ python -m demo --export figs --mode replay   # 창 없이 그림만 저장
 | `demo/` | 데모 프로그램 |
 | `assets/reference/` | 27개 setting의 클라이언트 파티션과 라벨 override |
 | `configs/exact_shapley_ground_truth.json` | setting 목록과 Ground Truth Shapley |
-| `results/` | 데모가 재생하는 저장 결과: `parzen_shapley.json`(GT·Parzen), `trac_b128.json`·`trac_cw24.json`(TRAC)과 라운드별 궤적 |
+| `results/` | 데모가 재생하는 저장 결과: `parzen_shapley.json`(GT·Parzen), `trac.json`(TRAC)과 `trac_trajectories/`의 라운드별 궤적 |
 
 ---
 

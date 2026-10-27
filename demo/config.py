@@ -16,18 +16,11 @@ ANCHOR_DIR = PROJECT / "artifacts" / "anchors"
 CACHE_DIR = PROJECT / "artifacts" / "demo_cache"
 MANIFEST = PROJECT / "configs" / "exact_shapley_ground_truth.json"
 GT_JSON = PROJECT / "results" / "parzen_shapley.json"
-# Stored TRAC runs at the current hyperparameters (batch 128): mnist/fmnist from
-# the batch-128 rerun, cifar from the 24-setting run.
-TRAC_JSON = {
-    "mnist": PROJECT / "results" / "trac_b128.json",
-    "fmnist": PROJECT / "results" / "trac_b128.json",
-    "cifar": PROJECT / "results" / "trac_cw24.json",
-}
-TRAC_TRAJ_DIR = {
-    "mnist": PROJECT / "results" / "trac_b128_trajectories",
-    "fmnist": PROJECT / "results" / "trac_b128_trajectories",
-    "cifar": PROJECT / "results" / "trac_cw24_trajectories",
-}
+# Stored TRAC runs at the current hyperparameters (batch 128). MNIST/FMNIST rows
+# come from the batch-128 rerun, CIFAR-10 rows from the 24-setting run; see
+# protocol.source_runs inside the file.
+TRAC_JSON = PROJECT / "results" / "trac.json"
+TRAC_TRAJ_DIR = PROJECT / "results" / "trac_trajectories"
 
 DATASETS = ("mnist", "fmnist", "cifar")
 DATASET_TITLES = {"mnist": "MNIST", "fmnist": "Fashion-MNIST", "cifar": "CIFAR-10"}
@@ -35,10 +28,10 @@ DEFAULT_CHOICE = {"mnist": "mislabel-4", "fmnist": "noniid-4", "cifar": "mislabe
 
 DEFAULT_TRAC_ROUNDS = 5
 MAX_TRAC_ROUNDS = 40
-# TRAC runs 30 rounds on every dataset. The stored CIFAR-10 run (cw24) went to 40;
+# TRAC runs 30 rounds on every dataset. The stored CIFAR-10 run went to 40;
 # replay truncates its trajectory to round 30.
 FULL_TRAC_ROUNDS = {"mnist": 30, "fmnist": 30, "cifar": 30}
-# Measured on an RTX 3080 at batch 128 (results/trac_b128.json, cw24.json).
+# Measured on an RTX 3080 at batch 128 (results/trac.json).
 SECONDS_PER_ROUND = {"mnist": 18.6, "fmnist": 18.6, "cifar": 7.7}
 REPLAY_ROUND_DELAY = 0.15  # seconds per animated round in replay mode
 REPLAY_STAGE_DELAY = 0.3   # seconds per Parzen stage in replay mode
