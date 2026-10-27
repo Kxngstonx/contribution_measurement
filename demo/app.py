@@ -380,7 +380,12 @@ def main(argv=None):
     parser.add_argument("--mode", default="replay", choices=("replay", "real"))
     parser.add_argument("--rounds", type=int, default=config.DEFAULT_TRAC_ROUNDS)
     parser.add_argument("--device", default=None)
+    parser.add_argument("--download-data", action="store_true",
+                        help="download MNIST / Fashion-MNIST / CIFAR-10 into data/ and exit")
     args = parser.parse_args(argv)
+    if args.download_data:
+        backend.download_datasets()
+        return
     device = args.device or config.detect_device()
     if args.export:
         export(args.export, args.method, args.mode, args.rounds, device)

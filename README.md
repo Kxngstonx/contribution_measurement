@@ -1,122 +1,76 @@
-# Parzen-Shapley / TRAC — 연합학습 참여자 기여도 측정
+# Contribution Measurement for Federated Learning
 
-연합학습 참여자(클라이언트)의 기여도를 측정하는 두 방법과, 전수 재학습으로 구한 정답
-Shapley value(Ground Truth)와의 비교를 담은 저장소다.
+연합학습(Federated Learning) 참여자(클라이언트)의 **기여도**를 측정하는 두 방법과, 전수 재학습으로 구한
+정답 Shapley value(Ground Truth)와의 비교를 담은 저장소입니다.
 
-| 방법 | 언제 측정하나 | 패키지 |
-|---|---|---|
-| **Parzen-Shapley** | 학습이 끝난 뒤. frozen task-model 임베딩 위의 class-conditional Parzen utility + balanced permutation Monte Carlo Shapley | `src/parzen_shapley/` |
-| **TRAC** | 학습 도중. 서버 root 업데이트와 참여자 업데이트의 cosine 정렬을 EMA로 누적한 점수가 집계 가중치를 겸함 | `src/trac/` |
+| 방법 | 측정 시점 | 원리 | 패키지 |
+|---|---|---|---|
+| **Parzen-Shapley** | 학습이 끝난 뒤 | frozen task-model 임베딩 위의 class-conditional Parzen utility로 coalition 가치를 계산하고, balanced permutation Monte Carlo로 Shapley value를 추정 | `src/parzen_shapley/` |
+| **TRAC** | 학습 도중 | 서버 root 업데이트와 참여자 업데이트의 cosine 정렬을 EMA로 누적한 점수가 기여도이자 집계 가중치 | `src/trac/` |
 
-## 데모 프로그램
+Ground Truth는 MNIST / Fashion-MNIST / CIFAR-10의 24개 setting(라벨 오염 `mislabel-k`, 분포 편향 `noniid-k`)에서
+모든 coalition을 재학습해 구한 exact Shapley value입니다. 데모 프로그램이 두 방법의 결과를 Ground Truth와
+PCC로 비교해 보여 줍니다.
+
+## Requirements
+
+Python 3.10 이상. 아래 한 줄로 패키지 설치와 데이터셋(MNIST / Fashion-MNIST / CIFAR-10, 약 330 MB) 다운로드가 끝납니다.
 
 ```bash
-pip install -e ".[demo]"        # numpy, torch, torchvision, timm, matplotlib, Pillow
-python -m demo                  # 데스크톱 창 (Tkinter + matplotlib)
-python -m demo --export figs --mode replay   # 창 없이 그림만 저장
+pip install -e . && python -m demo --download-data
 ```
 
-메인 화면(방법 설명·설정) → 로딩 화면(데이터셋별 진행률) → 결과 화면(클라이언트별 기여도, GT 대비 산점도·PCC).
-자세한 내용은 [`demo/README.md`](demo/README.md). 데이터(`data/`)는 torchvision MNIST / FashionMNIST / CIFAR-10을
-`data/{mnist,fmnist,cifar}`에 내려받아 둔다.
+- 설치되는 패키지: `numpy`, `torch`, `torchvision`, `matplotlib`, `Pillow`
+- 데이터셋은 torchvision을 통해 `data/{mnist,fmnist,cifar}`에 내려받습니다. 저장된 결과를 재생하는 기본 모드에는
+  필요 없고, 실제 계산 모드에서만 쓰입니다. 다운로드를 건너뛰어도 실제 계산 시 자동으로 받습니다.
+- 실제 계산 모드는 CUDA GPU를 권장합니다(없으면 CPU로 동작하되 느립니다). 데스크톱 창은 Tkinter를 사용합니다.
 
-## 저장소 구성
-
-| 경로 | 내용 |
-|---|---|
-| `src/parzen_shapley/` | Parzen-Shapley: `anchors`(앵커 학습), `models`, `utility`(Parzen utility), `estimators`(exact / MC Shapley), `games`, `pipeline`(설정·데이터셋·앵커·utility 조립) |
-| `src/trac/` | TRAC: `scoring`(cosine·EMA·signed 가중치), `fl_round`(한 라운드), `models`, `data`(하이퍼파라미터·파티션·root), `diagnostics`(PCC/AUC) |
-| `demo/` | 데모 프로그램 |
-| `assets/reference/` | 27개 setting의 클라이언트 파티션과 라벨 override |
-| `configs/exact_shapley_ground_truth.json` | setting 목록과 Ground Truth Shapley |
-| `results/` | 데모가 재생하는 저장 결과: `parzen_shapley.json`(GT·Parzen), `trac.json`(TRAC)과 `trac_trajectories/`의 라운드별 궤적 |
-
----
-
-## Parzen-Shapley
-
-Frozen task-model embedding으로 class-conditional Parzen coalition utility를
-만들고, cyclic/reverse balanced permutation Monte Carlo로 client Shapley
-value를 추정하는 독립 프로젝트다.
-
-이 코드는 HCDV hierarchy를 사용하지 않는다. 핵심은 다음 두 부분이다.
-
-1. 모델을 coalition마다 재학습하지 않고 embedding상의 Parzen posterior로
-   coalition utility를 계산한다.
-2. 모든 coalition을 열거하지 않고 balanced permutation path에서 방문한
-   prefix coalition만 계산하고 캐시한다.
-
-기존 8-block 구현에 있던 2-additive control은 balanced schedule에서
-예측값을 바꾸지 않으면서 query만 조금 늘린다는 것이 이번 실험에서
-확인되었다. 따라서 권장 추정기는 더 단순한 `balanced_raw_mc`다.
-
-### 핵심 결과
-
-- 27개 frozen-anchor 설정에서 독립 구현이 기존 Exact Parzen Shapley를
-  최대 오차 `3.3e-16`으로 재현했다.
-- 10-client shifted, 8 block, 100 seed에서:
-  - 일반 MC: Exact-Parzen PCC `0.9445`, 평균 query `628.5/1023`
-  - balanced raw MC: Exact-Parzen PCC `0.9935`, 평균 query `425.2/1023`
-- 고정 seed direct 실행에서 10-client는 평균 `431.6/1023` coalition만
-  직접 계산했다. 기존 control-balanced 예측과 최대 오차는 `5.7e-16`이다.
-- 5-client는 전체 coalition이 31개뿐이라 8 block에서 전수 cache가 된다.
-  비전수를 유지하려면 1 block이 실용적이며, 100 seed 평균
-  Exact-Parzen PCC는 `0.9788`이었다.
-
-Ground Truth Group Shapley와의 PCC는 Monte Carlo 오차뿐 아니라 Parzen utility와
-coalition training-accuracy utility 사이의 차이도 포함한다. 특히 10-client
-mislabel에서 Exact Parzen 자체의 Ground Truth Group Shapley PCC가 평균 `0.9174`이므로
-sampling을 더 늘려도 이 값을 넘어서는 방향으로 자동 개선되지는 않는다.
-
-### 폴더 구조
+## Folder Structure
 
 ```text
-TaskEmbeddingParzenShapley/
-├── artifacts/
-│   ├── README.md
-│   └── anchors/  # 로컬에서 생성되며 Git에서는 제외
-├── assets/reference/  # 27개 client partition과 label override
-├── configs/
-│   ├── mc_protocol.json
-│   ├── exact_shapley_ground_truth.json
-│   └── ground_truth_group_shapley_protocol.json
-├── docs/METHOD_KO.md
-├── reports/
-│   ├── MONTE_CARLO_COMPARISON_KO.md
-│   └── GROUND_TRUTH_GROUP_SHAPLEY_REPORT_KO.md
+.
+├── src/parzen_shapley/   # Parzen-Shapley: 앵커 학습, 임베딩, Parzen utility, Shapley 추정
+├── src/trac/             # TRAC: 라운드 실행, cosine·EMA 점수, 집계, 데이터 파티션
+├── demo/                 # 데모 프로그램 (Tkinter + matplotlib), python -m demo
+├── configs/exact_shapley_ground_truth.json   # 24개 setting 정의와 Ground Truth Shapley value
+├── assets/reference/     # setting별 클라이언트 데이터 파티션과 라벨 override (인덱스만, 이미지 없음)
 ├── results/
-│   ├── sampled_balanced8_predictions.json
-│   ├── mc_comparison.json
-│   ├── parzen_games.json
-│   └── parzen_shapley.json
-├── scripts/
-│   ├── train_anchors.py
-│   ├── estimate_sampled.py
-│   ├── build_parzen_games.py
-│   ├── run_mc_comparison.py
-│   └── run_tests.py
-├── src/parzen_shapley/
-└── tests/
+│   ├── parzen_shapley.json        # Parzen-Shapley 결과
+│   ├── trac.json                  # TRAC 결과
+│   └── trac_trajectories/         # TRAC 라운드별 점수 궤적
+├── artifacts/            # 로컬 생성물 (앵커 체크포인트, 데모 캐시) — Git 제외
+└── data/                 # 다운로드한 데이터셋 — Git 제외
 ```
 
-510 MB의 frozen checkpoint는 저장소에 포함하지 않는다. Checkpoint를 받은
-뒤 `artifacts/anchors/`에 배치한다. Monte Carlo 비교는 저장된
-`results/parzen_games.json`만으로 실행할 수 있어 checkpoint가 필요하지
-않다.
-
-원 실험의 task-model 구조는 `src/parzen_shapley/models.py`에, 27개
-client partition과 label override는 `assets/reference/`에 포함했다. Raw
-MNIST, Fashion-MNIST, CIFAR-10 image만 저장소에 포함하지 않는다.
-
-## 실행
-
-환경:
+## Reproduce (Demo)
 
 ```bash
-git clone https://github.com/NamKim-il/parzen-shapley.git
-cd parzen-shapley
-python -m venv .venv
-source .venv/bin/activate
-pip install -e .
-export PYTHONPATH=src
+python -m demo                                  # 데스크톱 창 실행
+python -m demo --export figs --mode replay      # 창 없이 그림(PNG)만 figs/에 저장
 ```
+
+**화면 흐름**: 메인 화면(방법 설명, 데이터셋별 오염 참여자 구성 선택, 계산 방식 선택) → 로딩 화면(데이터셋별 진행률,
+TRAC은 라운드별 PCC) → 결과 화면(클라이언트별 기여도 막대그래프, 오염 참여자는 붉은색 / Ground Truth 대비 산점도와 PCC).
+
+**계산 방식**
+
+| 방식 | Parzen-Shapley | TRAC |
+|---|---|---|
+| 저장된 결과 재생 (기본) | `results/parzen_shapley.json` | `results/trac.json` + `results/trac_trajectories/` |
+| 실제 계산 | 데이터셋당 20~40초 (첫 실행 시 앵커 모델 학습 포함, GPU 기준). 결과는 `artifacts/demo_cache/`에 캐시 | 라운드당 MNIST/FMNIST 약 19초, CIFAR 약 8초 (RTX 3080 기준). 기본 5라운드 |
+
+실제 계산한 TRAC은 같은 라운드 수의 저장 궤적과 비트 단위로 일치합니다. Parzen-Shapley는 앵커 모델을 다시 학습하므로
+저장값과 약 1e-4(CIFAR 약 3e-3) 차이가 납니다.
+
+**옵션**
+
+| 옵션 | 설명 |
+|---|---|
+| `--mode {replay,real}` | 저장된 결과 재생(기본) / 실제 계산 |
+| `--method {both,parzen,trac}` | 실행할 방법 (기본 both) |
+| `--rounds N` | TRAC 라운드 수 (기본 5, 최대 40) |
+| `--device {cuda,cpu}` | 계산 장치 (기본 자동 감지) |
+| `--export DIR` | 창 대신 그림을 DIR에 저장 |
+| `--download-data` | 데이터셋만 내려받고 종료 |
+
+한글은 Tk 대신 PIL이 그리며, 폰트는 `demo/fonts/`에 포함된 Pretendard(SIL Open Font License)를 사용합니다.

@@ -3,18 +3,26 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "task-embedding-parzen-shapley"
+name = "contribution-measurement"
 version = "0.1.0"
-description = "Client contribution measurement for federated learning: Parzen-Shapley and TRAC"
+description = "Client contribution measurement for federated learning: Parzen-Shapley and TRAC, with a desktop demo"
+readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["numpy", "torch", "torchvision", "timm"]
+dependencies = [
+    "numpy",
+    "torch",
+    "torchvision",
+    "matplotlib",
+    "Pillow",
+]
 
 [project.optional-dependencies]
-demo = ["matplotlib", "Pillow"]
+# Only for the optional pretrained-encoder path (parzen_shapley.encoders); the demo does not use it.
+encoders = ["timm"]
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["src", "."]
+include = ["parzen_shapley*", "trac*", "demo*"]
 
-[tool.pytest.ini_options]
-pythonpath = ["src"]
-testpaths = ["tests"]
+[tool.setuptools.package-data]
+demo = ["fonts/*"]

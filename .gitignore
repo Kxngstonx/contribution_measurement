@@ -18,3 +18,6 @@ artifacts/anchors
 # Demo program outputs
 artifacts/demo_cache/
 artifacts/demo_figs/
+
+# Packaging
+*.egg-info/

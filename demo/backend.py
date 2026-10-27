@@ -267,6 +267,17 @@ def ensure_anchor(setting: dict, train_dataset, device: str, progress=None) -> P
     return path
 
 
+def download_datasets(datasets=config.DATASETS) -> None:
+    """Fetch MNIST / Fashion-MNIST / CIFAR-10 into data/ via torchvision.
+    Only needed for '실제 계산' mode; replay reads results/ only."""
+    from parzen_shapley.pipeline import dataset_objects
+
+    for dataset in datasets:
+        print(f"[{dataset}] downloading to {config.DATA_ROOT / dataset} ...", flush=True)
+        dataset_objects(dataset, config.DATA_ROOT, download=True)
+    print("done.")
+
+
 def compute_parzen(key: str, device: str, progress=None, cancel=None) -> Result:
     import torch
     from types import SimpleNamespace
@@ -279,7 +290,7 @@ def compute_parzen(key: str, device: str, progress=None, cancel=None) -> Result:
     dataset = setting["dataset"]
     gt = ground_truth(key)
     stages = texts.PARZEN_STAGES
-    train_dataset, test_dataset = dataset_objects(dataset, config.DATA_ROOT)
+    train_dataset, test_dataset = dataset_objects(dataset, config.DATA_ROOT, download=True)
 
     _check(cancel)
     _emit(progress, type="progress", value=0, max=len(stages),
@@ -345,7 +356,7 @@ def compute_trac(key: str, rounds: int, device: str, progress=None, cancel=None)
     dataset = setting["dataset"]
     gt = ground_truth(key)
     hyperparams = TRAC_HYPERPARAMS[dataset]
-    train_dataset, test_dataset = fl_dataset_objects(dataset, config.DATA_ROOT)
+    train_dataset, test_dataset = fl_dataset_objects(dataset, config.DATA_ROOT, download=True)
     server_indices, _eval = server_and_eval_indices(
         test_dataset, validation_size=2000, server_pc=128, seed=0
     )

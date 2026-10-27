@@ -30,8 +30,7 @@ from .models import build_task_model
 from .utility import assemble_parzen_utility, client_local_statistics, make_parzen_utility
 
 PROJECT = Path(__file__).resolve().parents[2]
-DEFAULT_SPACE = Path(os.environ.get("SPACE_ROOT", str(PROJECT.parent / "SPACE")))
-DEFAULT_DATA_ROOT = Path(os.environ.get("DATA_ROOT", str(DEFAULT_SPACE / "data")))
+DEFAULT_DATA_ROOT = Path(os.environ.get("DATA_ROOT", str(PROJECT / "data")))
 DEFAULT_REFERENCE = PROJECT / "assets" / "reference"
 DEFAULT_MANIFEST = PROJECT / "configs" / "exact_shapley_ground_truth.json"
 
