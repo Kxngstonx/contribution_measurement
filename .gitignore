@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.DS_Store
+data/
+
+# Model checkpoints are intentionally distributed separately.
+artifacts/anchors
+*.pt
+*.pth
+*.ckpt
+
+# Demo program outputs
+artifacts/demo_cache/
+artifacts/demo_figs/

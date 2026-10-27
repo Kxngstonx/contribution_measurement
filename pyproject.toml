@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "task-embedding-parzen-shapley"
+version = "0.1.0"
+description = "Client contribution measurement for federated learning: Parzen-Shapley and TRAC"
+requires-python = ">=3.10"
+dependencies = ["numpy", "torch", "torchvision", "timm"]
+
+[project.optional-dependencies]
+demo = ["matplotlib", "Pillow"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

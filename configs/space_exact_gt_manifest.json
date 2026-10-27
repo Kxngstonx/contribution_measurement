@@ -1,0 +1,2751 @@
+{
+  "protocol": {
+    "source": "frozen SPACE exact-Shapley references",
+    "empty_utility": 0.0,
+    "validation": "recompute raw and official sigmoid exact Shapley from every stored coalition utility and verify efficiency/stored values"
+  },
+  "inventory": {
+    "cifar_3_clients": {
+      "settings": 1,
+      "complete_settings": 1,
+      "coalitions_per_setting": 7,
+      "max_sigmoid_recompute_error": 0.0,
+      "max_raw_efficiency_error": 1.1102230246251565e-16,
+      "max_sigmoid_efficiency_error": 0.0
+    },
+    "cifar_4_clients": {
+      "settings": 1,
+      "complete_settings": 1,
+      "coalitions_per_setting": 15,
+      "max_sigmoid_recompute_error": 0.0,
+      "max_raw_efficiency_error": 1.1102230246251565e-16,
+      "max_sigmoid_efficiency_error": 0.0
+    },
+    "cifar_5_clients": {
+      "settings": 9,
+      "complete_settings": 9,
+      "coalitions_per_setting": 31,
+      "max_sigmoid_recompute_error": 1.6653345369377348e-16,
+      "max_raw_efficiency_error": 2.220446049250313e-16,
+      "max_sigmoid_efficiency_error": 2.220446049250313e-16
+    },
+    "cifar_6_clients": {
+      "settings": 1,
+      "complete_settings": 1,
+      "coalitions_per_setting": 63,
+      "max_sigmoid_recompute_error": 0.0,
+      "max_raw_efficiency_error": 0.0,
+      "max_sigmoid_efficiency_error": 0.0
+    },
+    "cifar_7_clients": {
+      "settings": 1,
+      "complete_settings": 1,
+      "coalitions_per_setting": 127,
+      "max_sigmoid_recompute_error": 0.0,
+      "max_raw_efficiency_error": 1.1102230246251565e-16,
+      "max_sigmoid_efficiency_error": 0.0
+    },
+    "cifar_8_clients": {
+      "settings": 1,
+      "complete_settings": 1,
+      "coalitions_per_setting": 255,
+      "max_sigmoid_recompute_error": 0.0,
+      "max_raw_efficiency_error": 3.3306690738754696e-16,
+      "max_sigmoid_efficiency_error": 1.1102230246251565e-16
+    },
+    "fmnist_10_clients": {
+      "settings": 9,
+      "complete_settings": 9,
+      "coalitions_per_setting": 1023,
+      "max_sigmoid_recompute_error": 0.0,
+      "max_raw_efficiency_error": 4.440892098500626e-16,
+      "max_sigmoid_efficiency_error": 2.9116757561866574e-21
+    },
+    "mnist_10_clients": {
+      "settings": 9,
+      "complete_settings": 9,
+      "coalitions_per_setting": 1023,
+      "max_sigmoid_recompute_error": 6.106226635438361e-16,
+      "max_raw_efficiency_error": 6.661338147750939e-16,
+      "max_sigmoid_efficiency_error": 6.661338147750939e-16
+    }
+  },
+  "settings": [
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[3]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "dataset": "cifar",
+      "scenario": "iid",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 3,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500
+        },
+        "total_assigned_examples": 7500,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 7,
+        "expected_nonempty": 7,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7053,
+        "exact_shapley": {
+          "0": 0.22501666666666667,
+          "1": 0.23731666666666662,
+          "2": 0.2429666666666667
+        },
+        "sum": 0.7052999999999999,
+        "efficiency_error": -1.1102230246251565e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999999987867947,
+        "exact_shapley_recomputed": {
+          "0": 0.31524177681131665,
+          "1": 0.34245118090383453,
+          "2": 0.34230704107164356
+        },
+        "exact_shapley_stored": [
+          0.31524177681131665,
+          0.34245118090383453,
+          0.34230704107164356
+        ],
+        "sum": 0.9999999987867947,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[3]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "3248bdd2485aac4a8dbe13594663a02d8d7481e157faafc0463cb22896902a21",
+        "contributions.json": "939cb82636e6a276f4d79b74be3c3cc62b54fd2ac4d8e0fb3fdda4be794293d6",
+        "user_groups_0.json": "0a3eb2ea8b500ddb23e1adc66b3170d45a68b8106e5a61f3d57415dac87297be",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.5].json": "939cb82636e6a276f4d79b74be3c3cc62b54fd2ac4d8e0fb3fdda4be794293d6"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[4]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "dataset": "cifar",
+      "scenario": "iid",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 4,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500
+        },
+        "total_assigned_examples": 10000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 15,
+        "expected_nonempty": 15,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7243,
+        "exact_shapley": {
+          "0": 0.18113333333333334,
+          "1": 0.1847833333333333,
+          "2": 0.1798166666666667,
+          "3": 0.1785666666666667
+        },
+        "sum": 0.7243000000000002,
+        "efficiency_error": 1.1102230246251565e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999999998185425,
+        "exact_shapley_recomputed": {
+          "0": 0.2463697784163143,
+          "1": 0.2518598119230716,
+          "2": 0.25070933025045977,
+          "3": 0.2510610792286968
+        },
+        "exact_shapley_stored": [
+          0.2463697784163143,
+          0.2518598119230716,
+          0.25070933025045977,
+          0.2510610792286968
+        ],
+        "sum": 0.9999999998185425,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[4]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "47775a573ae11928ae69f4a6b65d50d05a22170bb5a2f09e0388af485980fcfd",
+        "contributions.json": "dd61fa81f5c59134005560b6ecaa4ad5d62513a8936a85963f937db7600f5dd5",
+        "user_groups_0.json": "820bdfaa8ea649d49218d2b248b5a0bb80dd2999ee8bc7bbf80907839430e6b9",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.5].json": "dd61fa81f5c59134005560b6ecaa4ad5d62513a8936a85963f937db7600f5dd5"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "dataset": "cifar",
+      "scenario": "iid",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 5,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500
+        },
+        "total_assigned_examples": 12500,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 31,
+        "expected_nonempty": 31,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7382,
+        "exact_shapley": {
+          "0": 0.1455516666666667,
+          "1": 0.15109333333333336,
+          "2": 0.15756833333333337,
+          "3": 0.14296,
+          "4": 0.14102666666666672
+        },
+        "sum": 0.7382000000000002,
+        "efficiency_error": 2.220446049250313e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999999999548035,
+        "exact_shapley_recomputed": {
+          "0": 0.19891189754056046,
+          "1": 0.2017963440693492,
+          "2": 0.20190108443401739,
+          "3": 0.19979533025726226,
+          "4": 0.1975953436536143
+        },
+        "exact_shapley_stored": [
+          0.19891189754056046,
+          0.20179634406934904,
+          0.20190108443401739,
+          0.19979533025726223,
+          0.19759534365361425
+        ],
+        "sum": 0.9999999999548037,
+        "efficiency_error": 2.220446049250313e-16,
+        "max_abs_error_vs_stored": 1.6653345369377348e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "9948b00605658a14123ae8fac524b51139d5274960d0568c9a2f78c76ac14e9b",
+        "contributions.json": "3fab3b80df1d6242a4ac4ad5d7aee22f736feffb22b78f40c6434e12d6386915",
+        "user_groups_0.json": "7a99f47e2292f5920fcd3d7b42f303ff550a7c8d557d02aa46829d9ad69c392b",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.5].json": "3fab3b80df1d6242a4ac4ad5d7aee22f736feffb22b78f40c6434e12d6386915"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[1]",
+      "dataset": "cifar",
+      "scenario": "mislabel_1",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 5,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 1
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500
+        },
+        "total_assigned_examples": 12500,
+        "mislabelled_examples": 1250
+      },
+      "coalitions": {
+        "actual_nonempty": 31,
+        "expected_nonempty": 31,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7196,
+        "exact_shapley": {
+          "0": 0.1703666666666667,
+          "1": 0.16669166666666668,
+          "2": 0.16865833333333335,
+          "3": 0.166025,
+          "4": 0.04785833333333334
+        },
+        "sum": 0.7196,
+        "efficiency_error": 0.0
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999999997096691,
+        "exact_shapley_recomputed": {
+          "0": 0.24878041838583298,
+          "1": 0.2500324117162072,
+          "2": 0.257035380951049,
+          "3": 0.2555296051990209,
+          "4": -0.011377816542440878
+        },
+        "exact_shapley_stored": [
+          0.2487804183858331,
+          0.2500324117162072,
+          0.25703538095104894,
+          0.255529605199021,
+          -0.01137781654244088
+        ],
+        "sum": 0.9999999997096692,
+        "efficiency_error": 1.1102230246251565e-16,
+        "max_abs_error_vs_stored": 1.1102230246251565e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[1]",
+      "sha256": {
+        "subsets_info.json": "64c5b7954064c8e3e9e82a9eaade0a54394ded90aeda4ddabf0beafc0c82aef8",
+        "contributions.json": "82540fa2cc25f2390b65c19dcc4bc78787c47a43442db6ff6f9740dbd16bdba5",
+        "user_groups_0.json": "7a99f47e2292f5920fcd3d7b42f303ff550a7c8d557d02aa46829d9ad69c392b",
+        "mislabel_targets_0.json": "5d283dd6c1c6e407f795582292317840f862bdddf9ddf98219cedb3e169e85c1",
+        "contributions_k[100.0]_T[0.5].json": "82540fa2cc25f2390b65c19dcc4bc78787c47a43442db6ff6f9740dbd16bdba5"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[2]",
+      "dataset": "cifar",
+      "scenario": "mislabel_2",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 5,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 2
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500
+        },
+        "total_assigned_examples": 12500,
+        "mislabelled_examples": 2500
+      },
+      "coalitions": {
+        "actual_nonempty": 31,
+        "expected_nonempty": 31,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.6754,
+        "exact_shapley": {
+          "0": 0.1995966666666667,
+          "1": 0.19622999999999996,
+          "2": 0.1750883333333333,
+          "3": 0.054938333333333346,
+          "4": 0.04954666666666666
+        },
+        "sum": 0.6753999999999999,
+        "efficiency_error": -1.1102230246251565e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999999758745858,
+        "exact_shapley_recomputed": {
+          "0": 0.3722668827843112,
+          "1": 0.3697292705960607,
+          "2": 0.2679290303661476,
+          "3": 0.010253292765582034,
+          "4": -0.020178500637515747
+        },
+        "exact_shapley_stored": [
+          0.3722668827843112,
+          0.3697292705960608,
+          0.2679290303661476,
+          0.010253292765582034,
+          -0.02017850063751576
+        ],
+        "sum": 0.9999999758745859,
+        "efficiency_error": 1.1102230246251565e-16,
+        "max_abs_error_vs_stored": 1.1102230246251565e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[2]",
+      "sha256": {
+        "subsets_info.json": "db85c0ba78429b8f50faaca6ead4cfae3593794519f97563700fd93bdaada1ee",
+        "contributions.json": "793dec08ba26132ce44e27be8fbbc0970ac3e98852772c50c33a5e824058ef7c",
+        "user_groups_0.json": "7a99f47e2292f5920fcd3d7b42f303ff550a7c8d557d02aa46829d9ad69c392b",
+        "mislabel_targets_0.json": "2d3ecb2042fd2aeb79c3741e85d5df35275bfb489c836bc95b69e25297182556",
+        "contributions_k[100.0]_T[0.5].json": "793dec08ba26132ce44e27be8fbbc0970ac3e98852772c50c33a5e824058ef7c"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[3]",
+      "dataset": "cifar",
+      "scenario": "mislabel_3",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 5,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 3
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500
+        },
+        "total_assigned_examples": 12500,
+        "mislabelled_examples": 3750
+      },
+      "coalitions": {
+        "actual_nonempty": 31,
+        "expected_nonempty": 31,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.6513,
+        "exact_shapley": {
+          "0": 0.2324383333333333,
+          "1": 0.21092166666666667,
+          "2": 0.061371666666666685,
+          "3": 0.06621333333333335,
+          "4": 0.08035500000000001
+        },
+        "sum": 0.6513,
+        "efficiency_error": 0.0
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999997313886422,
+        "exact_shapley_recomputed": {
+          "0": 0.5517402154099739,
+          "1": 0.3275882292403584,
+          "2": 0.008263008613126696,
+          "3": 0.05170163202822808,
+          "4": 0.06070664609695501
+        },
+        "exact_shapley_stored": [
+          0.5517402154099738,
+          0.3275882292403585,
+          0.008263008613126696,
+          0.051701632028228084,
+          0.060706646096955044
+        ],
+        "sum": 0.999999731388642,
+        "efficiency_error": -2.220446049250313e-16,
+        "max_abs_error_vs_stored": 1.1102230246251565e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[3]",
+      "sha256": {
+        "subsets_info.json": "9010b9436199ba166f03fab088e8dcf96330e9537e7501c0a31571d5e49676a6",
+        "contributions.json": "64d40c9ce7d19293506f1e4961004408df1ac83a160d383dcf9e2e3fc33692b8",
+        "user_groups_0.json": "7a99f47e2292f5920fcd3d7b42f303ff550a7c8d557d02aa46829d9ad69c392b",
+        "mislabel_targets_0.json": "ac68004f6b87c45c17eebcd1cc5b3570064fc6a29da34c53d007a64e92287c9b",
+        "contributions_k[100.0]_T[0.5].json": "64d40c9ce7d19293506f1e4961004408df1ac83a160d383dcf9e2e3fc33692b8"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[4]",
+      "dataset": "cifar",
+      "scenario": "mislabel_4",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 5,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 4
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500
+        },
+        "total_assigned_examples": 12500,
+        "mislabelled_examples": 5000
+      },
+      "coalitions": {
+        "actual_nonempty": 31,
+        "expected_nonempty": 31,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.5968,
+        "exact_shapley": {
+          "0": 0.26464499999999996,
+          "1": 0.08949499999999999,
+          "2": 0.07358666666666668,
+          "3": 0.07912000000000001,
+          "4": 0.08995333333333334
+        },
+        "sum": 0.5968,
+        "efficiency_error": 0.0
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999374824049192,
+        "exact_shapley_recomputed": {
+          "0": 0.9818508621233009,
+          "1": 0.005778562817469041,
+          "2": 0.006235530843165265,
+          "3": 0.0036687980790911425,
+          "4": 0.0024037285418930195
+        },
+        "exact_shapley_stored": [
+          0.9818508621233007,
+          0.0057785628174690405,
+          0.006235530843165265,
+          0.003668798079091143,
+          0.002403728541893019
+        ],
+        "sum": 0.9999374824049193,
+        "efficiency_error": 1.1102230246251565e-16,
+        "max_abs_error_vs_stored": 1.1102230246251565e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[4]",
+      "sha256": {
+        "subsets_info.json": "3ac123de3ddc33171339231c523c6878385fd33d4d82ab4793fa8bec17275b40",
+        "contributions.json": "c64fa9e24fdf7bad059e8ec08fc3a48652aacd808904a83de3db0844717061c2",
+        "user_groups_0.json": "7a99f47e2292f5920fcd3d7b42f303ff550a7c8d557d02aa46829d9ad69c392b",
+        "mislabel_targets_0.json": "60558ebf4c47cb483da4a8f6e46b59ee13185ec2d0c2b7673cc65b65e4db085a",
+        "contributions_k[100.0]_T[0.5].json": "c64fa9e24fdf7bad059e8ec08fc3a48652aacd808904a83de3db0844717061c2"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[1]_numMislabel[0]",
+      "dataset": "cifar",
+      "scenario": "noniid_1",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 5,
+        "dist": 3,
+        "num_noniid": 1,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500
+        },
+        "total_assigned_examples": 12500,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 31,
+        "expected_nonempty": 31,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7206,
+        "exact_shapley": {
+          "0": 0.17707500000000004,
+          "1": 0.18595,
+          "2": 0.19094166666666665,
+          "3": 0.17174166666666668,
+          "4": -0.005108333333333339
+        },
+        "sum": 0.7206,
+        "efficiency_error": 0.0
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999999997372977,
+        "exact_shapley_recomputed": {
+          "0": 0.2642556487680418,
+          "1": 0.3456384103179263,
+          "2": 0.2723525280649068,
+          "3": 0.26631985472432174,
+          "4": -0.1485664421378989
+        },
+        "exact_shapley_stored": [
+          0.26425564876804175,
+          0.34563841031792625,
+          0.2723525280649067,
+          0.26631985472432174,
+          -0.14856644213789888
+        ],
+        "sum": 0.9999999997372977,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 1.1102230246251565e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[1]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "2be36b92004d4d1cc7fdc24e8d856dedb88be959ccf5f97467731ca2dc9b5e15",
+        "contributions.json": "b2108f4c2ca8400d4bb3d7188fa688c4d719d8949f05084d24996f20663d5044",
+        "user_groups_0.json": "197358f75f4d2cbdf5ea4bbd4d349b2c103fcfd0321b550fd582013c884c5bbe",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.5].json": "b2108f4c2ca8400d4bb3d7188fa688c4d719d8949f05084d24996f20663d5044"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[2]_numMislabel[0]",
+      "dataset": "cifar",
+      "scenario": "noniid_2",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 5,
+        "dist": 3,
+        "num_noniid": 2,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500
+        },
+        "total_assigned_examples": 12500,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 31,
+        "expected_nonempty": 31,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.6826,
+        "exact_shapley": {
+          "0": 0.20591,
+          "1": 0.2018933333333333,
+          "2": 0.20211833333333332,
+          "3": 0.009093333333333333,
+          "4": 0.06358500000000002
+        },
+        "sum": 0.6825999999999999,
+        "efficiency_error": -1.1102230246251565e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999999882569001,
+        "exact_shapley_recomputed": {
+          "0": 0.3707783545714507,
+          "1": 0.3657355907675105,
+          "2": 0.2823215094032785,
+          "3": -0.03627240758214135,
+          "4": 0.01743694109680162
+        },
+        "exact_shapley_stored": [
+          0.37077835457145086,
+          0.3657355907675106,
+          0.28232150940327844,
+          -0.03627240758214136,
+          0.017436941096801616
+        ],
+        "sum": 0.9999999882568998,
+        "efficiency_error": -2.220446049250313e-16,
+        "max_abs_error_vs_stored": 1.6653345369377348e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[2]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "3b6fc829ce11f5997fe73c416b691df5a7d0a0f5c3b082bd4cb40a90e9f0d343",
+        "contributions.json": "0c598ef1df7232718348479d2b4c45a31fa894038490d46e29b7b002fa5e093c",
+        "user_groups_0.json": "57eb6a2faf0b3b5dd54a71208bcfe355187bc7d7b2192c7cf95a1b1d0495386a",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.5].json": "0c598ef1df7232718348479d2b4c45a31fa894038490d46e29b7b002fa5e093c"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[3]_numMislabel[0]",
+      "dataset": "cifar",
+      "scenario": "noniid_3",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 5,
+        "dist": 3,
+        "num_noniid": 3,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500
+        },
+        "total_assigned_examples": 12500,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 31,
+        "expected_nonempty": 31,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.6707,
+        "exact_shapley": {
+          "0": 0.2510366666666667,
+          "1": 0.2363033333333333,
+          "2": 0.08288666666666665,
+          "3": 0.04401999999999998,
+          "4": 0.05645333333333332
+        },
+        "sum": 0.6707,
+        "efficiency_error": 0.0
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.999999961399478,
+        "exact_shapley_recomputed": {
+          "0": 0.5182357457880827,
+          "1": 0.41556501267079693,
+          "2": 0.0037412259908324503,
+          "3": 0.039325200524626465,
+          "4": 0.023132776425139362
+        },
+        "exact_shapley_stored": [
+          0.5182357457880828,
+          0.415565012670797,
+          0.0037412259908324538,
+          0.03932520052462647,
+          0.02313277642513937
+        ],
+        "sum": 0.999999961399478,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 1.1102230246251565e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[3]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "931727af45bd3835d8b45ea301c86d9a2bbbc1717f6638a26282df9809f369bf",
+        "contributions.json": "7a5eb37df5f9bd1b5f014f87f1a47dc5de708f2a7276ecebcd9d7f259323de87",
+        "user_groups_0.json": "8ce4a1bb7aa181655c9fd61c347a78e4c94b92c7d4b7bfef78f97eafa96dc673",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.5].json": "7a5eb37df5f9bd1b5f014f87f1a47dc5de708f2a7276ecebcd9d7f259323de87"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[4]_numMislabel[0]",
+      "dataset": "cifar",
+      "scenario": "noniid_4",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 5,
+        "dist": 3,
+        "num_noniid": 4,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500
+        },
+        "total_assigned_examples": 12500,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 31,
+        "expected_nonempty": 31,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.6358,
+        "exact_shapley": {
+          "0": 0.32209166666666667,
+          "1": 0.015974999999999982,
+          "2": 0.0866416666666667,
+          "3": 0.051850000000000014,
+          "4": 0.15924166666666667
+        },
+        "sum": 0.6358,
+        "efficiency_error": 0.0
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999987344468588,
+        "exact_shapley_recomputed": {
+          "0": 0.9851334856177085,
+          "1": -0.010353980994090241,
+          "2": 0.008569046133816878,
+          "3": 0.0055805721430211555,
+          "4": 0.011069611546402475
+        },
+        "exact_shapley_stored": [
+          0.9851334856177084,
+          -0.010353980994090241,
+          0.00856904613381688,
+          0.0055805721430211555,
+          0.011069611546402475
+        ],
+        "sum": 0.9999987344468588,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 1.1102230246251565e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[4]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "ec4e2dba9ebb1e8d677c5a31790c596637291f92e81e090876c3d76dc0a4afc7",
+        "contributions.json": "b66bb1e08cb382c7d653636eb3d4c286054548cca8a9e5926ef1eb9ef75b259a",
+        "user_groups_0.json": "bcec6ee9366109de9e04305f517f6d438bbb287ad3f7fea6d8a2289b14f8390a",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.5].json": "b66bb1e08cb382c7d653636eb3d4c286054548cca8a9e5926ef1eb9ef75b259a"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[6]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "dataset": "cifar",
+      "scenario": "iid",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 6,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500,
+          "5": 2500
+        },
+        "total_assigned_examples": 15000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 63,
+        "expected_nonempty": 63,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7497,
+        "exact_shapley": {
+          "0": 0.12418166666666663,
+          "1": 0.13111166666666668,
+          "2": 0.12444499999999996,
+          "3": 0.12329166666666665,
+          "4": 0.1238816666666667,
+          "5": 0.12278833333333336
+        },
+        "sum": 0.7497,
+        "efficiency_error": 0.0
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.999999999985689,
+        "exact_shapley_recomputed": {
+          "0": 0.17043385633061356,
+          "1": 0.17097676544447507,
+          "2": 0.15039342800889724,
+          "3": 0.16840381861704493,
+          "4": 0.1708435527462004,
+          "5": 0.16894857883845787
+        },
+        "exact_shapley_stored": [
+          0.17043385633061356,
+          0.17097676544447507,
+          0.15039342800889724,
+          0.16840381861704493,
+          0.1708435527462004,
+          0.16894857883845787
+        ],
+        "sum": 0.999999999985689,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[6]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "a2b8f2d97fff36be474147af73c03c252ba0d4b32a7dae63f9ad7fc1f444b6d5",
+        "contributions.json": "5933570c3e9b08d5ba0e28d2e6cc2d5d9e595da909734edceb1672247fe5490b",
+        "user_groups_0.json": "be83d1f5b011ba43565b5a06911509f14c634d3e7f4a15dcf50fee3f29aa54f6",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.5].json": "5933570c3e9b08d5ba0e28d2e6cc2d5d9e595da909734edceb1672247fe5490b"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[7]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "dataset": "cifar",
+      "scenario": "iid",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 7,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500,
+          "5": 2500,
+          "6": 2500
+        },
+        "total_assigned_examples": 17500,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 127,
+        "expected_nonempty": 127,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7608,
+        "exact_shapley": {
+          "0": 0.11332071428571432,
+          "1": 0.1119090476190476,
+          "2": 0.11100404761904764,
+          "3": 0.10689404761904762,
+          "4": 0.09871571428571434,
+          "5": 0.10892238095238094,
+          "6": 0.11003404761904764
+        },
+        "sum": 0.7608000000000001,
+        "efficiency_error": 1.1102230246251565e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999999999952838,
+        "exact_shapley_recomputed": {
+          "0": 0.15891844527796667,
+          "1": 0.1588474893283988,
+          "2": 0.1587438694436731,
+          "3": 0.15828096253990281,
+          "4": 0.05194106106174347,
+          "5": 0.15718679812196557,
+          "6": 0.15608137422163326
+        },
+        "exact_shapley_stored": [
+          0.15891844527796667,
+          0.1588474893283988,
+          0.1587438694436731,
+          0.15828096253990281,
+          0.05194106106174347,
+          0.15718679812196557,
+          0.15608137422163326
+        ],
+        "sum": 0.9999999999952838,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[7]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "0cb9cc45f1eb9c9cb2415de0def41c9664cb0b6c817dff8f2195e2cc7afc407e",
+        "contributions.json": "7ceda08fb8eba69c70c97a66ec3b5d6eaf2da7509e21cb25ec99fbdbd04bd68a",
+        "user_groups_0.json": "f15c9475a782420f995d19a11ca23b04157871319c2d77c2406ada540fb7baa5",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.5].json": "7ceda08fb8eba69c70c97a66ec3b5d6eaf2da7509e21cb25ec99fbdbd04bd68a"
+      }
+    },
+    {
+      "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[8]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "dataset": "cifar",
+      "scenario": "iid",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 2,
+        "iter_num": 1,
+        "num_users": 8,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 2500,
+          "1": 2500,
+          "2": 2500,
+          "3": 2500,
+          "4": 2500,
+          "5": 2500,
+          "6": 2500,
+          "7": 2500
+        },
+        "total_assigned_examples": 20000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 255,
+        "expected_nonempty": 255,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7674,
+        "exact_shapley": {
+          "0": 0.10101499999999991,
+          "1": 0.08828023809523806,
+          "2": 0.09534142857142856,
+          "3": 0.09402761904761905,
+          "4": 0.09285880952380939,
+          "5": 0.09551238095238095,
+          "6": 0.1012714285714285,
+          "7": 0.09909309523809533
+        },
+        "sum": 0.7673999999999996,
+        "efficiency_error": -3.3306690738754696e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.5,
+        "full_utility": 0.9999999999975624,
+        "exact_shapley_recomputed": {
+          "0": 0.14261116603775376,
+          "1": 0.02666205064331678,
+          "2": 0.13732456685677283,
+          "3": 0.14048413947764637,
+          "4": 0.12736619539836738,
+          "5": 0.14026877888190753,
+          "6": 0.1425854699729995,
+          "7": 0.14269763272879826
+        },
+        "exact_shapley_stored": [
+          0.14261116603775376,
+          0.02666205064331678,
+          0.13732456685677283,
+          0.14048413947764637,
+          0.12736619539836738,
+          0.14026877888190753,
+          0.1425854699729995,
+          0.14269763272879826
+        ],
+        "sum": 0.9999999999975625,
+        "efficiency_error": 1.1102230246251565e-16,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/cifar_epochs[20]_localep[2]_iternum[1]_numusers[8]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "3d8d75bbad450330473bffa40784907e8d5b65a236b22eb6be5f2c7ba4796891",
+        "contributions.json": "d2b3c3e07ab735fbc365b38823efe3ff28d19f7687829abbe8768e3acb8af36d",
+        "user_groups_0.json": "fab0d874bee0e3ebdd4720336a90f9322f878e9644b9706d1962115c53cf8d6f",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.5].json": "d2b3c3e07ab735fbc365b38823efe3ff28d19f7687829abbe8768e3acb8af36d"
+      }
+    },
+    {
+      "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "dataset": "fmnist",
+      "scenario": "iid",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.8013,
+        "exact_shapley": {
+          "0": 0.08714031746031749,
+          "1": 0.09252123015873004,
+          "2": 0.07757015873015875,
+          "3": 0.08541876984126977,
+          "4": 0.0715120238095239,
+          "5": 0.08775400793650806,
+          "6": 0.08834035714285718,
+          "7": 0.09178936507936514,
+          "8": 0.06077412698412683,
+          "9": 0.05847964285714293
+        },
+        "sum": 0.8013,
+        "efficiency_error": 0.0
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 3.483701237505613e-07,
+        "exact_shapley_recomputed": {
+          "0": 2.0200392672462531e-07,
+          "1": 9.293747559596139e-07,
+          "2": 1.726509657649967e-07,
+          "3": 9.325692979020156e-08,
+          "4": -2.052642137147813e-07,
+          "5": 3.425627452165939e-07,
+          "6": 2.7008203926475664e-07,
+          "7": 7.366497709588359e-07,
+          "8": -1.0235994202447604e-06,
+          "9": -1.1693473759695181e-06
+        },
+        "exact_shapley_stored": [
+          2.0200392672462531e-07,
+          9.293747559596139e-07,
+          1.726509657649967e-07,
+          9.325692979020156e-08,
+          -2.052642137147813e-07,
+          3.425627452165939e-07,
+          2.7008203926475664e-07,
+          7.366497709588359e-07,
+          -1.0235994202447604e-06,
+          -1.1693473759695181e-06
+        ],
+        "sum": 3.483701237505642e-07,
+        "efficiency_error": 2.9116757561866574e-21,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "17b55e4d2b7b393ef071c21dc54fd65ddf11e4bf9dec7cddad7bf450db374757",
+        "contributions.json": "1cb6cea8e44321888adff29b15b16846db87a4a1b57185842bc20cdc5458ac77",
+        "user_groups_0.json": "f7e5429d76094cfa15aa0ce9080e7429604ae7636316893e1713ac408230687f",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.95].json": "1cb6cea8e44321888adff29b15b16846db87a4a1b57185842bc20cdc5458ac77"
+      }
+    },
+    {
+      "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
+      "dataset": "fmnist",
+      "scenario": "mislabel_2",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 2
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 3000
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.8116,
+        "exact_shapley": {
+          "0": 0.08769424603174607,
+          "1": 0.09419281746031744,
+          "2": 0.07790599206349211,
+          "3": 0.08730908730158718,
+          "4": 0.07572615079365064,
+          "5": 0.08948666666666649,
+          "6": 0.08851250000000006,
+          "7": 0.09247055555555543,
+          "8": 0.05982357142857157,
+          "9": 0.05847841269841261
+        },
+        "sum": 0.8115999999999995,
+        "efficiency_error": -4.440892098500626e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 9.75807039209629e-07,
+        "exact_shapley_recomputed": {
+          "0": 1.6655235757775746e-07,
+          "1": 1.055729398576711e-06,
+          "2": 1.7465063926558954e-07,
+          "3": 1.763795693979694e-07,
+          "4": -1.0804969686331006e-07,
+          "5": 4.0259563554404875e-07,
+          "6": 2.4687564903609365e-07,
+          "7": 7.583957440736756e-07,
+          "8": -9.765248086920302e-07,
+          "9": -9.207974487068755e-07
+        },
+        "exact_shapley_stored": [
+          1.6655235757775746e-07,
+          1.055729398576711e-06,
+          1.7465063926558954e-07,
+          1.763795693979694e-07,
+          -1.0804969686331006e-07,
+          4.0259563554404875e-07,
+          2.4687564903609365e-07,
+          7.583957440736756e-07,
+          -9.765248086920302e-07,
+          -9.207974487068755e-07
+        ],
+        "sum": 9.7580703920963e-07,
+        "efficiency_error": 8.470329472543003e-22,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
+      "sha256": {
+        "subsets_info.json": "b3e9f97df95680a50f19761e4b40e72f37113396dc2aa006a70071a26f20e5bd",
+        "contributions.json": "d9cbafcc2ee1486514b38115d8dc406b245982acfae695c340c3e4927c4aa97c",
+        "user_groups_0.json": "f7e5429d76094cfa15aa0ce9080e7429604ae7636316893e1713ac408230687f",
+        "mislabel_targets_0.json": "6ade419f7ecfe69fdbf634c357eb3f1c96e6ebdb5d9f2dee398052909459a0bf",
+        "contributions_k[100.0]_T[0.95].json": "d9cbafcc2ee1486514b38115d8dc406b245982acfae695c340c3e4927c4aa97c"
+      }
+    },
+    {
+      "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
+      "dataset": "fmnist",
+      "scenario": "mislabel_4",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 4
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 6000
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.8105,
+        "exact_shapley": {
+          "0": 0.09153503968253966,
+          "1": 0.0974080555555555,
+          "2": 0.08030242063492064,
+          "3": 0.09027472222222219,
+          "4": 0.08134063492063486,
+          "5": 0.0918035714285714,
+          "6": 0.07770829365079367,
+          "7": 0.0765359126984127,
+          "8": 0.06441904761904754,
+          "9": 0.05917230158730174
+        },
+        "sum": 0.8104999999999999,
+        "efficiency_error": -1.1102230246251565e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 8.74161344041439e-07,
+        "exact_shapley_recomputed": {
+          "0": 2.9808017292166367e-07,
+          "1": 1.03599352218866e-06,
+          "2": 1.0006524139508693e-07,
+          "3": 1.6366081638235665e-07,
+          "4": 8.094516427514866e-08,
+          "5": 2.717875671773075e-07,
+          "6": -1.788818672257034e-07,
+          "7": -1.4477000455795707e-07,
+          "8": -3.2609397816188823e-07,
+          "9": -4.2662529035323615e-07
+        },
+        "exact_shapley_stored": [
+          2.9808017292166367e-07,
+          1.03599352218866e-06,
+          1.0006524139508693e-07,
+          1.6366081638235665e-07,
+          8.094516427514866e-08,
+          2.717875671773075e-07,
+          -1.788818672257034e-07,
+          -1.4477000455795707e-07,
+          -3.2609397816188823e-07,
+          -4.2662529035323615e-07
+        ],
+        "sum": 8.741613440414385e-07,
+        "efficiency_error": -4.235164736271502e-22,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
+      "sha256": {
+        "subsets_info.json": "1ada1e7b5e411e4fe6a2bf4a260d23c52eaa4ea7d9348d2d9f0455d99c1d0d88",
+        "contributions.json": "bb764d16324c5fb0aff71a4b5dfaf61028b50360e42eeba8daee6601f0ce91fb",
+        "user_groups_0.json": "f7e5429d76094cfa15aa0ce9080e7429604ae7636316893e1713ac408230687f",
+        "mislabel_targets_0.json": "60fe4b2770b25107707b4dda590414a6c41fd70a9077ccf1349ccd64fa2e2a70",
+        "contributions_k[100.0]_T[0.95].json": "bb764d16324c5fb0aff71a4b5dfaf61028b50360e42eeba8daee6601f0ce91fb"
+      }
+    },
+    {
+      "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
+      "dataset": "fmnist",
+      "scenario": "mislabel_6",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 6
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 9000
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7943,
+        "exact_shapley": {
+          "0": 0.09250543650793638,
+          "1": 0.0981138888888889,
+          "2": 0.08156801587301593,
+          "3": 0.08965932539682545,
+          "4": 0.0717701587301588,
+          "5": 0.07759642857142864,
+          "6": 0.07756912698412695,
+          "7": 0.07861988095238104,
+          "8": 0.06667698412698413,
+          "9": 0.06022075396825394
+        },
+        "sum": 0.7943000000000002,
+        "efficiency_error": 2.220446049250313e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 1.7299551407354925e-07,
+        "exact_shapley_recomputed": {
+          "0": 1.5144774293478136e-07,
+          "1": 6.653729419866817e-07,
+          "2": 2.262118299811364e-08,
+          "3": 5.725333222203307e-08,
+          "4": -5.1523295229013e-08,
+          "5": -1.0557019690143018e-07,
+          "6": -1.1367277901005994e-07,
+          "7": -9.568526250212634e-08,
+          "8": -1.4797530382680923e-07,
+          "9": -2.09272848598622e-07
+        },
+        "exact_shapley_stored": [
+          1.5144774293478136e-07,
+          6.653729419866817e-07,
+          2.262118299811364e-08,
+          5.725333222203307e-08,
+          -5.1523295229013e-08,
+          -1.0557019690143018e-07,
+          -1.1367277901005994e-07,
+          -9.568526250212634e-08,
+          -1.4797530382680923e-07,
+          -2.09272848598622e-07
+        ],
+        "sum": 1.7299551407354902e-07,
+        "efficiency_error": -2.3822801641527197e-22,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
+      "sha256": {
+        "subsets_info.json": "8d3d2f82f3f6233e346f44e0aba682d4b6680611b229c774ac67c7e657a27694",
+        "contributions.json": "464dc6e4c681a9110ab9035939584bc3a2ff5ff7a494dc31911342ea4875f432",
+        "user_groups_0.json": "f7e5429d76094cfa15aa0ce9080e7429604ae7636316893e1713ac408230687f",
+        "mislabel_targets_0.json": "0495b93304b3439fd2352259e5e806dbb3d62e039c044dc6d0a9f9fa055e2d9e",
+        "contributions_k[100.0]_T[0.95].json": "464dc6e4c681a9110ab9035939584bc3a2ff5ff7a494dc31911342ea4875f432"
+      }
+    },
+    {
+      "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
+      "dataset": "fmnist",
+      "scenario": "mislabel_8",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 8
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 12000
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7825,
+        "exact_shapley": {
+          "0": 0.09446063492063501,
+          "1": 0.09857690476190459,
+          "2": 0.06625928571428569,
+          "3": 0.07902853174603161,
+          "4": 0.0747028571428572,
+          "5": 0.0799765476190476,
+          "6": 0.08391357142857171,
+          "7": 0.0808358333333333,
+          "8": 0.0638552380952381,
+          "9": 0.060890595238095216
+        },
+        "sum": 0.7825000000000001,
+        "efficiency_error": 1.1102230246251565e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 5.3157849718487075e-08,
+        "exact_shapley_recomputed": {
+          "0": 1.5453988906297306e-07,
+          "1": 2.6464399853283493e-07,
+          "2": -6.004070870459996e-08,
+          "3": -4.46615191299365e-08,
+          "4": -2.6377135215391084e-08,
+          "5": -2.9246605714111247e-08,
+          "6": -1.6878477659166493e-08,
+          "7": -2.7156514220552113e-08,
+          "8": -7.627710185203944e-08,
+          "9": -8.538797538152438e-08
+        },
+        "exact_shapley_stored": [
+          1.5453988906297306e-07,
+          2.6464399853283493e-07,
+          -6.004070870459996e-08,
+          -4.46615191299365e-08,
+          -2.6377135215391084e-08,
+          -2.9246605714111247e-08,
+          -1.6878477659166493e-08,
+          -2.7156514220552113e-08,
+          -7.627710185203944e-08,
+          -8.538797538152438e-08
+        ],
+        "sum": 5.315784971848679e-08,
+        "efficiency_error": -2.845501307182415e-22,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
+      "sha256": {
+        "subsets_info.json": "4d23beeed09a9a15ddc34bf3c67221a4009748b36dc0e3cb070051028fb0f7d6",
+        "contributions.json": "56a516ec0e3f50359fd99692f00f3535bbe2101ce56769e858ac5c31c4e33a62",
+        "user_groups_0.json": "f7e5429d76094cfa15aa0ce9080e7429604ae7636316893e1713ac408230687f",
+        "mislabel_targets_0.json": "dc229e22b3068f0c1c3e248b5990022f959d08682066b3abf85c039b6fb7a26c",
+        "contributions_k[100.0]_T[0.95].json": "56a516ec0e3f50359fd99692f00f3535bbe2101ce56769e858ac5c31c4e33a62"
+      }
+    },
+    {
+      "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
+      "dataset": "fmnist",
+      "scenario": "noniid_2",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 2,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.8169,
+        "exact_shapley": {
+          "0": 0.10096658730158728,
+          "1": 0.10629861111111116,
+          "2": 0.08875138888888898,
+          "3": 0.1003530952380952,
+          "4": 0.09346162698412704,
+          "5": 0.1010796428571428,
+          "6": 0.10093658730158721,
+          "7": 0.10505178571428568,
+          "8": 0.008656944444444436,
+          "9": 0.01134373015873015
+        },
+        "sum": 0.8168999999999998,
+        "efficiency_error": -1.1102230246251565e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 1.6578289752130415e-06,
+        "exact_shapley_recomputed": {
+          "0": 2.1080844083261973e-07,
+          "1": 9.443414789304739e-07,
+          "2": 1.3114387934431094e-07,
+          "3": 1.4967880985303195e-07,
+          "4": 1.4591506537431963e-07,
+          "5": 2.1775231831735047e-07,
+          "6": 2.2370797170175243e-07,
+          "7": 7.003123114094721e-07,
+          "8": -7.284702864113464e-07,
+          "9": -3.3736101413894297e-07
+        },
+        "exact_shapley_stored": [
+          2.1080844083261973e-07,
+          9.443414789304739e-07,
+          1.3114387934431094e-07,
+          1.4967880985303195e-07,
+          1.4591506537431963e-07,
+          2.1775231831735047e-07,
+          2.2370797170175243e-07,
+          7.003123114094721e-07,
+          -7.284702864113464e-07,
+          -3.3736101413894297e-07
+        ],
+        "sum": 1.6578289752130415e-06,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "8dcf5e43288012262be8ea7d69a39cc7e7b0df3f7c459c697981804ceda9732d",
+        "contributions.json": "f84264e52bd9b5c43e0a2aa0c4250c9a0fc459d8c97094691b7256b0d83ff664",
+        "user_groups_0.json": "50f3d5a88ed75a797771d8869372b4ec5935a9aa7e17fab566413dc295025ba8",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.95].json": "f84264e52bd9b5c43e0a2aa0c4250c9a0fc459d8c97094691b7256b0d83ff664"
+      }
+    },
+    {
+      "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
+      "dataset": "fmnist",
+      "scenario": "noniid_4",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 4,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7992,
+        "exact_shapley": {
+          "0": 0.12211261904761907,
+          "1": 0.1268046825396823,
+          "2": 0.10860615079365081,
+          "3": 0.12225067460317446,
+          "4": 0.10338575396825411,
+          "5": 0.12194896825396813,
+          "6": 0.024510634920634905,
+          "7": 0.015661150793650797,
+          "8": 0.04565511904761915,
+          "9": 0.008264246031746048
+        },
+        "sum": 0.7991999999999998,
+        "efficiency_error": -2.220446049250313e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 2.823833527124607e-07,
+        "exact_shapley_recomputed": {
+          "0": 1.6898159987862897e-07,
+          "1": 6.523874982043659e-07,
+          "2": 2.7056979137381966e-08,
+          "3": 1.5438977632763568e-07,
+          "4": -1.4165413791581467e-07,
+          "5": 8.882260238923495e-08,
+          "6": -1.9026642254106743e-07,
+          "7": -3.2841210825098135e-07,
+          "8": 1.0520639580498386e-09,
+          "9": -1.4997449847497298e-07
+        },
+        "exact_shapley_stored": [
+          1.6898159987862897e-07,
+          6.523874982043659e-07,
+          2.7056979137381966e-08,
+          1.5438977632763568e-07,
+          -1.4165413791581467e-07,
+          8.882260238923495e-08,
+          -1.9026642254106743e-07,
+          -3.2841210825098135e-07,
+          1.0520639580498386e-09,
+          -1.4997449847497298e-07
+        ],
+        "sum": 2.823833527124608e-07,
+        "efficiency_error": 1.0587911840678754e-22,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "3b20b261bcd5a5c6a728f6e73ce4a9f85e9c59245ef77e5b6aced9be3b10e51a",
+        "contributions.json": "c8414a31258d4736bd8ee8ab3f05c45e352fb71cc5693180c2a6ac031287823d",
+        "user_groups_0.json": "7a08738fc4575c2bcc290c76bf044c32ae531dcdefe41117f9f1286e06ab6687",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.95].json": "c8414a31258d4736bd8ee8ab3f05c45e352fb71cc5693180c2a6ac031287823d"
+      }
+    },
+    {
+      "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
+      "dataset": "fmnist",
+      "scenario": "noniid_6",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 6,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7708,
+        "exact_shapley": {
+          "0": 0.16345492063492084,
+          "1": 0.16831765873015864,
+          "2": 0.13572888888888854,
+          "3": 0.1602691269841273,
+          "4": 0.1028138888888888,
+          "5": 0.011804960317460311,
+          "6": -0.022594325396825387,
+          "7": 0.05493968253968253,
+          "8": -0.005303809523809519,
+          "9": 0.0013690079365079335
+        },
+        "sum": 0.7707999999999999,
+        "efficiency_error": -1.1102230246251565e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 1.6498439826200385e-08,
+        "exact_shapley_recomputed": {
+          "0": 1.0185526771724664e-07,
+          "1": 2.537087207732413e-07,
+          "2": -2.4970388480008103e-09,
+          "3": 7.407747801006386e-08,
+          "4": -3.018622547892172e-08,
+          "5": -9.24900245875405e-08,
+          "6": -6.618083259434538e-08,
+          "7": -7.242871947876365e-08,
+          "8": -7.872623844002068e-08,
+          "9": -7.06339472467584e-08
+        },
+        "exact_shapley_stored": [
+          1.0185526771724664e-07,
+          2.537087207732413e-07,
+          -2.4970388480008103e-09,
+          7.407747801006386e-08,
+          -3.018622547892172e-08,
+          -9.24900245875405e-08,
+          -6.618083259434538e-08,
+          -7.242871947876365e-08,
+          -7.872623844002068e-08,
+          -7.06339472467584e-08
+        ],
+        "sum": 1.6498439826200672e-08,
+        "efficiency_error": 2.8785885316845363e-22,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "b588021e6728d394bb1a86b4a2bd9a96af207a3527110c933c2e830a0c89d125",
+        "contributions.json": "315469b7cb2b3beeafb2e07a3e0f0670afdf15d97bb3eaf2c341dc5676653cca",
+        "user_groups_0.json": "aed5d0e3b296369e01033801c586d83bde2fd8d3153bb0e45930e7febde0049b",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.95].json": "315469b7cb2b3beeafb2e07a3e0f0670afdf15d97bb3eaf2c341dc5676653cca"
+      }
+    },
+    {
+      "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
+      "dataset": "fmnist",
+      "scenario": "noniid_8",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 8,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.7898,
+        "exact_shapley": {
+          "0": 0.18780619047619054,
+          "1": 0.19227047619047596,
+          "2": 0.06985480158730155,
+          "3": 0.054836825396825405,
+          "4": 0.02051142857142857,
+          "5": 0.038579206349206384,
+          "6": 0.07689182539682535,
+          "7": 0.046757817460317416,
+          "8": 0.04669166666666663,
+          "9": 0.05559976190476194
+        },
+        "sum": 0.7897999999999998,
+        "efficiency_error": -1.1102230246251565e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 1.1030681679256656e-07,
+        "exact_shapley_recomputed": {
+          "0": 9.76726734597653e-08,
+          "1": 3.4822086088770474e-07,
+          "2": -3.423133095795196e-08,
+          "3": -3.4634668252587963e-08,
+          "4": -4.129828971612852e-08,
+          "5": -4.865861622244321e-08,
+          "6": -4.280565769930526e-08,
+          "7": -3.794285357294415e-08,
+          "8": -3.894811324440116e-08,
+          "9": -5.706718788914097e-08
+        },
+        "exact_shapley_stored": [
+          9.76726734597653e-08,
+          3.4822086088770474e-07,
+          -3.423133095795196e-08,
+          -3.4634668252587963e-08,
+          -4.129828971612852e-08,
+          -4.865861622244321e-08,
+          -4.280565769930526e-08,
+          -3.794285357294415e-08,
+          -3.894811324440116e-08,
+          -5.706718788914097e-08
+        ],
+        "sum": 1.1030681679256683e-07,
+        "efficiency_error": 2.6469779601696886e-22,
+        "max_abs_error_vs_stored": 0.0
+      },
+      "reference_path": "${SPACE_ROOT}/reference/fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "b9d46b9e66a1f180d60f8c383f768636fc84f835c68bece2c82beb0b31a7a54c",
+        "contributions.json": "b126b6b0f76e16ee129ff6c3c134210569f6130f215acd337124e1795cb6192c",
+        "user_groups_0.json": "a90a3c694a1a5e93f0077cf1bc1b12d4612a553f4af517c41645acbcc38ca01f",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.95].json": "b126b6b0f76e16ee129ff6c3c134210569f6130f215acd337124e1795cb6192c"
+      }
+    },
+    {
+      "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "dataset": "mnist",
+      "scenario": "iid",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.9783,
+        "exact_shapley": {
+          "0": 0.09790087301587305,
+          "1": 0.09804289682539673,
+          "2": 0.09812067460317467,
+          "3": 0.09777206349206354,
+          "4": 0.09797349206349201,
+          "5": 0.09750206349206356,
+          "6": 0.09783154761904772,
+          "7": 0.09745809523809526,
+          "8": 0.09770539682539695,
+          "9": 0.09799289682539675
+        },
+        "sum": 0.9783000000000002,
+        "efficiency_error": 2.220446049250313e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 0.9442756020713345,
+        "exact_shapley_recomputed": {
+          "0": 0.09309253901407172,
+          "1": 0.0951545887167265,
+          "2": 0.09697422319122502,
+          "3": 0.09448007734626819,
+          "4": 0.09625180263462575,
+          "5": 0.09167731605419942,
+          "6": 0.09551693376885483,
+          "7": 0.08939996122270592,
+          "8": 0.09475533383286762,
+          "9": 0.09697282628978976
+        },
+        "exact_shapley_stored": [
+          0.09309253901407154,
+          0.09515458871672647,
+          0.096974223191225,
+          0.09448007734626836,
+          0.09625180263462582,
+          0.09167731605419938,
+          0.0955169337688548,
+          0.0893999612227058,
+          0.09475533383286752,
+          0.09697282628978965
+        ],
+        "sum": 0.9442756020713348,
+        "efficiency_error": 2.220446049250313e-16,
+        "max_abs_error_vs_stored": 1.8041124150158794e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "0e91598a4e6f89bb20eba2844a0816ff91227f46bbd813b04ac3781cfccf0810",
+        "contributions.json": "1160869d48f058e4da3cfa421f022fada881de49983ac12d5dc51ed9572c8156",
+        "user_groups_0.json": "1f131e742cde62371c9e0d76e6601fb354602f36cbf12bb1865ecd2fc3f5ff45",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.95].json": "1160869d48f058e4da3cfa421f022fada881de49983ac12d5dc51ed9572c8156"
+      }
+    },
+    {
+      "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
+      "dataset": "mnist",
+      "scenario": "mislabel_2",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 2
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 3000
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.9765,
+        "exact_shapley": {
+          "0": 0.09896154761904742,
+          "1": 0.09932642857142863,
+          "2": 0.09924222222222218,
+          "3": 0.09903710317460342,
+          "4": 0.09907801587301589,
+          "5": 0.09900956349206347,
+          "6": 0.09872190476190473,
+          "7": 0.0986990873015874,
+          "8": 0.09161904761904754,
+          "9": 0.09280507936507931
+        },
+        "sum": 0.9765,
+        "efficiency_error": 0.0
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 0.9340109905087817,
+        "exact_shapley_recomputed": {
+          "0": 0.11392497591905501,
+          "1": 0.11786924862788259,
+          "2": 0.1164521893274869,
+          "3": 0.11448016495031024,
+          "4": 0.11579157379293123,
+          "5": 0.11564819763545596,
+          "6": 0.11226934334194891,
+          "7": 0.11050058530125619,
+          "8": 0.002777558655419476,
+          "9": 0.014297152957035125
+        },
+        "exact_shapley_stored": [
+          0.11392497591905508,
+          0.11786924862788246,
+          0.11645218932748694,
+          0.1144801649503104,
+          0.11579157379293088,
+          0.1156481976354558,
+          0.1122693433419489,
+          0.11050058530125595,
+          0.002777558655419476,
+          0.01429715295703512
+        ],
+        "sum": 0.9340109905087817,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 3.469446951953614e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
+      "sha256": {
+        "subsets_info.json": "4b50927c0045e2e60166f906a99e3353ec1de7854e7883723b0ec16a1d4b06cf",
+        "contributions.json": "cbf769bac6695e83f40c9430a98904aac784390fc73382fba5700406cb68375c",
+        "user_groups_0.json": "1f131e742cde62371c9e0d76e6601fb354602f36cbf12bb1865ecd2fc3f5ff45",
+        "mislabel_targets_0.json": "02c87f04121d6ba23d30cd56f1c0fb42e1ff8d2daae78276a40b2f488bf2d1af",
+        "contributions_k[100.0]_T[0.95].json": "cbf769bac6695e83f40c9430a98904aac784390fc73382fba5700406cb68375c"
+      }
+    },
+    {
+      "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
+      "dataset": "mnist",
+      "scenario": "mislabel_4",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 4
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 6000
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.9743,
+        "exact_shapley": {
+          "0": 0.10038658730158731,
+          "1": 0.10096424603174615,
+          "2": 0.10081242063492055,
+          "3": 0.10074349206349216,
+          "4": 0.10089813492063494,
+          "5": 0.10039904761904779,
+          "6": 0.09233285714285706,
+          "7": 0.09298162698412686,
+          "8": 0.09164595238095254,
+          "9": 0.09313563492063506
+        },
+        "sum": 0.9743000000000005,
+        "efficiency_error": 4.440892098500626e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 0.9190865327845353,
+        "exact_shapley_recomputed": {
+          "0": 0.1415436275806459,
+          "1": 0.14739200174992892,
+          "2": 0.14558699603566652,
+          "3": 0.14526184121071306,
+          "4": 0.14718291878990122,
+          "5": 0.14187864318722593,
+          "6": 0.008248873498381408,
+          "7": 0.01872192165596342,
+          "8": 0.004308278316282097,
+          "9": 0.01896143075982756
+        },
+        "exact_shapley_stored": [
+          0.14154362758064548,
+          0.1473920017499289,
+          0.14558699603566605,
+          0.14526184121071278,
+          0.1471829187899012,
+          0.1418786431872258,
+          0.008248873498381413,
+          0.018721921655963397,
+          0.004308278316282105,
+          0.018961430759827588
+        ],
+        "sum": 0.919086532784536,
+        "efficiency_error": 6.661338147750939e-16,
+        "max_abs_error_vs_stored": 4.718447854656915e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
+      "sha256": {
+        "subsets_info.json": "bd12942e865f064f261b1508e43b4f75b53377378bd90dc6da69a8fc557cd77f",
+        "contributions.json": "270ad47db9265449e12de85590be1552847ef111b063e3adc532ee08b2938422",
+        "user_groups_0.json": "1f131e742cde62371c9e0d76e6601fb354602f36cbf12bb1865ecd2fc3f5ff45",
+        "mislabel_targets_0.json": "c95a4d1ac481a22b4cb2c132c3328ce89a7ab2e33062ebd2cf4fb00a5016af85",
+        "contributions_k[100.0]_T[0.95].json": "270ad47db9265449e12de85590be1552847ef111b063e3adc532ee08b2938422"
+      }
+    },
+    {
+      "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
+      "dataset": "mnist",
+      "scenario": "mislabel_6",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 6
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 9000
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.9712,
+        "exact_shapley": {
+          "0": 0.10193357142857165,
+          "1": 0.10220757936507936,
+          "2": 0.10242460317460327,
+          "3": 0.10271861111111102,
+          "4": 0.09418166666666675,
+          "5": 0.09457095238095244,
+          "6": 0.09278769841269836,
+          "7": 0.09430023809523803,
+          "8": 0.09383404761904761,
+          "9": 0.09224103174603192
+        },
+        "sum": 0.9712000000000005,
+        "efficiency_error": 5.551115123125783e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 0.8928319295134717,
+        "exact_shapley_recomputed": {
+          "0": 0.1715488301024068,
+          "1": 0.17434490822920917,
+          "2": 0.1773707952260881,
+          "3": 0.18093086091136779,
+          "4": 0.03724392529241127,
+          "5": 0.04504798231968247,
+          "6": 0.019124457282157295,
+          "7": 0.04054619814692485,
+          "8": 0.03162776329749492,
+          "9": 0.01504620870572895
+        },
+        "exact_shapley_stored": [
+          0.17154883010240657,
+          0.17434490822920948,
+          0.17737079522608817,
+          0.18093086091136792,
+          0.03724392529241125,
+          0.0450479823196825,
+          0.019124457282157274,
+          0.04054619814692479,
+          0.03162776329749495,
+          0.015046208705728936
+        ],
+        "sum": 0.8928319295134717,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 3.0531133177191805e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
+      "sha256": {
+        "subsets_info.json": "8a07438a58381df308c41d5af7fa36392cab03fd8af1ea69c094cafffa8af06c",
+        "contributions.json": "d5d1978a93f7138c41c20b84ac00a8a4c352aa3e586f7b195cafba57d611db39",
+        "user_groups_0.json": "1f131e742cde62371c9e0d76e6601fb354602f36cbf12bb1865ecd2fc3f5ff45",
+        "mislabel_targets_0.json": "960d8a5516f6e559fb3f7a36de476d9b799512ed95c3a8726a7490641979276e",
+        "contributions_k[100.0]_T[0.95].json": "d5d1978a93f7138c41c20b84ac00a8a4c352aa3e586f7b195cafba57d611db39"
+      }
+    },
+    {
+      "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
+      "dataset": "mnist",
+      "scenario": "mislabel_8",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 0,
+        "num_mislabel": 8
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 12000
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.9676,
+        "exact_shapley": {
+          "0": 0.10564527777777782,
+          "1": 0.10558968253968243,
+          "2": 0.09438257936507931,
+          "3": 0.09487488095238104,
+          "4": 0.09532666666666645,
+          "5": 0.09301126984126962,
+          "6": 0.09450226190476181,
+          "7": 0.09660880952380944,
+          "8": 0.0926330555555554,
+          "9": 0.09502551587301603
+        },
+        "sum": 0.9675999999999993,
+        "efficiency_error": -6.661338147750939e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 0.8532096601986184,
+        "exact_shapley_recomputed": {
+          "0": 0.24350220459092625,
+          "1": 0.24318325203185231,
+          "2": 0.043455553033944355,
+          "3": 0.048387426200449196,
+          "4": 0.05227560108724582,
+          "5": 0.024414150242653587,
+          "6": 0.046577345048591436,
+          "7": 0.07527565268774197,
+          "8": 0.028784828480673166,
+          "9": 0.0473536467945401
+        },
+        "exact_shapley_stored": [
+          0.2435022045909263,
+          0.2431832520318526,
+          0.04345555303394431,
+          0.048387426200449155,
+          0.05227560108724585,
+          0.02441415024265366,
+          0.04657734504859143,
+          0.07527565268774201,
+          0.02878482848067319,
+          0.047353646794540086
+        ],
+        "sum": 0.8532096601986182,
+        "efficiency_error": -2.220446049250313e-16,
+        "max_abs_error_vs_stored": 2.7755575615628914e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
+      "sha256": {
+        "subsets_info.json": "704edd3d208746bae30838a440c828d5f5acbc764eaad58d053aff409004a0b6",
+        "contributions.json": "3b0ad1d1a9418ce4f122305b04be92beb70884f080acfb15f381dd36262c14be",
+        "user_groups_0.json": "1f131e742cde62371c9e0d76e6601fb354602f36cbf12bb1865ecd2fc3f5ff45",
+        "mislabel_targets_0.json": "94c2f372115718263a53b0880eb372cc8df128ef8d3937311328a4b5b775a4e4",
+        "contributions_k[100.0]_T[0.95].json": "3b0ad1d1a9418ce4f122305b04be92beb70884f080acfb15f381dd36262c14be"
+      }
+    },
+    {
+      "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
+      "dataset": "mnist",
+      "scenario": "noniid_2",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 2,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.975,
+        "exact_shapley": {
+          "0": 0.11608567460317452,
+          "1": 0.11610535714285723,
+          "2": 0.11615186507936506,
+          "3": 0.11607642857142851,
+          "4": 0.11621670634920649,
+          "5": 0.11581123015873018,
+          "6": 0.11555055555555557,
+          "7": 0.11618361111111115,
+          "8": 0.018710079365079398,
+          "9": 0.02810849206349203
+        },
+        "sum": 0.9750000000000003,
+        "efficiency_error": 3.3306690738754696e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 0.9241418199787566,
+        "exact_shapley_recomputed": {
+          "0": 0.134238416075567,
+          "1": 0.13545665314201774,
+          "2": 0.13338602586086282,
+          "3": 0.135934706222106,
+          "4": 0.13841443162704956,
+          "5": 0.13104095867876583,
+          "6": 0.12887722219393313,
+          "7": 0.13358702139322348,
+          "8": -0.06962079313970837,
+          "9": -0.07717282207506053
+        },
+        "exact_shapley_stored": [
+          0.13423841607556722,
+          0.13545665314201774,
+          0.13338602586086284,
+          0.13593470622210596,
+          0.13841443162704964,
+          0.13104095867876603,
+          0.12887722219393294,
+          0.13358702139322323,
+          -0.06962079313970826,
+          -0.0771728220750605
+        ],
+        "sum": 0.9241418199787566,
+        "efficiency_error": 0.0,
+        "max_abs_error_vs_stored": 2.498001805406602e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "d01be42433b53c63df599fe107bdd2d47a03e55afc8d3368a17ccbf646ee70c2",
+        "contributions.json": "0b4f32ee35bdd09dad58c06a0d73cecb8fd3dfa008869c56ee83208eb89bc5c5",
+        "user_groups_0.json": "c53397b78aabf5b66dcfdef37fb73fa0f9d01495c3cd46c4d7241f07c30f5f32",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.95].json": "0b4f32ee35bdd09dad58c06a0d73cecb8fd3dfa008869c56ee83208eb89bc5c5"
+      }
+    },
+    {
+      "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
+      "dataset": "mnist",
+      "scenario": "noniid_4",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 4,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.9748,
+        "exact_shapley": {
+          "0": 0.14391333333333337,
+          "1": 0.14409166666666656,
+          "2": 0.14310797619047624,
+          "3": 0.14375313492063524,
+          "4": 0.14309468253968266,
+          "5": 0.14334920634920637,
+          "6": 0.025650396825396816,
+          "7": 0.008450793650793638,
+          "8": 0.03814353174603174,
+          "9": 0.04124527777777785
+        },
+        "sum": 0.9748000000000004,
+        "efficiency_error": 4.440892098500626e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 0.9227277978633405,
+        "exact_shapley_recomputed": {
+          "0": 0.1919971306511368,
+          "1": 0.19559389368216745,
+          "2": 0.17992914082515374,
+          "3": 0.19135399079969653,
+          "4": 0.18329140471542596,
+          "5": 0.1848774155386922,
+          "6": -0.06051943361024719,
+          "7": -0.08604182075618859,
+          "8": -0.04281352181630489,
+          "9": -0.014940402166191588
+        },
+        "exact_shapley_stored": [
+          0.19199713065113663,
+          0.19559389368216756,
+          0.17992914082515354,
+          0.19135399079969637,
+          0.18329140471542554,
+          0.18487741553869222,
+          -0.06051943361024716,
+          -0.08604182075618841,
+          -0.04281352181630496,
+          -0.014940402166191594
+        ],
+        "sum": 0.9227277978633404,
+        "efficiency_error": -1.1102230246251565e-16,
+        "max_abs_error_vs_stored": 4.163336342344337e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "d94f6086fcebc7e3e94278a42b328b546d26066028e1913e2a28151fedafb7f7",
+        "contributions.json": "6236f546c3a97d1137572bad740ea2b94f5644039594363f8080d71f5c0b9ef3",
+        "user_groups_0.json": "ccc7cc684af02c3a46edba50ed41cabcc8eb182f1d30b700fd0d76c97acc3218",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.95].json": "6236f546c3a97d1137572bad740ea2b94f5644039594363f8080d71f5c0b9ef3"
+      }
+    },
+    {
+      "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
+      "dataset": "mnist",
+      "scenario": "noniid_6",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 6,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.9688,
+        "exact_shapley": {
+          "0": 0.19317281746031753,
+          "1": 0.19360186507936508,
+          "2": 0.1934238095238094,
+          "3": 0.19252281746031785,
+          "4": 0.07407103174603168,
+          "5": 0.02892313492063492,
+          "6": 0.012857499999999989,
+          "7": 0.06010611111111117,
+          "8": 0.00971396825396826,
+          "9": 0.010406944444444444
+        },
+        "sum": 0.9688000000000003,
+        "efficiency_error": 3.3306690738754696e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 0.867611126457935,
+        "exact_shapley_recomputed": {
+          "0": 0.2768761439576224,
+          "1": 0.2866107172667088,
+          "2": 0.2819861967791462,
+          "3": 0.27199432407603563,
+          "4": -0.0021859996691030994,
+          "5": -0.05808069462517723,
+          "6": -0.07361858959156958,
+          "7": 0.055456567020751725,
+          "8": -0.07047410034383417,
+          "9": -0.1009534384126457
+        },
+        "exact_shapley_stored": [
+          0.2768761439576224,
+          0.28661071726670884,
+          0.28198619677914644,
+          0.27199432407603596,
+          -0.002185999669103127,
+          -0.05808069462517725,
+          -0.07361858959156962,
+          0.05545656702075173,
+          -0.070474100343834,
+          -0.10095343841264574
+        ],
+        "sum": 0.8676111264579349,
+        "efficiency_error": -1.1102230246251565e-16,
+        "max_abs_error_vs_stored": 3.3306690738754696e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "d38cb29fc285dae5bd5b90d3a50aec2366f6294d288e8073e748db185199da95",
+        "contributions.json": "16bdf92bb9f0cc959860b9e4dd58a084f113e8cdd5d6378bd7889f5c89504446",
+        "user_groups_0.json": "c0c28019cb291dd59299a78fd41d2e3bb9294ab87318a2311ac2c98626b985a1",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.95].json": "16bdf92bb9f0cc959860b9e4dd58a084f113e8cdd5d6378bd7889f5c89504446"
+      }
+    },
+    {
+      "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
+      "dataset": "mnist",
+      "scenario": "noniid_8",
+      "setting": {
+        "epochs": 20,
+        "local_ep": 1,
+        "iter_num": 1,
+        "num_users": 10,
+        "dist": 3,
+        "num_noniid": 8,
+        "num_mislabel": 0
+      },
+      "data": {
+        "client_sizes": {
+          "0": 3000,
+          "1": 3000,
+          "2": 3000,
+          "3": 3000,
+          "4": 3000,
+          "5": 3000,
+          "6": 3000,
+          "7": 3000,
+          "8": 3000,
+          "9": 3000
+        },
+        "total_assigned_examples": 30000,
+        "mislabelled_examples": 0
+      },
+      "coalitions": {
+        "actual_nonempty": 1023,
+        "expected_nonempty": 1023,
+        "complete": true
+      },
+      "raw_accuracy_game": {
+        "full_utility": 0.961,
+        "exact_shapley": {
+          "0": 0.24639416666666683,
+          "1": 0.24573857142857164,
+          "2": 0.06938837301587297,
+          "3": 0.045463333333333335,
+          "4": 0.03843349206349199,
+          "5": 0.05327753968253966,
+          "6": 0.08900595238095246,
+          "7": 0.04471503968253965,
+          "8": 0.06690003968253976,
+          "9": 0.06168349206349214
+        },
+        "sum": 0.9610000000000004,
+        "efficiency_error": 4.440892098500626e-16
+      },
+      "space_sigmoid_game": {
+        "k": 100.0,
+        "T": 0.95,
+        "full_utility": 0.7502601055951178,
+        "exact_shapley_recomputed": {
+          "0": 0.3253955200391947,
+          "1": 0.3176217988082411,
+          "2": -0.014750551342395352,
+          "3": 0.01986276848840978,
+          "4": -0.03796857050242883,
+          "5": 0.10470841467801226,
+          "6": -0.014420143458011528,
+          "7": 0.017492909042099502,
+          "8": 0.016722311406916435,
+          "9": 0.015595648435079712
+        },
+        "exact_shapley_stored": [
+          0.3253955200391941,
+          0.317621798808241,
+          -0.014750551342395357,
+          0.019862768488409743,
+          -0.03796857050242879,
+          0.10470841467801222,
+          -0.01442014345801152,
+          0.01749290904209949,
+          0.01672231140691644,
+          0.015595648435079722
+        ],
+        "sum": 0.7502601055951177,
+        "efficiency_error": -1.1102230246251565e-16,
+        "max_abs_error_vs_stored": 6.106226635438361e-16
+      },
+      "reference_path": "${SPACE_ROOT}/reference/mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
+      "sha256": {
+        "subsets_info.json": "8862e6766bd8dbcbaf380796434849fa01aa38c66520a379aaa8b7455dcab568",
+        "contributions.json": "9ae4f6bf358b7a49330e76f19e90329284e9309a9a785b9fe50bfb60391d9e92",
+        "user_groups_0.json": "d30c66c482ddd13c45dce8dd63aca9be62050317a7cab384a8e41513a127c80d",
+        "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "contributions_k[100.0]_T[0.95].json": "9ae4f6bf358b7a49330e76f19e90329284e9309a9a785b9fe50bfb60391d9e92"
+      }
+    }
+  ]
+}
