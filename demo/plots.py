@@ -179,10 +179,7 @@ def time_figure(result, method_title: str, figsize=(14.5, 3.6)) -> Figure:
 
     label = method_title
     if timing.get("rounds"):
-        seeds = timing.get("seeds") or 1
-        label = texts.FIG_TIME_METHOD_ROUNDS.format(
-            method=method_title, rounds=timing["rounds"],
-            seeds=texts.FIG_TIME_SEEDS.format(seeds=seeds) if seeds > 1 else "")
+        label = texts.FIG_TIME_METHOD_ROUNDS.format(method=method_title, rounds=timing["rounds"])
     values = [float(gt), float(ours)]
     bars = ax.bar([texts.FIG_TIME_GT_LABEL, label], values, color=[SERVER, CLEAN], width=0.5)
     ax.set_yscale("log")
