@@ -28,8 +28,8 @@ python -m demo --export figs --mode replay   # 창 없이 그림만 저장
 | `src/trac/` | TRAC: `scoring`(cosine·EMA·signed 가중치), `fl_round`(한 라운드), `models`, `data`(하이퍼파라미터·파티션·root), `diagnostics`(PCC/AUC) |
 | `demo/` | 데모 프로그램 |
 | `assets/reference/` | 27개 setting의 클라이언트 파티션과 라벨 override |
-| `configs/space_exact_gt_manifest.json` | setting 목록과 Ground Truth Shapley |
-| `results/` | 데모가 재생하는 저장 결과: `ground_truth_group_shapley_sweep.json`(GT·Parzen), `fltrust_structure_b128.json`·`fltrust_structure_cw24.json`(TRAC)과 라운드별 궤적 |
+| `configs/exact_shapley_ground_truth.json` | setting 목록과 Ground Truth Shapley |
+| `results/` | 데모가 재생하는 저장 결과: `parzen_shapley.json`(GT·Parzen), `trac_b128.json`·`trac_cw24.json`(TRAC)과 라운드별 궤적 |
 
 ---
 
@@ -78,7 +78,7 @@ TaskEmbeddingParzenShapley/
 ├── assets/reference/  # 27개 client partition과 label override
 ├── configs/
 │   ├── mc_protocol.json
-│   ├── space_exact_gt_manifest.json
+│   ├── exact_shapley_ground_truth.json
 │   └── ground_truth_group_shapley_protocol.json
 ├── docs/METHOD_KO.md
 ├── reports/
@@ -88,7 +88,7 @@ TaskEmbeddingParzenShapley/
 │   ├── sampled_balanced8_predictions.json
 │   ├── mc_comparison.json
 │   ├── parzen_games.json
-│   └── ground_truth_group_shapley_sweep.json
+│   └── parzen_shapley.json
 ├── scripts/
 │   ├── train_anchors.py
 │   ├── estimate_sampled.py

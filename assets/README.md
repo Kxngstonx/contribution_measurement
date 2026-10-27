@@ -6,4 +6,4 @@ only dataset row indices and label overrides; no raw MNIST, Fashion-MNIST, or
 CIFAR-10 samples are committed.
 
 `train_anchors.py` verifies each file against the SHA-256 recorded in
-`configs/space_exact_gt_manifest.json` before training.
+`configs/exact_shapley_ground_truth.json` before training.

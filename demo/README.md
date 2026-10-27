@@ -30,7 +30,7 @@ cd /home/okdol/code/parzen-shapley
 | 방식 | Parzen-Shapley | TRAC |
 |---|---|---|
 | 실제 계산 | 데이터셋당 20~40초(첫 실행 시 앵커 모델 학습 포함, GPU). 결과는 `artifacts/demo_cache/`에 캐시 | 라운드당 MNIST/FMNIST ≈ 19초, CIFAR ≈ 8초(RTX 3080). 5라운드 ≈ 4분, 전체 30라운드 ≈ 22분 |
-| 저장된 결과 재생 | `results/ground_truth_group_shapley_sweep.json`의 `prediction_phi` | `results/fltrust_structure_b128.json`(MNIST/FMNIST), `results/fltrust_structure_cw24.json`(CIFAR-10, 40라운드 run을 30라운드에서 잘라 재생) + 라운드별 궤적 |
+| 저장된 결과 재생 | `results/parzen_shapley.json`의 `prediction_phi` | `results/trac_b128.json`(MNIST/FMNIST), `results/trac_cw24.json`(CIFAR-10, 40라운드 run을 30라운드에서 잘라 재생) + 라운드별 궤적 |
 
 실제 계산한 TRAC은 같은 라운드 수의 저장 궤적과 비트 단위로 일치합니다. Parzen-Shapley는 앵커 모델을 다시
 학습하므로 저장값과 ~1e-4(CIFAR ~3e-3) 차이가 납니다.

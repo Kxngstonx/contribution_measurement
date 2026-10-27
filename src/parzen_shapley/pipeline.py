@@ -33,7 +33,7 @@ PROJECT = Path(__file__).resolve().parents[2]
 DEFAULT_SPACE = Path(os.environ.get("SPACE_ROOT", str(PROJECT.parent / "SPACE")))
 DEFAULT_DATA_ROOT = Path(os.environ.get("DATA_ROOT", str(DEFAULT_SPACE / "data")))
 DEFAULT_REFERENCE = PROJECT / "assets" / "reference"
-DEFAULT_MANIFEST = PROJECT / "configs" / "space_exact_gt_manifest.json"
+DEFAULT_MANIFEST = PROJECT / "configs" / "exact_shapley_ground_truth.json"
 
 # Anchor training protocol (frozen since the GT sweep): 5 epochs of SGD on the
 # union of the clients' data with the stored label overrides applied.
