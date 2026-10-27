@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import math
 from collections.abc import Callable, Iterable
+from time import perf_counter
 
 import numpy as np
 
@@ -141,6 +142,7 @@ def _finalize(
     n_players: int,
     paths: int,
     method: str,
+    started: float | None = None,
 ) -> dict:
     expected = (1 << n_players) - 1
     exhaustive = len(counted.nonempty_queries) == expected
@@ -159,6 +161,7 @@ def _finalize(
         "expected_nonempty_coalitions": expected,
         "exhaustive_cache": exhaustive,
         "efficiency_error": float(prediction.sum() - total),
+        "seconds": (perf_counter() - started) if started is not None else None,
     }
 
 
@@ -171,6 +174,7 @@ def vanilla_mc(
 ) -> dict:
     """Independent uniform permutation Monte Carlo."""
 
+    started = perf_counter()
     if paths < 1:
         raise ValueError("paths must be positive")
     counted = CountingUtility(utility)
@@ -185,6 +189,7 @@ def vanilla_mc(
         n_players=n_players,
         paths=paths,
         method="vanilla_mc",
+        started=started,
     )
 
 
@@ -197,6 +202,7 @@ def antithetic_mc(
 ) -> dict:
     """Uniform permutations paired with their reverse."""
 
+    started = perf_counter()
     if paths < 2 or paths % 2:
         raise ValueError("antithetic paths must be a positive even number")
     counted = CountingUtility(utility)
@@ -212,6 +218,7 @@ def antithetic_mc(
         n_players=n_players,
         paths=paths,
         method="antithetic_mc",
+        started=started,
     )
 
 
@@ -224,6 +231,7 @@ def control_mc(
 ) -> dict:
     """Independent permutation MC on a two-additive residual game."""
 
+    started = perf_counter()
     if paths < 1:
         raise ValueError("paths must be positive")
     counted = CountingUtility(utility)
@@ -246,6 +254,7 @@ def control_mc(
         n_players=n_players,
         paths=paths,
         method="control_mc",
+        started=started,
     )
 
 
@@ -263,6 +272,7 @@ def balanced_mc(
     all ``2 * n_players`` rotations of one uniform base permutation.
     """
 
+    started = perf_counter()
     block_size = 2 * n_players
     if paths < block_size or paths % block_size:
         raise ValueError(
@@ -301,4 +311,5 @@ def balanced_mc(
         n_players=n_players,
         paths=paths,
         method="balanced_control_mc" if control else "balanced_raw_mc",
+        started=started,
     )

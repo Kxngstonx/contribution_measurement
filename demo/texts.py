@@ -38,12 +38,14 @@ METHOD_TRAC = (
 )
 
 CONTROLS_TITLE = "평가 설정"
-SETTING_HINT = "데이터셋별 오염 참여자 구성 (mislabel-k: 라벨 오류 k명, noniid-k: 클래스 편향 k명)"
+SETTING_HINT = "데이터셋 하나와 오염 참여자 구성 하나를 고릅니다 (mislabel-k: 라벨 오류 k명, noniid-k: 클래스 편향 k명)"
+DATASET_LABEL = "데이터셋"
+SETTING_LABEL = "오염 참여자 구성"
 MODE_LABEL = "계산 방식"
 MODE_REAL = "실제 계산 (한 번 계산한 결과는 캐시)"
 MODE_REPLAY = "저장된 결과 재생"
 ROUNDS_LABEL = "TRAC 라운드 수"
-ROUNDS_HINT = "{rounds}라운드 ≈ {minutes:.1f}분 (전체 30라운드 ≈ {full:.0f}분)"
+ROUNDS_HINT = "{rounds}라운드 ≈ {minutes:.1f}분 (전체 {full_rounds}라운드 ≈ {full:.0f}분)"
 DEVICE_CPU_WARNING = "경고: GPU가 감지되지 않아 CPU로 계산합니다. 실제 계산이 매우 느립니다."
 
 BTN_PARZEN = "Parzen-Shapley 기여도 평가"
@@ -72,6 +74,7 @@ RESULT_SOURCE = {"real": "실제 계산", "replay": "저장된 결과", "cache":
 RESULT_LINE = "{title} {label}: PCC {pcc:.3f} ({source}{extra})"
 RESULT_ACCURACY = ", 글로벌 모델 정확도 {accuracy:.3f}"
 RESULT_ROUNDS = ", {rounds}라운드"
+RESULT_TIME = "측정 시간 {ours}  ·  Ground Truth(전수 재학습) {gt}"
 
 FIG_BAR_TITLE = "{method} — 클라이언트별 기여도"
 FIG_SCATTER_TITLE = "{method} — 정답(Ground Truth) Shapley value와의 비교"
@@ -81,6 +84,17 @@ FIG_XLABEL_GT = "Ground Truth Shapley value"
 FIG_CLEAN = "정상 참여자"
 FIG_CONTAM = "오염 참여자"
 FIG_PCC = "PCC = {pcc:.3f}"
+FIG_TIME_TITLE = "{method} — 측정 시간 (Ground Truth 전수 재학습 대비)"
+FIG_TIME_YLABEL = "측정 시간 (로그 눈금)"
+FIG_TIME_GT_LABEL = "Exact Shapley\n(전수 재학습)"
+FIG_TIME_METHOD_ROUNDS = "{method}\n({rounds}라운드{seeds})"
+FIG_TIME_SEEDS = ", {seeds} seed 평균"
+FIG_TIME_SUMMARY = "{gt} → {ours}   |   {pct:.2f}% 감소 (×{factor:,.0f} 빠름)"
+FIG_TIME_NO_GT = "이 설정의 Ground Truth 측정 시간이 없습니다"
+TIME_HOURS = "{h:.1f}시간"
+TIME_MINUTES = "{m:.1f}분"
+TIME_SECONDS = "{s:.1f}초"
+TIME_TICKS = ("1초", "1분", "1시간", "1일")
 METHOD_NAMES = {"parzen": "Parzen-Shapley", "trac": "TRAC"}
 
 SCHEMATIC_CLIENT = "참여자"

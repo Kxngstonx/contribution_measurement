@@ -24,6 +24,7 @@ from .utility import (
     make_parzen_utility,
 )
 from .encoders import DEFAULT_KERNEL_TEMPERATURE, Encoder, StubEncoder, load_encoder
+from .timing import StageTimer
 from .embeddings import (
     EmbeddingCache,
     apply_overrides,
@@ -37,6 +38,7 @@ __all__ = [
     "DEFAULT_KERNEL_TEMPERATURE",
     "EmbeddingCache",
     "Encoder",
+    "StageTimer",
     "StubEncoder",
     "antithetic_mc",
     "apply_overrides",

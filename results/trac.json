@@ -62,7 +62,8 @@
       "mnist": "batch-128 rerun (former trac_b128.json)",
       "fmnist": "batch-128 rerun (former trac_b128.json)",
       "cifar": "24-setting run (former trac_cw24.json); 40 rounds stored, demo replays the first 30"
-    }
+    },
+    "timing": "timing.total_seconds = wall clock of one full FL run including client training, root step, score computation and per-round diagnostics; summary entries average the 3 seeds"
   },
   "rows": [
     {
@@ -528,7 +529,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9803058918419212,
       "pcc_mix_vs_exact_parzen": 0.9474531660730309,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 555.8434581756592,
+        "stages": {
+          "fl_run": 555.8434581756592
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -993,7 +1003,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9788949888167672,
       "pcc_mix_vs_exact_parzen": 0.9560835937528387,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 548.9418427944183,
+        "stages": {
+          "fl_run": 548.9418427944183
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -1458,7 +1477,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9817094927930086,
       "pcc_mix_vs_exact_parzen": 0.9467648302125091,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 555.5571773052216,
+        "stages": {
+          "fl_run": 555.5571773052216
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -1923,7 +1951,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9284405946420368,
       "pcc_mix_vs_exact_parzen": 0.9620721759640144,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 554.4717462062836,
+        "stages": {
+          "fl_run": 554.4717462062836
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -2388,7 +2425,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9227916792029712,
       "pcc_mix_vs_exact_parzen": 0.9720107224615007,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 556.9295547008514,
+        "stages": {
+          "fl_run": 556.9295547008514
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -2853,7 +2899,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9177335587376451,
       "pcc_mix_vs_exact_parzen": 0.9683465141542481,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 551.8237030506134,
+        "stages": {
+          "fl_run": 551.8237030506134
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
@@ -3318,7 +3373,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.8937082328273209,
       "pcc_mix_vs_exact_parzen": 0.9880741824622692,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 575.9414486885071,
+        "stages": {
+          "fl_run": 575.9414486885071
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
@@ -3783,7 +3847,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.8963923466159177,
       "pcc_mix_vs_exact_parzen": 0.9869707006049648,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 556.9735352993011,
+        "stages": {
+          "fl_run": 556.9735352993011
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
@@ -4248,7 +4321,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9022840676620957,
       "pcc_mix_vs_exact_parzen": 0.9846170209931052,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 569.5301711559296,
+        "stages": {
+          "fl_run": 569.5301711559296
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
@@ -4713,7 +4795,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.8651008742963341,
       "pcc_mix_vs_exact_parzen": 0.9869044894165603,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 557.7216370105743,
+        "stages": {
+          "fl_run": 557.7216370105743
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
@@ -5178,7 +5269,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.8408441335487433,
       "pcc_mix_vs_exact_parzen": 0.9946470788741996,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 565.7257027626038,
+        "stages": {
+          "fl_run": 565.7257027626038
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
@@ -5643,7 +5743,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.8558469646313563,
       "pcc_mix_vs_exact_parzen": 0.9871364131467671,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 556.9644165039062,
+        "stages": {
+          "fl_run": 556.9644165039062
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -6108,7 +6217,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9902582719287714,
       "pcc_mix_vs_exact_parzen": 0.985368237610374,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 550.7892634868622,
+        "stages": {
+          "fl_run": 550.7892634868622
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -6573,7 +6691,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.989755276259899,
       "pcc_mix_vs_exact_parzen": 0.9814776321919357,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 547.6345019340515,
+        "stages": {
+          "fl_run": 547.6345019340515
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -7038,7 +7165,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9834989914451067,
       "pcc_mix_vs_exact_parzen": 0.9744825182645745,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 545.5622096061707,
+        "stages": {
+          "fl_run": 545.5622096061707
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -7503,7 +7639,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9782029473270248,
       "pcc_mix_vs_exact_parzen": 0.9753635076234798,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 550.079498052597,
+        "stages": {
+          "fl_run": 550.079498052597
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -7968,7 +8113,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9755478912389434,
       "pcc_mix_vs_exact_parzen": 0.979578622277105,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 560.1836438179016,
+        "stages": {
+          "fl_run": 560.1836438179016
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -8433,7 +8587,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9735031165855119,
       "pcc_mix_vs_exact_parzen": 0.9802356858559429,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 559.8102090358734,
+        "stages": {
+          "fl_run": 559.8102090358734
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
@@ -8898,7 +9061,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9705525772415385,
       "pcc_mix_vs_exact_parzen": 0.9738308860282558,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 562.8442945480347,
+        "stages": {
+          "fl_run": 562.8442945480347
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
@@ -9363,7 +9535,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9756580653521089,
       "pcc_mix_vs_exact_parzen": 0.9771601998446539,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 569.8774371147156,
+        "stages": {
+          "fl_run": 569.8774371147156
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
@@ -9828,7 +10009,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9721466932347487,
       "pcc_mix_vs_exact_parzen": 0.9708383942134572,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 564.4652585983276,
+        "stages": {
+          "fl_run": 564.4652585983276
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
@@ -10293,7 +10483,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9866614332945531,
       "pcc_mix_vs_exact_parzen": 0.9587889497096935,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 568.124915599823,
+        "stages": {
+          "fl_run": 568.124915599823
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
@@ -10758,7 +10957,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.984223272873445,
       "pcc_mix_vs_exact_parzen": 0.9397505466296251,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 556.7946314811707,
+        "stages": {
+          "fl_run": 556.7946314811707
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
@@ -11223,7 +11431,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.987006877759892,
       "pcc_mix_vs_exact_parzen": 0.9625888262164297,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 561.3143572807312,
+        "stages": {
+          "fl_run": 561.3143572807312
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -11688,7 +11905,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9921946488830102,
       "pcc_mix_vs_exact_parzen": 0.9985869816954017,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 567.3809795379639,
+        "stages": {
+          "fl_run": 567.3809795379639
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -12153,7 +12379,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9919788354078234,
       "pcc_mix_vs_exact_parzen": 0.9989950956078139,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 563.7599651813507,
+        "stages": {
+          "fl_run": 563.7599651813507
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -12618,7 +12853,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9920723871244742,
       "pcc_mix_vs_exact_parzen": 0.9986814011671598,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 563.8032705783844,
+        "stages": {
+          "fl_run": 563.8032705783844
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -13083,7 +13327,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9946373533376971,
       "pcc_mix_vs_exact_parzen": 0.9996650640215818,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 559.231440782547,
+        "stages": {
+          "fl_run": 559.231440782547
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -13548,7 +13801,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9951009373093084,
       "pcc_mix_vs_exact_parzen": 0.9994033047126604,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 561.7429947853088,
+        "stages": {
+          "fl_run": 561.7429947853088
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -14013,7 +14275,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.994883490888864,
       "pcc_mix_vs_exact_parzen": 0.999558352098667,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 565.2497539520264,
+        "stages": {
+          "fl_run": 565.2497539520264
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
@@ -14478,7 +14749,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9881520396354843,
       "pcc_mix_vs_exact_parzen": 0.9998118249763637,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 564.2935934066772,
+        "stages": {
+          "fl_run": 564.2935934066772
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
@@ -14943,7 +15223,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9879390739414154,
       "pcc_mix_vs_exact_parzen": 0.9997605490009974,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 569.7675414085388,
+        "stages": {
+          "fl_run": 569.7675414085388
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
@@ -15408,7 +15697,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9886621296683696,
       "pcc_mix_vs_exact_parzen": 0.9996082557993152,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 591.5634336471558,
+        "stages": {
+          "fl_run": 591.5634336471558
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
@@ -15873,7 +16171,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9672315239752666,
       "pcc_mix_vs_exact_parzen": 0.9991118066628645,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 552.6870639324188,
+        "stages": {
+          "fl_run": 552.6870639324188
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
@@ -16338,7 +16645,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9690338151437397,
       "pcc_mix_vs_exact_parzen": 0.9994073561172104,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 560.2401192188263,
+        "stages": {
+          "fl_run": 560.2401192188263
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
@@ -16803,7 +17119,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9689671022268959,
       "pcc_mix_vs_exact_parzen": 0.9992497718277324,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 559.0840084552765,
+        "stages": {
+          "fl_run": 559.0840084552765
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -17268,7 +17593,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9924845754867588,
       "pcc_mix_vs_exact_parzen": 0.9936236066238693,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 552.8605237007141,
+        "stages": {
+          "fl_run": 552.8605237007141
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -17733,7 +18067,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9961083870385176,
       "pcc_mix_vs_exact_parzen": 0.9967140688390101,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 548.9912242889404,
+        "stages": {
+          "fl_run": 548.9912242889404
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -18198,7 +18541,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9937558108712194,
       "pcc_mix_vs_exact_parzen": 0.9945999512092688,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 551.9151563644409,
+        "stages": {
+          "fl_run": 551.9151563644409
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -18663,7 +19015,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9911317283745253,
       "pcc_mix_vs_exact_parzen": 0.9906796908954012,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 552.5057244300842,
+        "stages": {
+          "fl_run": 552.5057244300842
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -19128,7 +19489,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.989079796990532,
       "pcc_mix_vs_exact_parzen": 0.9885151672524854,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 554.9827146530151,
+        "stages": {
+          "fl_run": 554.9827146530151
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -19593,7 +19963,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9957886210880922,
       "pcc_mix_vs_exact_parzen": 0.9953509302021977,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 549.4955344200134,
+        "stages": {
+          "fl_run": 549.4955344200134
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
@@ -20058,7 +20437,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9919788343010044,
       "pcc_mix_vs_exact_parzen": 0.9917508558286565,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 554.3383643627167,
+        "stages": {
+          "fl_run": 554.3383643627167
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
@@ -20523,7 +20911,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.985242440248154,
       "pcc_mix_vs_exact_parzen": 0.9849388912281013,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 555.7276258468628,
+        "stages": {
+          "fl_run": 555.7276258468628
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
@@ -20988,7 +21385,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9814426259616386,
       "pcc_mix_vs_exact_parzen": 0.9807942301891371,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 549.8723683357239,
+        "stages": {
+          "fl_run": 549.8723683357239
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
@@ -21453,7 +21859,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9784378203021354,
       "pcc_mix_vs_exact_parzen": 0.9743005944720574,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 543.1593866348267,
+        "stages": {
+          "fl_run": 543.1593866348267
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
@@ -21918,7 +22333,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9900503601026538,
       "pcc_mix_vs_exact_parzen": 0.9858028459985746,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 540.6825511455536,
+        "stages": {
+          "fl_run": 540.6825511455536
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
@@ -22383,7 +22807,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9842842502225324,
       "pcc_mix_vs_exact_parzen": 0.9790140163197771,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 540.0510766506195,
+        "stages": {
+          "fl_run": 540.0510766506195
+        },
+        "rounds": 30,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[1]",
@@ -22668,7 +23101,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9542469184327423,
       "pcc_mix_vs_exact_parzen": 0.9529554445672521,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 307.96602272987366,
+        "stages": {
+          "fl_run": 307.96602272987366
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[1]",
@@ -22953,7 +23395,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9601658492581242,
       "pcc_mix_vs_exact_parzen": 0.958373866072887,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 304.7666220664978,
+        "stages": {
+          "fl_run": 304.7666220664978
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[1]",
@@ -23238,7 +23689,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9535284132718124,
       "pcc_mix_vs_exact_parzen": 0.9532382654630617,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 308.1366398334503,
+        "stages": {
+          "fl_run": 308.1366398334503
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -23523,7 +23983,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9445448681827221,
       "pcc_mix_vs_exact_parzen": 0.9702857550733259,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 308.2743489742279,
+        "stages": {
+          "fl_run": 308.2743489742279
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -23808,7 +24277,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9777264846169547,
       "pcc_mix_vs_exact_parzen": 0.9846270504640201,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 309.4120280742645,
+        "stages": {
+          "fl_run": 309.4120280742645
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -24093,7 +24571,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9605545731690533,
       "pcc_mix_vs_exact_parzen": 0.9835013231865594,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 306.3852813243866,
+        "stages": {
+          "fl_run": 306.3852813243866
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[3]",
@@ -24378,7 +24865,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9622082047322373,
       "pcc_mix_vs_exact_parzen": 0.9832703472735854,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 310.4049868583679,
+        "stages": {
+          "fl_run": 310.4049868583679
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[3]",
@@ -24663,7 +25159,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9654431490529113,
       "pcc_mix_vs_exact_parzen": 0.9854801381233004,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 305.858286857605,
+        "stages": {
+          "fl_run": 305.858286857605
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[3]",
@@ -24948,7 +25453,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9653971603211675,
       "pcc_mix_vs_exact_parzen": 0.9855910704466146,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 310.5673987865448,
+        "stages": {
+          "fl_run": 310.5673987865448
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -25233,7 +25747,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9896105757981551,
       "pcc_mix_vs_exact_parzen": 0.9875815105858062,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 310.97396326065063,
+        "stages": {
+          "fl_run": 310.97396326065063
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -25518,7 +26041,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.978184215158193,
       "pcc_mix_vs_exact_parzen": 0.9864469908139248,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 306.75477027893066,
+        "stages": {
+          "fl_run": 306.75477027893066
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -25803,7 +26335,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9847941371700795,
       "pcc_mix_vs_exact_parzen": 0.98757058222644,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 309.82627034187317,
+        "stages": {
+          "fl_run": 309.82627034187317
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[1]_numMislabel[0]",
@@ -26088,7 +26629,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9987336563664305,
       "pcc_mix_vs_exact_parzen": 0.994372093844494,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 307.61124992370605,
+        "stages": {
+          "fl_run": 307.61124992370605
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[1]_numMislabel[0]",
@@ -26373,7 +26923,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9993098250533001,
       "pcc_mix_vs_exact_parzen": 0.9957995308951154,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 311.19002056121826,
+        "stages": {
+          "fl_run": 311.19002056121826
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[1]_numMislabel[0]",
@@ -26658,7 +27217,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9999584682876516,
       "pcc_mix_vs_exact_parzen": 0.9949199900950901,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 308.3084661960602,
+        "stages": {
+          "fl_run": 308.3084661960602
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -26943,7 +27511,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.99076278423803,
       "pcc_mix_vs_exact_parzen": 0.9783383380485253,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 309.9464900493622,
+        "stages": {
+          "fl_run": 309.9464900493622
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -27228,7 +27805,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9940166110212703,
       "pcc_mix_vs_exact_parzen": 0.9879233545029132,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 306.5924391746521,
+        "stages": {
+          "fl_run": 306.5924391746521
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -27513,7 +28099,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9892791362971671,
       "pcc_mix_vs_exact_parzen": 0.9770723761962998,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 307.551637172699,
+        "stages": {
+          "fl_run": 307.551637172699
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[3]_numMislabel[0]",
@@ -27798,7 +28393,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9526824397108992,
       "pcc_mix_vs_exact_parzen": 0.9201300766187674,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 309.3187999725342,
+        "stages": {
+          "fl_run": 309.3187999725342
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[3]_numMislabel[0]",
@@ -28083,7 +28687,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9526584319029324,
       "pcc_mix_vs_exact_parzen": 0.91611016978363,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 304.87551498413086,
+        "stages": {
+          "fl_run": 304.87551498413086
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[3]_numMislabel[0]",
@@ -28368,7 +28981,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9424704366582763,
       "pcc_mix_vs_exact_parzen": 0.9021737331659336,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 307.314172744751,
+        "stages": {
+          "fl_run": 307.314172744751
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -28653,7 +29275,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.9052136229700256,
       "pcc_mix_vs_exact_parzen": 0.8364928005658399,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 308.2477023601532,
+        "stages": {
+          "fl_run": 308.2477023601532
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -28938,7 +29569,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.8907603898700429,
       "pcc_mix_vs_exact_parzen": 0.8170523714238628,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 306.2431392669678,
+        "stages": {
+          "fl_run": 306.2431392669678
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -29223,7 +29863,16 @@
       ],
       "pcc_mix_vs_ground_truth": 0.929838510255197,
       "pcc_mix_vs_exact_parzen": 0.8494837505949948,
-      "auc_mix": 1.0
+      "auc_mix": 1.0,
+      "timing": {
+        "total_seconds": 306.53740906715393,
+        "stages": {
+          "fl_run": 306.53740906715393
+        },
+        "rounds": 40,
+        "seeds": 1,
+        "source": "wall_clock_seconds"
+      }
     }
   ],
   "summary": [
@@ -29437,6 +30086,15 @@
         "min": 0.9347294513466189,
         "median": 0.9368837015441593,
         "max": 0.9420138345006154
+      },
+      "timing": {
+        "total_seconds": 553.447492758433,
+        "stages": {
+          "fl_run": 553.447492758433
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -29649,6 +30307,15 @@
         "min": 0.9217713338586481,
         "median": 0.9230336049556479,
         "max": 0.9232409699554455
+      },
+      "timing": {
+        "total_seconds": 554.4083346525828,
+        "stages": {
+          "fl_run": 554.4083346525828
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -29861,6 +30528,15 @@
         "min": 0.8927369968991207,
         "median": 0.8937559045783363,
         "max": 0.8975787244763391
+      },
+      "timing": {
+        "total_seconds": 567.481718381246,
+        "stages": {
+          "fl_run": 567.481718381246
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -30073,6 +30749,15 @@
         "min": 0.8134033267082724,
         "median": 0.8148401859507228,
         "max": 0.8319974820546255
+      },
+      "timing": {
+        "total_seconds": 560.1372520923615,
+        "stages": {
+          "fl_run": 560.1372520923615
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -30285,6 +30970,15 @@
         "min": 0.9324199956162708,
         "median": 0.9380846599507698,
         "max": 0.9382528184159863
+      },
+      "timing": {
+        "total_seconds": 547.9953250090281,
+        "stages": {
+          "fl_run": 547.9953250090281
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -30497,6 +31191,15 @@
         "min": 0.9259777847313665,
         "median": 0.9289985471388218,
         "max": 0.9331781363785604
+      },
+      "timing": {
+        "total_seconds": 556.6911169687907,
+        "stages": {
+          "fl_run": 556.6911169687907
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -30709,6 +31412,15 @@
         "min": 0.9187097098949326,
         "median": 0.9209530652247478,
         "max": 0.9254805704707885
+      },
+      "timing": {
+        "total_seconds": 565.7289967536926,
+        "stages": {
+          "fl_run": 565.7289967536926
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -30921,6 +31633,15 @@
         "min": 0.9206867553747828,
         "median": 0.9288388251472495,
         "max": 0.9288588813795631
+      },
+      "timing": {
+        "total_seconds": 562.077968120575,
+        "stages": {
+          "fl_run": 562.077968120575
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -31133,6 +31854,15 @@
         "min": 0.7788859298604837,
         "median": 0.8273071712645862,
         "max": 0.839084611820247
+      },
+      "timing": {
+        "total_seconds": 564.981405099233,
+        "stages": {
+          "fl_run": 564.981405099233
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -31345,6 +32075,15 @@
         "min": 0.8380753001763578,
         "median": 0.8440633621189687,
         "max": 0.8543049821537332
+      },
+      "timing": {
+        "total_seconds": 562.0747298399607,
+        "stages": {
+          "fl_run": 562.0747298399607
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -31557,6 +32296,15 @@
         "min": 0.796720733974219,
         "median": 0.8127897895699809,
         "max": 0.8250657170461473
+      },
+      "timing": {
+        "total_seconds": 575.2081894874573,
+        "stages": {
+          "fl_run": 575.2081894874573
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -31769,6 +32517,15 @@
         "min": 0.7845153150183062,
         "median": 0.7856978501656755,
         "max": 0.7948920755454887
+      },
+      "timing": {
+        "total_seconds": 557.3370638688406,
+        "stages": {
+          "fl_run": 557.3370638688406
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -31981,6 +32738,15 @@
         "min": 0.8100946030546868,
         "median": 0.835348042401723,
         "max": 0.846021634544106
+      },
+      "timing": {
+        "total_seconds": 551.2556347846985,
+        "stages": {
+          "fl_run": 551.2556347846985
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -32193,6 +32959,15 @@
         "min": 0.8290010084256539,
         "median": 0.8391736593018864,
         "max": 0.8391863466112489
+      },
+      "timing": {
+        "total_seconds": 552.3279911677042,
+        "stages": {
+          "fl_run": 552.3279911677042
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -32405,6 +33180,15 @@
         "min": 0.819296143831602,
         "median": 0.8258943622878573,
         "max": 0.8347085219285518
+      },
+      "timing": {
+        "total_seconds": 553.3127861817678,
+        "stages": {
+          "fl_run": 553.3127861817678
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -32617,6 +33401,15 @@
         "min": 0.8351136005308769,
         "median": 0.8443863741427878,
         "max": 0.8606504030414391
+      },
+      "timing": {
+        "total_seconds": 541.2976714769999,
+        "stages": {
+          "fl_run": 541.2976714769999
+        },
+        "rounds": 30,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -32829,6 +33622,15 @@
         "min": 0.3679010159532968,
         "median": 0.39090429667399523,
         "max": 0.42114608397195263
+      },
+      "timing": {
+        "total_seconds": 306.9564282099406,
+        "stages": {
+          "fl_run": 306.9564282099406
+        },
+        "rounds": 40,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -33041,6 +33843,15 @@
         "min": 0.3727111098937015,
         "median": 0.38143339461664827,
         "max": 0.43555836303905393
+      },
+      "timing": {
+        "total_seconds": 308.023886124293,
+        "stages": {
+          "fl_run": 308.023886124293
+        },
+        "rounds": 40,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -33253,6 +34064,15 @@
         "min": 0.40111890449777776,
         "median": 0.4152914666919978,
         "max": 0.41867483167898706
+      },
+      "timing": {
+        "total_seconds": 308.94355750083923,
+        "stages": {
+          "fl_run": 308.94355750083923
+        },
+        "rounds": 40,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -33465,6 +34285,15 @@
         "min": 0.3616014016932815,
         "median": 0.36260871986814674,
         "max": 0.38595313482692956
+      },
+      "timing": {
+        "total_seconds": 309.1850012938182,
+        "stages": {
+          "fl_run": 309.1850012938182
+        },
+        "rounds": 40,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -33677,6 +34506,15 @@
         "min": 0.3592245586504038,
         "median": 0.39061870550727695,
         "max": 0.4083086003329651
+      },
+      "timing": {
+        "total_seconds": 309.0365788936615,
+        "stages": {
+          "fl_run": 309.0365788936615
+        },
+        "rounds": 40,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -33889,6 +34727,15 @@
         "min": 0.48127694436077634,
         "median": 0.48374912987571383,
         "max": 0.4941870049687938
+      },
+      "timing": {
+        "total_seconds": 308.0301887989044,
+        "stages": {
+          "fl_run": 308.0301887989044
+        },
+        "rounds": 40,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -34101,6 +34948,15 @@
         "min": 0.5850339361376029,
         "median": 0.5870791469333717,
         "max": 0.6130703778057052
+      },
+      "timing": {
+        "total_seconds": 307.169495900472,
+        "stages": {
+          "fl_run": 307.169495900472
+        },
+        "rounds": 40,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     },
     {
@@ -34313,6 +35169,15 @@
         "min": 0.6611207723350452,
         "median": 0.6652834437325481,
         "max": 0.6990891290930688
+      },
+      "timing": {
+        "total_seconds": 307.0094168980916,
+        "stages": {
+          "fl_run": 307.0094168980916
+        },
+        "rounds": 40,
+        "seeds": 3,
+        "source": "mean wall_clock_seconds over 3 seeds"
       }
     }
   ],

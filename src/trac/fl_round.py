@@ -31,6 +31,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
+from time import perf_counter
 
 import numpy as np
 import torch
@@ -143,6 +144,7 @@ class RoundOutput:
     client_norm_mean: float
     client_norms: np.ndarray
     n_negative: int
+    seconds: float = 0.0  # wall clock of this round (client + root steps, scoring, aggregation)
 
 
 def run_round(
@@ -174,6 +176,7 @@ def run_round(
     s_i is negative this round (their updates were subtracted).
     """
 
+    started = perf_counter()
     n_players = len(client_indices)
 
     deltas = []
@@ -237,6 +240,7 @@ def run_round(
         client_norm_mean=float(client_norms.mean()),
         client_norms=client_norms,
         n_negative=n_negative,
+        seconds=perf_counter() - started,
     )
 
 

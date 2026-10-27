@@ -54,25 +54,41 @@ class MainScreen(tk.Frame):
         # schematic; its rows are spread over that height.
         panel = _frame(self, bg=PANEL, padx=36, pady=22)
         panel.pack(fill="both", expand=True, padx=28, pady=(14, 14))
-        for column in range(3):
-            panel.grid_columnconfigure(column, weight=1, uniform="dataset")
+        for column in range(2):
+            panel.grid_columnconfigure(column, weight=1, uniform="pick")
         for row in (2, 3, 4):
             panel.grid_rowconfigure(row, weight=1)
         KLabel(panel, texts.CONTROLS_TITLE, size=20, bold=True).grid(
-            row=0, column=0, columnspan=3, sticky="w", pady=(0, 4))
+            row=0, column=0, columnspan=2, sticky="w", pady=(0, 4))
         KLabel(panel, texts.SETTING_HINT, size=14, color="#555555").grid(
-            row=1, column=0, columnspan=3, sticky="w", pady=(0, 8))
-        self.choice_vars = {}
-        for column, dataset in enumerate(config.DATASETS):
-            cell = _frame(panel, bg=PANEL)
-            cell.grid(row=2, column=column, sticky="ew", padx=(0 if column == 0 else 24, 0), pady=6)
-            KLabel(cell, config.DATASET_TITLES[dataset], size=16, bold=True).pack(anchor="w", pady=(0, 6))
+            row=1, column=0, columnspan=2, sticky="w", pady=(0, 8))
+
+        # One dataset picker and, per dataset, one pre-built setting picker
+        # stacked in the same cell (KOptionMenu has a fixed value list); the
+        # picker of the chosen dataset is raised on top.
+        cell = _frame(panel, bg=PANEL)
+        cell.grid(row=2, column=0, sticky="ew", pady=6)
+        KLabel(cell, texts.DATASET_LABEL, size=16, bold=True).pack(anchor="w", pady=(0, 6))
+        self.dataset_title = tk.StringVar(value=config.DATASET_TITLES[config.DEFAULT_DATASET])
+        KOptionMenu(cell, self.dataset_title,
+                    [config.DATASET_TITLES[d] for d in config.DATASETS],
+                    size=16, command=self._dataset_changed).pack(fill="x")
+
+        cell = _frame(panel, bg=PANEL)
+        cell.grid(row=2, column=1, sticky="ew", padx=(24, 0), pady=6)
+        KLabel(cell, texts.SETTING_LABEL, size=16, bold=True).pack(anchor="w", pady=(0, 6))
+        holder = _frame(cell, bg=PANEL)
+        holder.pack(fill="x")
+        holder.grid_columnconfigure(0, weight=1)
+        self.setting_vars, self.setting_menus = {}, {}
+        for dataset in config.DATASETS:
             var = tk.StringVar(value=config.DEFAULT_CHOICE[dataset])
-            KOptionMenu(cell, var, backend.labels_for(dataset), size=16).pack(fill="x")
-            self.choice_vars[dataset] = var
+            menu = KOptionMenu(holder, var, backend.labels_for(dataset), size=16)
+            menu.grid(row=0, column=0, sticky="ew")
+            self.setting_vars[dataset], self.setting_menus[dataset] = var, menu
 
         mode_row = _frame(panel, bg=PANEL)
-        mode_row.grid(row=3, column=0, columnspan=3, sticky="w", pady=6)
+        mode_row.grid(row=3, column=0, columnspan=2, sticky="w", pady=6)
         KLabel(mode_row, texts.MODE_LABEL, size=16, bold=True).pack(side="left", padx=(0, 24))
         self.mode = tk.StringVar(value="replay")
         KRadiobutton(mode_row, texts.MODE_REPLAY, variable=self.mode, value="replay",
@@ -81,7 +97,7 @@ class MainScreen(tk.Frame):
                      size=16, command=self._refresh).pack(side="left", padx=(36, 0))
 
         rounds_row = _frame(panel, bg=PANEL)
-        rounds_row.grid(row=4, column=0, columnspan=3, sticky="w", pady=6)
+        rounds_row.grid(row=4, column=0, columnspan=2, sticky="w", pady=6)
         KLabel(rounds_row, texts.ROUNDS_LABEL, size=16, bold=True).pack(side="left", padx=(0, 24))
         self.rounds = tk.StringVar(value=str(config.DEFAULT_TRAC_ROUNDS))
         self.rounds_box = KStepper(rounds_row, self.rounds, from_=1, to=config.MAX_TRAC_ROUNDS,
@@ -92,7 +108,7 @@ class MainScreen(tk.Frame):
 
         if app.device != "cuda":
             KLabel(panel, texts.DEVICE_CPU_WARNING, size=14, color="#b02a37").grid(
-                row=5, column=0, columnspan=3, sticky="w", pady=(6, 0))
+                row=5, column=0, columnspan=2, sticky="w", pady=(6, 0))
 
         buttons = _frame(self)
         buttons.pack(pady=(0, 22))
@@ -102,20 +118,31 @@ class MainScreen(tk.Frame):
         self.btn_trac = KButton(buttons, texts.BTN_TRAC, size=18,
                                 command=lambda: app.start_job("trac"))
         self.btn_trac.pack(side="left", padx=20)
+        self._dataset_changed()
+
+    _TITLE_TO_DATASET = {title: dataset for dataset, title in config.DATASET_TITLES.items()}
+
+    def dataset(self) -> str:
+        return self._TITLE_TO_DATASET[self.dataset_title.get()]
+
+    def _dataset_changed(self):
+        self.setting_menus[self.dataset()].tkraise()
         self._refresh()
 
     def _refresh(self):
-        try:
-            rounds = max(1, min(config.MAX_TRAC_ROUNDS, int(self.rounds.get())))
-        except ValueError:
-            rounds = config.DEFAULT_TRAC_ROUNDS
+        dataset = self.dataset()
+        rounds = self.rounds_value()
         self.rounds_hint.set(texts.ROUNDS_HINT.format(
-            rounds=rounds, minutes=config.estimated_trac_seconds(rounds) / 60,
-            full=config.full_trac_seconds() / 60))
+            rounds=rounds, minutes=config.estimated_trac_seconds(rounds, dataset) / 60,
+            full_rounds=config.FULL_TRAC_ROUNDS[dataset],
+            full=config.full_trac_seconds(dataset) / 60))
         self.rounds_box.set_enabled(self.mode.get() == "real")
 
-    def choices(self) -> dict:
-        return {dataset: var.get() for dataset, var in self.choice_vars.items()}
+    def choice(self) -> tuple[str, str]:
+        """(dataset, setting label) currently picked."""
+
+        dataset = self.dataset()
+        return dataset, self.setting_vars[dataset].get()
 
     def rounds_value(self) -> int:
         try:
@@ -140,17 +167,14 @@ class LoadingScreen(tk.Frame):
         self.subtitle = KLabel(self, "", size=14, color="#555555")
         self.subtitle.pack(anchor="w", padx=28, pady=(0, 20))
 
-        self.rows = {}
-        for dataset in config.DATASETS:
-            row = _frame(self)
-            row.pack(fill="x", padx=28, pady=10)
-            name = KLabel(row, config.DATASET_TITLES[dataset], size=16, bold=True)
-            name.pack(side="left", padx=(0, 16))
-            bar = ttk.Progressbar(row, mode="determinate", length=720)
-            bar.pack(side="left", padx=(0, 16))
-            status = KLabel(row, texts.STATUS_WAITING, size=14)
-            status.pack(side="left")
-            self.rows[dataset] = {"name": name, "bar": bar, "status": status}
+        row = _frame(self)
+        row.pack(fill="x", padx=28, pady=10)
+        self.name = KLabel(row, "", size=16, bold=True)
+        self.name.pack(side="left", padx=(0, 16))
+        self.bar = ttk.Progressbar(row, mode="determinate", length=720)
+        self.bar.pack(side="left", padx=(0, 16))
+        self.status = KLabel(row, texts.STATUS_WAITING, size=14)
+        self.status.pack(side="left")
 
         self.log_lines = []
         self.log = KLabel(self, "", size=13, color="#333333", wrap_px=1300)
@@ -158,17 +182,16 @@ class LoadingScreen(tk.Frame):
         self.cancel_button = KButton(self, texts.BTN_CANCEL, command=self._cancel)
         self.cancel_button.pack(pady=12)
 
-    def reset(self, method: str, mode: str, rounds: int):
+    def reset(self, method: str, mode: str, rounds: int, dataset: str, label: str):
         self.title.set(texts.LOADING_TITLE[method])
         subtitle = texts.LOADING_MODE[mode]
         if method == "trac" and mode == "real":
             subtitle += f"  ·  {rounds}라운드"
         self.subtitle.set(subtitle)
-        for dataset, row in self.rows.items():
-            row["name"].set(config.DATASET_TITLES[dataset])
-            row["bar"]["value"] = 0
-            row["bar"]["maximum"] = 1
-            row["status"].set(texts.STATUS_WAITING)
+        self.name.set(f"{config.DATASET_TITLES[dataset]} {label}")
+        self.bar["value"] = 0
+        self.bar["maximum"] = 1
+        self.status.set(texts.STATUS_WAITING)
         self.log_lines = []
         self.log.set("")
         self.cancel_button.configure(state="normal")
@@ -176,9 +199,8 @@ class LoadingScreen(tk.Frame):
     def _cancel(self):
         self.app.cancel.set()
         self.cancel_button.configure(state="disabled")
-        for row in self.rows.values():
-            if row["bar"]["value"] < row["bar"]["maximum"]:
-                row["status"].set(texts.STATUS_CANCELLING)
+        if self.bar["value"] < self.bar["maximum"]:
+            self.status.set(texts.STATUS_CANCELLING)
 
     def _append_log(self, text: str):
         self.log_lines.append(text)
@@ -186,21 +208,20 @@ class LoadingScreen(tk.Frame):
 
     def handle(self, event: dict):
         kind = event["type"]
-        row = self.rows.get(event.get("dataset"))
-        if kind == "dataset_start" and row:
-            row["name"].set(f"{config.DATASET_TITLES[event['dataset']]} {event['label']}")
-            row["bar"]["maximum"] = max(1, int(event["max"]))
-            row["bar"]["value"] = 0
-        elif kind == "progress" and row:
-            row["bar"]["maximum"] = max(1, int(event["max"]))
-            row["bar"]["value"] = event["value"]
+        if kind == "dataset_start":
+            self.name.set(f"{config.DATASET_TITLES[event['dataset']]} {event['label']}")
+            self.bar["maximum"] = max(1, int(event["max"]))
+            self.bar["value"] = 0
+        elif kind == "progress":
+            self.bar["maximum"] = max(1, int(event["max"]))
+            self.bar["value"] = event["value"]
             if event.get("text"):
-                row["status"].set(event["text"])
+                self.status.set(event["text"])
         elif kind == "log":
             self._append_log(event["text"])
-        elif kind == "result" and row:
-            row["bar"]["value"] = row["bar"]["maximum"]
-            row["status"].set(texts.STATUS_DONE.format(pcc=event["result"].pcc))
+        elif kind == "result":
+            self.bar["value"] = self.bar["maximum"]
+            self.status.set(texts.STATUS_DONE.format(pcc=event["result"].pcc))
 
 
 class ResultScreen(tk.Frame):
@@ -216,34 +237,47 @@ class ResultScreen(tk.Frame):
         self._canvases = []
         KButton(self, texts.BTN_BACK, command=lambda: app.show("main")).pack(pady=10)
 
-    def show(self, method: str, results: list):
+    def show(self, method: str, result):
         from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-        from .plots import bar_figure, scatter_figure
+        from .plots import bar_figure, format_seconds, scatter_figure, time_figure
 
         self.title.set(texts.RESULT_TITLE[method])
-        lines = []
-        for result in results:
-            extra = ""
-            if result.rounds is not None:
-                extra += texts.RESULT_ROUNDS.format(rounds=result.rounds)
-            if result.accuracy is not None:
-                extra += texts.RESULT_ACCURACY.format(accuracy=result.accuracy)
-            lines.append(texts.RESULT_LINE.format(
-                title=config.DATASET_TITLES[result.dataset], label=result.label,
-                pcc=result.pcc, source=texts.RESULT_SOURCE[result.source], extra=extra))
+        extra = ""
+        if result.rounds is not None:
+            extra += texts.RESULT_ROUNDS.format(rounds=result.rounds)
+        if result.accuracy is not None:
+            extra += texts.RESULT_ACCURACY.format(accuracy=result.accuracy)
+        lines = [texts.RESULT_LINE.format(
+            title=config.DATASET_TITLES[result.dataset], label=result.label,
+            pcc=result.pcc, source=texts.RESULT_SOURCE[result.source], extra=extra)]
+        if result.timing and result.gt_seconds is not None:
+            lines.append(texts.RESULT_TIME.format(
+                ours=format_seconds(result.timing["total_seconds"]),
+                gt=format_seconds(result.gt_seconds)))
         self.header.set("\n".join(lines))
 
         for canvas in self._canvases:
             canvas.get_tk_widget().destroy()
         self._canvases = []
+        for frame in getattr(self, "_rows", []):
+            frame.destroy()
         name = texts.METHOD_NAMES[method]
-        figsize = (14.5, 3.3)
-        for figure in (bar_figure(results, name, figsize), scatter_figure(results, name, figsize)):
+        top = _frame(self.plots)
+        top.pack(fill="both", expand=True)
+        bottom = _frame(self.plots)
+        bottom.pack(fill="both", expand=True)
+        self._rows = [top, bottom]
+        placements = (
+            (bar_figure([result], name, (7.2, 3.4)), top, "left"),
+            (scatter_figure([result], name, (7.2, 3.4)), top, "left"),
+            (time_figure(result, name, (14.5, 3.2)), bottom, "top"),
+        )
+        for figure, master, side in placements:
             figure.patch.set_facecolor(BG)
-            canvas = FigureCanvasTkAgg(figure, master=self.plots)
+            canvas = FigureCanvasTkAgg(figure, master=master)
             canvas.draw()
-            canvas.get_tk_widget().pack(fill="both", expand=True, pady=2)
+            canvas.get_tk_widget().pack(side=side, fill="both", expand=True, padx=2, pady=2)
             self._canvases.append(canvas)
 
 
@@ -268,7 +302,7 @@ class App(tk.Tk):
         self.device = device or config.detect_device()
         self.events = None
         self.cancel = threading.Event()
-        self.results = []
+        self.result = None
         self.method = None
         self.mode = None
 
@@ -294,16 +328,17 @@ class App(tk.Tk):
         self.method = method
         self.mode = main.mode.get()
         rounds = main.rounds_value()
+        dataset, label = main.choice()
         self.events = queue.Queue()
         self.cancel = threading.Event()
-        self.results = []
+        self.result = None
         main.set_busy(True)
         loading = self.screens["loading"]
-        loading.reset(method, self.mode, rounds)
+        loading.reset(method, self.mode, rounds, dataset, label)
         self.show("loading")
         threading.Thread(
             target=backend.run_job,
-            args=(method, self.mode, main.choices(), rounds, self.device, self.events, self.cancel),
+            args=(method, self.mode, dataset, label, rounds, self.device, self.events, self.cancel),
             daemon=True,
         ).start()
         self.after(self.POLL_MS, self._poll)
@@ -318,7 +353,7 @@ class App(tk.Tk):
                 break
             kind = event["type"]
             if kind == "result":
-                self.results.append(event["result"])
+                self.result = event["result"]
             if kind in ("done", "cancelled", "error"):
                 finished = event
                 break
@@ -328,7 +363,7 @@ class App(tk.Tk):
             return
         self.screens["main"].set_busy(False)
         if finished["type"] == "done":
-            self.screens["result"].show(self.method, self.results)
+            self.screens["result"].show(self.method, self.result)
             self.show("result")
         elif finished["type"] == "error":
             messagebox.showerror(texts.ERROR_TITLE, texts.ERROR_BODY.format(text=finished["text"]))
@@ -341,33 +376,35 @@ class App(tk.Tk):
         self.destroy()
 
 
-def export(out_dir, method: str, mode: str, rounds: int, device: str, choices=None) -> list:
+def export(out_dir, method: str, mode: str, rounds: int, device: str,
+           dataset: str, label: str) -> list:
     """Headless: run the job synchronously and save the figures as PNG."""
 
-    from .plots import save_figures, setup_fonts
+    from .plots import format_seconds, save_figures, setup_fonts
 
     setup_fonts()
-    choices = choices or dict(config.DEFAULT_CHOICE)
     methods = ("parzen", "trac") if method == "both" else (method,)
     saved = []
     for one in methods:
         events = queue.Queue()
-        backend.run_job(one, mode, choices, rounds, device, events, threading.Event())
-        results, final = [], None
+        backend.run_job(one, mode, dataset, label, rounds, device, events, threading.Event())
+        result, final = None, None
         while not events.empty():
             event = events.get()
             if event["type"] == "result":
-                results.append(event["result"])
+                result = event["result"]
             elif event["type"] in ("done", "cancelled", "error"):
                 final = event
             elif event["type"] == "log":
                 print(f"[{event.get('dataset', '-')}] {event['text']}", flush=True)
-        if final is None or final["type"] != "done":
+        if final is None or final["type"] != "done" or result is None:
             raise RuntimeError(final["text"] if final and final["type"] == "error" else "job did not finish")
-        saved += save_figures(results, one, out_dir)
-        for result in results:
-            print(f"{one} {result.dataset} {result.label}: PCC {result.pcc:.3f} ({result.source})",
-                  flush=True)
+        saved += save_figures(result, one, out_dir)
+        timing = (result.timing or {}).get("total_seconds")
+        ours = format_seconds(timing) if timing is not None else "?"
+        gt = format_seconds(result.gt_seconds) if result.gt_seconds is not None else "?"
+        print(f"{one} {result.dataset} {result.label}: PCC {result.pcc:.3f} ({result.source})"
+              f"  time {ours} vs GT {gt}", flush=True)
     for path in saved:
         print(f"saved -> {path}", flush=True)
     return saved
@@ -378,6 +415,11 @@ def main(argv=None):
     parser.add_argument("--export", default=None, help="save figures to this directory instead of opening a window")
     parser.add_argument("--method", default="both", choices=("both", "parzen", "trac"))
     parser.add_argument("--mode", default="replay", choices=("replay", "real"))
+    parser.add_argument("--dataset", default=config.DEFAULT_DATASET, choices=config.DATASETS,
+                        help="dataset for --export (default: %(default)s)")
+    parser.add_argument("--setting", default=None,
+                        help="contamination setting for --export: mislabel-k or noniid-k "
+                             "(default: the dataset's default)")
     parser.add_argument("--rounds", type=int, default=config.DEFAULT_TRAC_ROUNDS)
     parser.add_argument("--device", default=None)
     parser.add_argument("--download-data", action="store_true",
@@ -388,6 +430,10 @@ def main(argv=None):
         return
     device = args.device or config.detect_device()
     if args.export:
-        export(args.export, args.method, args.mode, args.rounds, device)
+        label = args.setting or config.DEFAULT_CHOICE[args.dataset]
+        if label not in backend.labels_for(args.dataset):
+            parser.error(f"--setting for {args.dataset} must be one of: "
+                         + ", ".join(backend.labels_for(args.dataset)))
+        export(args.export, args.method, args.mode, args.rounds, device, args.dataset, label)
         return
     App(device=device).mainloop()

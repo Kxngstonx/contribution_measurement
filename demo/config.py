@@ -24,6 +24,7 @@ TRAC_TRAJ_DIR = PROJECT / "results" / "trac_trajectories"
 
 DATASETS = ("mnist", "fmnist", "cifar")
 DATASET_TITLES = {"mnist": "MNIST", "fmnist": "Fashion-MNIST", "cifar": "CIFAR-10"}
+DEFAULT_DATASET = "mnist"
 DEFAULT_CHOICE = {"mnist": "mislabel-4", "fmnist": "noniid-4", "cifar": "mislabel-2"}
 
 DEFAULT_TRAC_ROUNDS = 5
@@ -79,9 +80,9 @@ def device_label(device: str) -> str:
     return "CPU"
 
 
-def estimated_trac_seconds(rounds: int) -> float:
-    return rounds * sum(SECONDS_PER_ROUND.values())
+def estimated_trac_seconds(rounds: int, dataset: str) -> float:
+    return rounds * SECONDS_PER_ROUND[dataset]
 
 
-def full_trac_seconds() -> float:
-    return sum(FULL_TRAC_ROUNDS[d] * SECONDS_PER_ROUND[d] for d in DATASETS)
+def full_trac_seconds(dataset: str) -> float:
+    return FULL_TRAC_ROUNDS[dataset] * SECONDS_PER_ROUND[dataset]

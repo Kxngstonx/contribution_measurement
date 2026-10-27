@@ -143,14 +143,72 @@ def scatter_figure(results, method_title: str, figsize=(14.5, 4.2)) -> Figure:
     return fig
 
 
-def save_figures(results, method: str, out_dir: Path) -> list:
+def format_seconds(seconds: float) -> str:
+    seconds = float(seconds)
+    if seconds >= 3600:
+        return texts.TIME_HOURS.format(h=seconds / 3600)
+    if seconds >= 60:
+        return texts.TIME_MINUTES.format(m=seconds / 60)
+    return texts.TIME_SECONDS.format(s=seconds)
+
+
+def reduction(gt_seconds: float, our_seconds: float) -> tuple[float, float]:
+    """(percent reduction, speed-up factor) of `our_seconds` against `gt_seconds`."""
+
+    ours = max(float(our_seconds), 1e-9)
+    return 100.0 * (1.0 - ours / float(gt_seconds)), float(gt_seconds) / ours
+
+
+def time_figure(result, method_title: str, figsize=(14.5, 3.6)) -> Figure:
+    """Log-scale bars: exact-Shapley wall clock vs the method's measurement time."""
+
+    fig = Figure(figsize=figsize, dpi=100)
+    ax = fig.add_subplot(111)
+    timing = result.timing or {}
+    ours = timing.get("total_seconds")
+    gt = result.gt_seconds
+    if gt is None or ours is None:
+        ax.axis("off")
+        ax.text(0.5, 0.5, texts.FIG_TIME_NO_GT, ha="center", va="center", fontsize=13)
+        fig.suptitle(texts.FIG_TIME_TITLE.format(method=method_title), fontsize=15)
+        return fig
+
+    label = method_title
+    if timing.get("rounds"):
+        seeds = timing.get("seeds") or 1
+        label = texts.FIG_TIME_METHOD_ROUNDS.format(
+            method=method_title, rounds=timing["rounds"],
+            seeds=texts.FIG_TIME_SEEDS.format(seeds=seeds) if seeds > 1 else "")
+    values = [float(gt), float(ours)]
+    bars = ax.bar([texts.FIG_TIME_GT_LABEL, label], values, color=[SERVER, CLEAN], width=0.5)
+    ax.set_yscale("log")
+    ax.set_ylim(0.5, max(values) * 40)
+    ax.set_yticks([1, 60, 3600, 86400])
+    ax.set_yticklabels(texts.TIME_TICKS)
+    ax.set_ylabel(texts.FIG_TIME_YLABEL)
+    ax.grid(axis="y", alpha=0.3)
+    for bar, value in zip(bars, values):
+        ax.annotate(format_seconds(value), (bar.get_x() + bar.get_width() / 2, value),
+                    textcoords="offset points", xytext=(0, 4), ha="center", fontsize=12)
+    pct, factor = reduction(gt, ours)
+    ax.text(0.5, 0.9, texts.FIG_TIME_SUMMARY.format(
+                gt=format_seconds(gt), ours=format_seconds(ours), pct=pct, factor=factor),
+            transform=ax.transAxes, ha="center", va="top", fontsize=13, fontweight="bold")
+    ax.tick_params(axis="x", labelsize=12)
+    fig.suptitle(texts.FIG_TIME_TITLE.format(method=method_title), fontsize=15)
+    fig.tight_layout()
+    return fig
+
+
+def save_figures(result, method: str, out_dir: Path) -> list:
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     title = texts.METHOD_NAMES[method]
     paths = []
     for name, fig in (
-        (f"{method}_bar.png", bar_figure(results, title)),
-        (f"{method}_scatter.png", scatter_figure(results, title)),
+        (f"{method}_bar.png", bar_figure([result], title)),
+        (f"{method}_scatter.png", scatter_figure([result], title)),
+        (f"{method}_time.png", time_figure(result, title)),
     ):
         path = out_dir / name
         fig.savefig(path, dpi=150)

@@ -16,7 +16,8 @@
       "fmnist",
       "mnist"
     ],
-    "selection": "Parzen and temperature 20 frozen from the preceding single-setting development pilot; no per-setting tuning"
+    "selection": "Parzen and temperature 20 frozen from the preceding single-setting development pilot; no per-setting tuning",
+    "timing": "timing.total_seconds = anchor training/load + embedding extraction + Parzen index build + balanced estimation (timing_seconds without the exact_parzen_shapley diagnostic)"
   },
   "summary": {
     "mnist": {
@@ -265,7 +266,19 @@
         0.09745809523809526,
         0.09770539682539695,
         0.09799289682539675
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.517978191375732,
+        "stages": {
+          "anchor_training_or_load": 4.660480737686157,
+          "embedding_extraction": 0.7719764709472656,
+          "parzen_index_build": 0.049733638763427734,
+          "balanced_estimation": 0.035787343978881836
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -385,7 +398,19 @@
         0.0986990873015874,
         0.09161904761904754,
         0.09280507936507931
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.173193454742432,
+        "stages": {
+          "anchor_training_or_load": 4.353132247924805,
+          "embedding_extraction": 0.7713072299957275,
+          "parzen_index_build": 0.02289724349975586,
+          "balanced_estimation": 0.025856733322143555
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -505,7 +530,19 @@
         0.09298162698412686,
         0.09164595238095254,
         0.09313563492063506
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.165345191955566,
+        "stages": {
+          "anchor_training_or_load": 4.343251466751099,
+          "embedding_extraction": 0.7715859413146973,
+          "parzen_index_build": 0.022834300994873047,
+          "balanced_estimation": 0.02767348289489746
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
@@ -625,7 +662,19 @@
         0.09430023809523803,
         0.09383404761904761,
         0.09224103174603192
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.123444557189941,
+        "stages": {
+          "anchor_training_or_load": 4.29987359046936,
+          "embedding_extraction": 0.7715368270874023,
+          "parzen_index_build": 0.022778987884521484,
+          "balanced_estimation": 0.029255151748657227
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
@@ -745,7 +794,19 @@
         0.09660880952380944,
         0.0926330555555554,
         0.09502551587301603
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.1810643672943115,
+        "stages": {
+          "anchor_training_or_load": 4.357250928878784,
+          "embedding_extraction": 0.772881031036377,
+          "parzen_index_build": 0.022670269012451172,
+          "balanced_estimation": 0.02826213836669922
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -865,7 +926,19 @@
         0.11618361111111115,
         0.018710079365079398,
         0.02810849206349203
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.061443328857422,
+        "stages": {
+          "anchor_training_or_load": 4.255733251571655,
+          "embedding_extraction": 0.7551403045654297,
+          "parzen_index_build": 0.0211637020111084,
+          "balanced_estimation": 0.029406070709228516
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -985,7 +1058,19 @@
         0.008450793650793638,
         0.03814353174603174,
         0.04124527777777785
-      ]
+      ],
+      "timing": {
+        "total_seconds": 4.830477952957153,
+        "stages": {
+          "anchor_training_or_load": 4.057809591293335,
+          "embedding_extraction": 0.7249948978424072,
+          "parzen_index_build": 0.019803762435913086,
+          "balanced_estimation": 0.027869701385498047
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
@@ -1105,7 +1190,19 @@
         0.06010611111111117,
         0.00971396825396826,
         0.010406944444444444
-      ]
+      ],
+      "timing": {
+        "total_seconds": 4.573483228683472,
+        "stages": {
+          "anchor_training_or_load": 3.8366169929504395,
+          "embedding_extraction": 0.6898624897003174,
+          "parzen_index_build": 0.01895427703857422,
+          "balanced_estimation": 0.028049468994140625
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
@@ -1225,7 +1322,19 @@
         0.04471503968253965,
         0.06690003968253976,
         0.06168349206349214
-      ]
+      ],
+      "timing": {
+        "total_seconds": 4.569673776626587,
+        "stages": {
+          "anchor_training_or_load": 3.8319244384765625,
+          "embedding_extraction": 0.6919858455657959,
+          "parzen_index_build": 0.01790904998779297,
+          "balanced_estimation": 0.027854442596435547
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[0]",
@@ -1345,7 +1454,19 @@
         0.09178936507936514,
         0.06077412698412683,
         0.05847964285714293
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.152284383773804,
+        "stages": {
+          "anchor_training_or_load": 4.327365159988403,
+          "embedding_extraction": 0.7737789154052734,
+          "parzen_index_build": 0.02271270751953125,
+          "balanced_estimation": 0.028427600860595703
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -1465,7 +1586,19 @@
         0.09247055555555543,
         0.05982357142857157,
         0.05847841269841261
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.142302751541138,
+        "stages": {
+          "anchor_training_or_load": 4.320074081420898,
+          "embedding_extraction": 0.7712180614471436,
+          "parzen_index_build": 0.02302861213684082,
+          "balanced_estimation": 0.027981996536254883
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -1585,7 +1718,19 @@
         0.0765359126984127,
         0.06441904761904754,
         0.05917230158730174
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.079137563705444,
+        "stages": {
+          "anchor_training_or_load": 4.254746675491333,
+          "embedding_extraction": 0.7728841304779053,
+          "parzen_index_build": 0.02272510528564453,
+          "balanced_estimation": 0.028781652450561523
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[6]",
@@ -1705,7 +1850,19 @@
         0.07861988095238104,
         0.06667698412698413,
         0.06022075396825394
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.125057935714722,
+        "stages": {
+          "anchor_training_or_load": 4.299556732177734,
+          "embedding_extraction": 0.7756273746490479,
+          "parzen_index_build": 0.022644996643066406,
+          "balanced_estimation": 0.027228832244873047
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[8]",
@@ -1825,7 +1982,19 @@
         0.0808358333333333,
         0.0638552380952381,
         0.060890595238095216
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.155036926269531,
+        "stages": {
+          "anchor_training_or_load": 4.3280463218688965,
+          "embedding_extraction": 0.7753336429595947,
+          "parzen_index_build": 0.023051023483276367,
+          "balanced_estimation": 0.028605937957763672
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -1945,7 +2114,19 @@
         0.10505178571428568,
         0.008656944444444436,
         0.01134373015873015
-      ]
+      ],
+      "timing": {
+        "total_seconds": 4.959251642227173,
+        "stages": {
+          "anchor_training_or_load": 4.153456211090088,
+          "embedding_extraction": 0.7555665969848633,
+          "parzen_index_build": 0.021544694900512695,
+          "balanced_estimation": 0.028684139251708984
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -2065,7 +2246,19 @@
         0.015661150793650797,
         0.04565511904761915,
         0.008264246031746048
-      ]
+      ],
+      "timing": {
+        "total_seconds": 4.840116024017334,
+        "stages": {
+          "anchor_training_or_load": 4.062405586242676,
+          "embedding_extraction": 0.7284929752349854,
+          "parzen_index_build": 0.01983475685119629,
+          "balanced_estimation": 0.029382705688476562
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[6]_numMislabel[0]",
@@ -2185,7 +2378,19 @@
         0.05493968253968253,
         -0.005303809523809519,
         0.0013690079365079335
-      ]
+      ],
+      "timing": {
+        "total_seconds": 4.625567436218262,
+        "stages": {
+          "anchor_training_or_load": 3.8859612941741943,
+          "embedding_extraction": 0.6930196285247803,
+          "parzen_index_build": 0.018326997756958008,
+          "balanced_estimation": 0.0282595157623291
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[8]_numMislabel[0]",
@@ -2305,7 +2510,19 @@
         0.046757817460317416,
         0.04669166666666663,
         0.05559976190476194
-      ]
+      ],
+      "timing": {
+        "total_seconds": 4.640894174575806,
+        "stages": {
+          "anchor_training_or_load": 3.9013454914093018,
+          "embedding_extraction": 0.6936936378479004,
+          "parzen_index_build": 0.017390966415405273,
+          "balanced_estimation": 0.028464078903198242
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[0]",
@@ -2390,7 +2607,19 @@
         0.15756833333333337,
         0.14296,
         0.14102666666666672
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.7904322147369385,
+        "stages": {
+          "anchor_training_or_load": 4.97264838218689,
+          "embedding_extraction": 0.7926366329193115,
+          "parzen_index_build": 0.02181077003479004,
+          "balanced_estimation": 0.0033364295959472656
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[1]",
@@ -2475,7 +2704,19 @@
         0.16865833333333335,
         0.166025,
         0.04785833333333334
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.74414324760437,
+        "stages": {
+          "anchor_training_or_load": 4.929584264755249,
+          "embedding_extraction": 0.7892553806304932,
+          "parzen_index_build": 0.021889925003051758,
+          "balanced_estimation": 0.003413677215576172
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -2560,7 +2801,19 @@
         0.1750883333333333,
         0.054938333333333346,
         0.04954666666666666
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.743929386138916,
+        "stages": {
+          "anchor_training_or_load": 4.93122124671936,
+          "embedding_extraction": 0.7876615524291992,
+          "parzen_index_build": 0.021663427352905273,
+          "balanced_estimation": 0.003383159637451172
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[3]",
@@ -2645,7 +2898,19 @@
         0.061371666666666685,
         0.06621333333333335,
         0.08035500000000001
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.742332935333252,
+        "stages": {
+          "anchor_training_or_load": 4.9293224811553955,
+          "embedding_extraction": 0.7879271507263184,
+          "parzen_index_build": 0.021710872650146484,
+          "balanced_estimation": 0.0033724308013916016
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[4]",
@@ -2730,7 +2995,19 @@
         0.07358666666666668,
         0.07912000000000001,
         0.08995333333333334
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.742941856384277,
+        "stages": {
+          "anchor_training_or_load": 4.9299750328063965,
+          "embedding_extraction": 0.7878561019897461,
+          "parzen_index_build": 0.02174067497253418,
+          "balanced_estimation": 0.003370046615600586
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[1]_numMislabel[0]",
@@ -2815,7 +3092,19 @@
         0.19094166666666665,
         0.17174166666666668,
         -0.005108333333333339
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.418471097946167,
+        "stages": {
+          "anchor_training_or_load": 4.646501541137695,
+          "embedding_extraction": 0.7478415966033936,
+          "parzen_index_build": 0.02073073387145996,
+          "balanced_estimation": 0.003397226333618164
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[2]_numMislabel[0]",
@@ -2900,7 +3189,19 @@
         0.20211833333333332,
         0.009093333333333333,
         0.06358500000000002
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.421419620513916,
+        "stages": {
+          "anchor_training_or_load": 4.6456098556518555,
+          "embedding_extraction": 0.751558780670166,
+          "parzen_index_build": 0.02086496353149414,
+          "balanced_estimation": 0.0033860206604003906
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[3]_numMislabel[0]",
@@ -2985,7 +3286,19 @@
         0.08288666666666665,
         0.04401999999999998,
         0.05645333333333332
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.307812452316284,
+        "stages": {
+          "anchor_training_or_load": 4.546980142593384,
+          "embedding_extraction": 0.7380285263061523,
+          "parzen_index_build": 0.019386768341064453,
+          "balanced_estimation": 0.0034170150756835938
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[4]_numMislabel[0]",
@@ -3070,7 +3383,19 @@
         0.0866416666666667,
         0.051850000000000014,
         0.15924166666666667
-      ]
+      ],
+      "timing": {
+        "total_seconds": 5.092214345932007,
+        "stages": {
+          "anchor_training_or_load": 4.359997510910034,
+          "embedding_extraction": 0.7097032070159912,
+          "parzen_index_build": 0.019140243530273438,
+          "balanced_estimation": 0.003373384475708008
+        },
+        "rounds": null,
+        "seeds": 1,
+        "source": "timing_seconds without exact_parzen_shapley"
+      }
     }
   ]
 }

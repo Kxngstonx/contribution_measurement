@@ -2,9 +2,16 @@
 
 Every backend function reports through `progress(event)`, where `event` is a
 plain dict with a `type` key (`progress`, `log`), and checks a
-`threading.Event`-like `cancel` between stages. `run_job` drives the three
-datasets for one method and puts the same events (plus `dataset_start`,
-`result`, `done`, `cancelled`, `error`) on a queue for the Tk thread.
+`threading.Event`-like `cancel` between stages. `run_job` evaluates one
+(dataset, setting) with one method and puts the same events (plus
+`dataset_start`, `result`, `done`, `cancelled`, `error`) on a queue for the
+Tk thread.
+
+Timing follows one record shape everywhere (`parzen_shapley.timing`):
+`{"total_seconds", "stages", "rounds", "seeds", "source"}`; stored runs carry
+it in results/*.json, real runs assemble it from the stage times the src
+functions report, and `gt_seconds` is the exact-Shapley wall clock from the
+manifest.
 """
 
 from __future__ import annotations
@@ -13,7 +20,8 @@ import json
 import os
 import time
 import traceback
-from dataclasses import asdict, dataclass
+from contextlib import nullcontext
+from dataclasses import asdict, dataclass, fields
 from pathlib import Path
 
 import numpy as np
@@ -36,15 +44,18 @@ class Result:
     pcc_history: list           # TRAC: per-round PCC; Parzen: [pcc]
     rounds: int | None
     accuracy: float | None
-    elapsed: float
+    elapsed: float              # wall clock of this demo job (incl. replay animation)
     source: str                 # "real" | "replay" | "cache"
+    timing: dict | None = None  # unified measurement-time record (see module docstring)
+    gt_seconds: float | None = None  # exact-Shapley wall clock of this setting
 
     def to_dict(self) -> dict:
         return asdict(self)
 
     @classmethod
     def from_dict(cls, data: dict) -> "Result":
-        return cls(**data)
+        known = {field.name for field in fields(cls)}
+        return cls(**{key: value for key, value in data.items() if key in known})
 
 
 class Cancelled(Exception):
@@ -74,7 +85,7 @@ def _sleep(seconds: float, cancel) -> None:
 
 _CATALOG = None
 _GT_ROWS = None
-_TRAC_ROWS: dict = {}
+_TRAC = None
 
 
 def label_of(setting) -> str:
@@ -135,14 +146,64 @@ def stored_parzen_phi(key: str) -> np.ndarray:
     return np.asarray(_gt_rows()[key]["prediction_phi"], dtype=np.float64)
 
 
+def gt_seconds(key: str) -> float | None:
+    """Exact-Shapley (all-coalition retraining) wall clock from the manifest."""
+
+    timing = setting_by_key(key).get("timing") or {}
+    return timing.get("total_seconds")
+
+
+def stored_parzen_timing(key: str) -> dict:
+    row = _gt_rows()[key]
+    if row.get("timing"):
+        return dict(row["timing"])
+    stages = {k: float(v) for k, v in row["timing_seconds"].items() if k != "exact_parzen_shapley"}
+    return {"total_seconds": float(sum(stages.values())), "stages": stages, "rounds": None,
+            "seeds": 1, "source": "timing_seconds without exact_parzen_shapley"}
+
+
+def _trac_file() -> dict:
+    global _TRAC
+    if _TRAC is None:
+        data = json.loads(config.TRAC_JSON.read_text())
+        _TRAC = {"rows": data["rows"],
+                 "summary": {entry["key"]: entry for entry in data.get("summary", [])}}
+    return _TRAC
+
+
 def stored_trac_row(key: str, seed_index: int = 0) -> dict:
-    path = config.TRAC_JSON
-    if path not in _TRAC_ROWS:
-        _TRAC_ROWS[path] = json.loads(path.read_text())["rows"]
-    for row in _TRAC_ROWS[path]:
+    for row in _trac_file()["rows"]:
         if row["key"] == key and row["seed_index"] == seed_index:
             return row
     raise KeyError(f"no stored TRAC run for {key} seed {seed_index}")
+
+
+def stored_trac_timing(key: str, rounds: int) -> dict:
+    """Mean wall clock of the stored TRAC runs, scaled linearly when the replay
+    stops before the stored run's last round (CIFAR-10: 40 stored, 30 replayed)."""
+
+    summary = _trac_file()["summary"].get(key) or {}
+    timing = summary.get("timing")
+    if not timing:
+        seconds = [row["wall_clock_seconds"] for row in _trac_file()["rows"] if row["key"] == key]
+        if not seconds:
+            raise KeyError(f"no stored TRAC run for {key}")
+        mean = float(np.mean(seconds))
+        timing = {"total_seconds": mean, "stages": {"fl_run": mean},
+                  "rounds": int(stored_trac_row(key)["rounds"]), "seeds": len(seconds),
+                  "source": f"mean wall_clock_seconds over {len(seconds)} seeds"}
+    timing = dict(timing)
+    stored_rounds = int(timing.get("rounds") or rounds)
+    if stored_rounds != rounds:
+        total = float(timing["total_seconds"]) * rounds / stored_rounds
+        timing.update(total_seconds=total, stages={"fl_run": total}, rounds=rounds,
+                      source=f"{timing['source']}, scaled {stored_rounds}->{rounds} rounds")
+    return timing
+
+
+def _timing_from_elapsed(result: "Result") -> dict:
+    return {"total_seconds": float(result.elapsed), "stages": {}, "rounds": result.rounds,
+            "seeds": 1, "source": "elapsed (legacy cache)"}
 
 
 def stored_trac_trajectory(key: str, seed_index: int = 0):
@@ -197,6 +258,7 @@ def replay_parzen(key: str, progress=None, cancel=None,
         contaminated=contamination(key, len(gt)), pcc=pcc, pcc_history=[pcc],
         rounds=None, accuracy=None, elapsed=time.perf_counter() - started,
         source="replay",
+        timing=stored_parzen_timing(key), gt_seconds=gt_seconds(key),
     )
 
 
@@ -244,6 +306,7 @@ def replay_trac(key: str, progress=None, cancel=None,
         pcc=pcc_final, pcc_history=history,
         rounds=rounds, accuracy=accuracy,
         elapsed=time.perf_counter() - started, source="replay",
+        timing=stored_trac_timing(key, rounds), gt_seconds=gt_seconds(key),
     )
 
 
@@ -252,18 +315,19 @@ def replay_trac(key: str, progress=None, cancel=None,
 # --------------------------------------------------------------------------
 
 
-def ensure_anchor(setting: dict, train_dataset, device: str, progress=None) -> Path:
-    """Train and save the frozen task-model anchor for `setting` if missing
-    (the recipe of scripts/train_anchors.py)."""
+def ensure_anchor(setting: dict, train_dataset, device: str, progress=None, timer=None) -> Path:
+    """Train and save the frozen task-model anchor for `setting` if missing.
+    The stage is `anchor_training_or_load` (near zero when the anchor exists)."""
 
     from parzen_shapley.pipeline import train_setting_anchor
 
     path = config.ANCHOR_DIR / f"{setting['key']}.pt"
-    if path.is_file():
-        _emit(progress, type="log", text=texts.LOG_ANCHOR_FOUND)
-        return path
-    _emit(progress, type="log", text=texts.LOG_ANCHOR_TRAIN)
-    train_setting_anchor(setting, train_dataset, path, device=device, seed=0)
+    with (timer.stage("anchor_training_or_load") if timer is not None else nullcontext()):
+        if path.is_file():
+            _emit(progress, type="log", text=texts.LOG_ANCHOR_FOUND)
+            return path
+        _emit(progress, type="log", text=texts.LOG_ANCHOR_TRAIN)
+        train_setting_anchor(setting, train_dataset, path, device=device, seed=0)
     return path
 
 
@@ -282,10 +346,11 @@ def compute_parzen(key: str, device: str, progress=None, cancel=None) -> Result:
     import torch
     from types import SimpleNamespace
 
-    from parzen_shapley import balanced_mc, stable_seed
+    from parzen_shapley import StageTimer, balanced_mc, stable_seed
     from parzen_shapley.pipeline import dataset_objects, prepare_setting_utility
 
     started = time.perf_counter()
+    timer = StageTimer()
     setting = setting_by_key(key)
     dataset = setting["dataset"]
     gt = ground_truth(key)
@@ -295,7 +360,7 @@ def compute_parzen(key: str, device: str, progress=None, cancel=None) -> Result:
     _check(cancel)
     _emit(progress, type="progress", value=0, max=len(stages),
           text=texts.STATUS_STAGE.format(stage=stages[0], step=1, total=len(stages)))
-    ensure_anchor(setting, train_dataset, device, progress)
+    ensure_anchor(setting, train_dataset, device, progress, timer)
 
     _check(cancel)
     _emit(progress, type="progress", value=1, max=len(stages),
@@ -309,6 +374,8 @@ def compute_parzen(key: str, device: str, progress=None, cancel=None) -> Result:
         setting, train_dataset, test_dataset, args, torch.device(device)
     )
     n_players = int(metadata["n_players"])
+    for name, seconds in metadata.get("timing", {}).items():
+        timer.add(name, seconds)
 
     _check(cancel)
     _emit(progress, type="progress", value=2, max=len(stages),
@@ -318,6 +385,7 @@ def compute_parzen(key: str, device: str, progress=None, cancel=None) -> Result:
         seed=stable_seed(key, 0), control=False,
     )
     phi = np.asarray(estimate["phi"], dtype=np.float64)
+    timer.add("balanced_estimation", estimate.get("seconds") or 0.0)
     _emit(progress, type="progress", value=3, max=len(stages), text="")
     pcc = _pcc(phi, gt)
     return Result(
@@ -327,6 +395,8 @@ def compute_parzen(key: str, device: str, progress=None, cancel=None) -> Result:
         contaminated=contamination(key, n_players), pcc=pcc, pcc_history=[pcc],
         rounds=None, accuracy=None, elapsed=time.perf_counter() - started,
         source="real",
+        timing=timer.to_dict(rounds=None, seeds=1, source="measured"),
+        gt_seconds=gt_seconds(key),
     )
 
 
@@ -336,7 +406,7 @@ def compute_trac(key: str, rounds: int, device: str, progress=None, cancel=None)
 
     import torch
 
-    from parzen_shapley import configure_determinism, cpu_state_dict, stable_seed
+    from parzen_shapley import StageTimer, configure_determinism, cpu_state_dict, stable_seed
     from trac import (
         TRAC_HYPERPARAMS,
         build_fl_model,
@@ -352,30 +422,31 @@ def compute_trac(key: str, rounds: int, device: str, progress=None, cancel=None)
     )
 
     started = time.perf_counter()
+    timer = StageTimer()
     setting = setting_by_key(key)
     dataset = setting["dataset"]
     gt = ground_truth(key)
     hyperparams = TRAC_HYPERPARAMS[dataset]
     train_dataset, test_dataset = fl_dataset_objects(dataset, config.DATA_ROOT, download=True)
-    server_indices, _eval = server_and_eval_indices(
-        test_dataset, validation_size=2000, server_pc=128, seed=0
-    )
-    root_labels = np.asarray(test_dataset.targets)[server_indices]
-    class_weights = class_balanced_weights(root_labels, len(test_dataset.classes)).tolist()
-    client_indices, overrides, _sizes = load_partition(config.REFERENCE_DIR, key)
-    n_players = len(client_indices)
-    contaminated = contaminated_mask(
-        client_indices, overrides, client_label_arrays(train_dataset, client_indices),
-        expected_k=expected_k(setting),
-    )
-
-    master_seed = stable_seed(key, 0)
-    configure_determinism(master_seed)
 
     def model_factory():
         return build_fl_model(dataset)
 
-    global_state = cpu_state_dict(model_factory())
+    with timer.stage("setup"):
+        server_indices, _eval = server_and_eval_indices(
+            test_dataset, validation_size=2000, server_pc=128, seed=0
+        )
+        root_labels = np.asarray(test_dataset.targets)[server_indices]
+        class_weights = class_balanced_weights(root_labels, len(test_dataset.classes)).tolist()
+        client_indices, overrides, _sizes = load_partition(config.REFERENCE_DIR, key)
+        n_players = len(client_indices)
+        contaminated = contaminated_mask(
+            client_indices, overrides, client_label_arrays(train_dataset, client_indices),
+            expected_k=expected_k(setting),
+        )
+        master_seed = stable_seed(key, 0)
+        configure_determinism(master_seed)
+        global_state = cpu_state_dict(model_factory())
     cos_ema = np.zeros(n_players, dtype=np.float64)
     history = []
     for t in range(rounds):
@@ -393,14 +464,16 @@ def compute_trac(key: str, rounds: int, device: str, progress=None, cancel=None)
             key=key, master_seed=master_seed,
         )
         global_state, cos_ema = output.global_state, output.cos_ema
+        timer.add("fl_rounds", output.seconds)
         history.append(_pcc(cos_ema, gt))
         _emit(progress, type="progress", value=t + 1, max=rounds,
               text=texts.STATUS_ROUND.format(round=t + 1, rounds=rounds, pcc=history[-1]))
 
-    accuracy = evaluate_accuracy(
-        global_state, model_factory, test_dataset, list(range(len(test_dataset))),
-        batch_size=256, device=torch.device(device),
-    )
+    with timer.stage("final_evaluation"):
+        accuracy = evaluate_accuracy(
+            global_state, model_factory, test_dataset, list(range(len(test_dataset))),
+            batch_size=256, device=torch.device(device),
+        )
     return Result(
         method="trac", dataset=dataset, key=key,
         scenario=label_of(setting).replace("-", "_"), label=label_of(setting),
@@ -408,6 +481,8 @@ def compute_trac(key: str, rounds: int, device: str, progress=None, cancel=None)
         contaminated=[bool(x) for x in contaminated], pcc=history[-1],
         pcc_history=history, rounds=rounds, accuracy=float(accuracy),
         elapsed=time.perf_counter() - started, source="real",
+        timing=timer.to_dict(rounds=rounds, seeds=1, source="measured"),
+        gt_seconds=gt_seconds(key),
     )
 
 
@@ -426,6 +501,10 @@ def load_cached(method: str, key: str, rounds: int | None):
         return None
     result = Result.from_dict(json.loads(path.read_text()))
     result.source = "cache"
+    if result.timing is None:  # cache written before timing was recorded
+        result.timing = _timing_from_elapsed(result)
+    if result.gt_seconds is None:
+        result.gt_seconds = gt_seconds(key)
     return result
 
 
@@ -446,57 +525,53 @@ def save_cached(result: Result) -> Path:
 # --------------------------------------------------------------------------
 
 
-def run_job(method: str, mode: str, choices: dict, rounds: int, device: str,
+def run_job(method: str, mode: str, dataset: str, label: str, rounds: int, device: str,
             events, cancel=None, *, round_delay: float | None = None,
             stage_delay: float | None = None) -> None:
-    """Evaluate `method` on every dataset and put events on `events`.
-
-    `choices` maps dataset -> label; `mode` is "real" or "replay"; `rounds`
-    applies to real TRAC runs only. Ends with exactly one of `done`,
-    `cancelled` or `error`.
+    """Evaluate `method` on one setting (`dataset`, `label`) and put events on
+    `events`. `mode` is "real" or "replay"; `rounds` applies to real TRAC runs
+    only. Ends with exactly one of `done`, `cancelled` or `error`.
     """
 
     put = events.put
     try:
-        for dataset in config.DATASETS:
-            setting = setting_for(dataset, choices[dataset])
-            key = setting["key"]
-            label = label_of(setting)
-            title = config.DATASET_TITLES[dataset]
-            is_trac = method == "trac"
-            total = rounds if (is_trac and mode == "real") else (
-                min(int(stored_trac_row(key)["rounds"]), config.FULL_TRAC_ROUNDS[dataset])
-                if is_trac else len(texts.PARZEN_STAGES)
+        setting = setting_for(dataset, label)
+        key = setting["key"]
+        title = config.DATASET_TITLES[dataset]
+        is_trac = method == "trac"
+        total = rounds if (is_trac and mode == "real") else (
+            min(int(stored_trac_row(key)["rounds"]), config.FULL_TRAC_ROUNDS[dataset])
+            if is_trac else len(texts.PARZEN_STAGES)
+        )
+        put({"type": "dataset_start", "dataset": dataset, "label": label, "max": total})
+        put({"type": "log", "dataset": dataset,
+             "text": texts.LOG_DATASET_START.format(title=title, label=label)})
+
+        def progress(event):
+            put({**event, "dataset": dataset})
+
+        _check(cancel)
+        if mode == "replay":
+            result = (
+                replay_trac(key, progress, cancel, round_delay) if is_trac
+                else replay_parzen(key, progress, cancel, stage_delay)
             )
-            put({"type": "dataset_start", "dataset": dataset, "label": label, "max": total})
-            put({"type": "log", "dataset": dataset,
-                 "text": texts.LOG_DATASET_START.format(title=title, label=label)})
-
-            def progress(event, dataset=dataset):
-                put({**event, "dataset": dataset})
-
-            _check(cancel)
-            if mode == "replay":
-                result = (
-                    replay_trac(key, progress, cancel, round_delay) if is_trac
-                    else replay_parzen(key, progress, cancel, stage_delay)
-                )
+        else:
+            result = load_cached(method, key, rounds if is_trac else None)
+            if result is not None:
+                put({"type": "log", "dataset": dataset, "text": texts.LOG_CACHE_HIT})
+                put({"type": "progress", "dataset": dataset, "value": total, "max": total,
+                     "text": ""})
             else:
-                result = load_cached(method, key, rounds if is_trac else None)
-                if result is not None:
-                    put({"type": "log", "dataset": dataset, "text": texts.LOG_CACHE_HIT})
-                    put({"type": "progress", "dataset": dataset, "value": total, "max": total,
-                         "text": ""})
-                else:
-                    result = (
-                        compute_trac(key, rounds, device, progress, cancel) if is_trac
-                        else compute_parzen(key, device, progress, cancel)
-                    )
-                    save_cached(result)
-            put({"type": "log", "dataset": dataset,
-                 "text": texts.LOG_DATASET_DONE.format(
-                     title=title, label=label, pcc=result.pcc, elapsed=result.elapsed)})
-            put({"type": "result", "dataset": dataset, "result": result})
+                result = (
+                    compute_trac(key, rounds, device, progress, cancel) if is_trac
+                    else compute_parzen(key, device, progress, cancel)
+                )
+                save_cached(result)
+        put({"type": "log", "dataset": dataset,
+             "text": texts.LOG_DATASET_DONE.format(
+                 title=title, label=label, pcc=result.pcc, elapsed=result.elapsed)})
+        put({"type": "result", "dataset": dataset, "result": result})
         put({"type": "done"})
     except Cancelled:
         put({"type": "cancelled"})

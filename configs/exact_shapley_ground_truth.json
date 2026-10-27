@@ -2,7 +2,8 @@
   "protocol": {
     "source": "frozen SPACE exact-Shapley references",
     "empty_utility": 0.0,
-    "validation": "recompute raw and official sigmoid exact Shapley from every stored coalition utility and verify efficiency/stored values"
+    "validation": "recompute raw and official sigmoid exact Shapley from every stored coalition utility and verify efficiency/stored values",
+    "timing": "timing.total_seconds = wall time of the process that retrained every nonempty coalition (FedAvg, 20 global rounds) and computed exact Shapley for one setting; present for the 24 demo settings only"
   },
   "inventory": {
     "cifar_3_clients": {
@@ -133,7 +134,8 @@
         "user_groups_0.json": "0a3eb2ea8b500ddb23e1adc66b3170d45a68b8106e5a61f3d57415dac87297be",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.5].json": "939cb82636e6a276f4d79b74be3c3cc62b54fd2ac4d8e0fb3fdda4be794293d6"
-      }
+      },
+      "timing": null
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[4]_dist[3]_numNoniid[0]_numMislabel[0]",
@@ -201,7 +203,8 @@
         "user_groups_0.json": "820bdfaa8ea649d49218d2b248b5a0bb80dd2999ee8bc7bbf80907839430e6b9",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.5].json": "dd61fa81f5c59134005560b6ecaa4ad5d62513a8936a85963f937db7600f5dd5"
-      }
+      },
+      "timing": null
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[0]",
@@ -273,7 +276,8 @@
         "user_groups_0.json": "7a99f47e2292f5920fcd3d7b42f303ff550a7c8d557d02aa46829d9ad69c392b",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.5].json": "3fab3b80df1d6242a4ac4ad5d7aee22f736feffb22b78f40c6434e12d6386915"
-      }
+      },
+      "timing": null
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[5]_dist[3]_numNoniid[0]_numMislabel[1]",
@@ -345,6 +349,15 @@
         "user_groups_0.json": "7a99f47e2292f5920fcd3d7b42f303ff550a7c8d557d02aa46829d9ad69c392b",
         "mislabel_targets_0.json": "5d283dd6c1c6e407f795582292317840f862bdddf9ddf98219cedb3e169e85c1",
         "contributions_k[100.0]_T[0.5].json": "82540fa2cc25f2390b65c19dcc4bc78787c47a43442db6ff6f9740dbd16bdba5"
+      },
+      "timing": {
+        "total_seconds": 5940.0,
+        "stages": {
+          "coalition_retraining": 5940.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -417,6 +430,15 @@
         "user_groups_0.json": "7a99f47e2292f5920fcd3d7b42f303ff550a7c8d557d02aa46829d9ad69c392b",
         "mislabel_targets_0.json": "2d3ecb2042fd2aeb79c3741e85d5df35275bfb489c836bc95b69e25297182556",
         "contributions_k[100.0]_T[0.5].json": "793dec08ba26132ce44e27be8fbbc0970ac3e98852772c50c33a5e824058ef7c"
+      },
+      "timing": {
+        "total_seconds": 6012.0,
+        "stages": {
+          "coalition_retraining": 6012.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -489,6 +511,15 @@
         "user_groups_0.json": "7a99f47e2292f5920fcd3d7b42f303ff550a7c8d557d02aa46829d9ad69c392b",
         "mislabel_targets_0.json": "ac68004f6b87c45c17eebcd1cc5b3570064fc6a29da34c53d007a64e92287c9b",
         "contributions_k[100.0]_T[0.5].json": "64d40c9ce7d19293506f1e4961004408df1ac83a160d383dcf9e2e3fc33692b8"
+      },
+      "timing": {
+        "total_seconds": 4428.0,
+        "stages": {
+          "coalition_retraining": 4428.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -561,6 +592,15 @@
         "user_groups_0.json": "7a99f47e2292f5920fcd3d7b42f303ff550a7c8d557d02aa46829d9ad69c392b",
         "mislabel_targets_0.json": "60558ebf4c47cb483da4a8f6e46b59ee13185ec2d0c2b7673cc65b65e4db085a",
         "contributions_k[100.0]_T[0.5].json": "c64fa9e24fdf7bad059e8ec08fc3a48652aacd808904a83de3db0844717061c2"
+      },
+      "timing": {
+        "total_seconds": 6084.0,
+        "stages": {
+          "coalition_retraining": 6084.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -633,6 +673,15 @@
         "user_groups_0.json": "197358f75f4d2cbdf5ea4bbd4d349b2c103fcfd0321b550fd582013c884c5bbe",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.5].json": "b2108f4c2ca8400d4bb3d7188fa688c4d719d8949f05084d24996f20663d5044"
+      },
+      "timing": {
+        "total_seconds": 4752.0,
+        "stages": {
+          "coalition_retraining": 4752.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -705,6 +754,15 @@
         "user_groups_0.json": "57eb6a2faf0b3b5dd54a71208bcfe355187bc7d7b2192c7cf95a1b1d0495386a",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.5].json": "0c598ef1df7232718348479d2b4c45a31fa894038490d46e29b7b002fa5e093c"
+      },
+      "timing": {
+        "total_seconds": 12348.0,
+        "stages": {
+          "coalition_retraining": 12348.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -777,6 +835,15 @@
         "user_groups_0.json": "8ce4a1bb7aa181655c9fd61c347a78e4c94b92c7d4b7bfef78f97eafa96dc673",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.5].json": "7a5eb37df5f9bd1b5f014f87f1a47dc5de708f2a7276ecebcd9d7f259323de87"
+      },
+      "timing": {
+        "total_seconds": 11628.0,
+        "stages": {
+          "coalition_retraining": 11628.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -849,6 +916,15 @@
         "user_groups_0.json": "bcec6ee9366109de9e04305f517f6d438bbb287ad3f7fea6d8a2289b14f8390a",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.5].json": "b66bb1e08cb382c7d653636eb3d4c286054548cca8a9e5926ef1eb9ef75b259a"
+      },
+      "timing": {
+        "total_seconds": 12024.0,
+        "stages": {
+          "coalition_retraining": 12024.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -925,7 +1001,8 @@
         "user_groups_0.json": "be83d1f5b011ba43565b5a06911509f14c634d3e7f4a15dcf50fee3f29aa54f6",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.5].json": "5933570c3e9b08d5ba0e28d2e6cc2d5d9e595da909734edceb1672247fe5490b"
-      }
+      },
+      "timing": null
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[7]_dist[3]_numNoniid[0]_numMislabel[0]",
@@ -1005,7 +1082,8 @@
         "user_groups_0.json": "f15c9475a782420f995d19a11ca23b04157871319c2d77c2406ada540fb7baa5",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.5].json": "7ceda08fb8eba69c70c97a66ec3b5d6eaf2da7509e21cb25ec99fbdbd04bd68a"
-      }
+      },
+      "timing": null
     },
     {
       "key": "cifar_epochs[20]_localep[2]_iternum[1]_numusers[8]_dist[3]_numNoniid[0]_numMislabel[0]",
@@ -1089,7 +1167,8 @@
         "user_groups_0.json": "fab0d874bee0e3ebdd4720336a90f9322f878e9644b9706d1962115c53cf8d6f",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.5].json": "d2b3c3e07ab735fbc365b38823efe3ff28d19f7687829abbe8768e3acb8af36d"
-      }
+      },
+      "timing": null
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[0]",
@@ -1181,7 +1260,8 @@
         "user_groups_0.json": "f7e5429d76094cfa15aa0ce9080e7429604ae7636316893e1713ac408230687f",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.95].json": "1cb6cea8e44321888adff29b15b16846db87a4a1b57185842bc20cdc5458ac77"
-      }
+      },
+      "timing": null
     },
     {
       "key": "fmnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -1273,6 +1353,15 @@
         "user_groups_0.json": "f7e5429d76094cfa15aa0ce9080e7429604ae7636316893e1713ac408230687f",
         "mislabel_targets_0.json": "6ade419f7ecfe69fdbf634c357eb3f1c96e6ebdb5d9f2dee398052909459a0bf",
         "contributions_k[100.0]_T[0.95].json": "d9cbafcc2ee1486514b38115d8dc406b245982acfae695c340c3e4927c4aa97c"
+      },
+      "timing": {
+        "total_seconds": 76068.0,
+        "stages": {
+          "coalition_retraining": 76068.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -1365,6 +1454,15 @@
         "user_groups_0.json": "f7e5429d76094cfa15aa0ce9080e7429604ae7636316893e1713ac408230687f",
         "mislabel_targets_0.json": "60fe4b2770b25107707b4dda590414a6c41fd70a9077ccf1349ccd64fa2e2a70",
         "contributions_k[100.0]_T[0.95].json": "bb764d16324c5fb0aff71a4b5dfaf61028b50360e42eeba8daee6601f0ce91fb"
+      },
+      "timing": {
+        "total_seconds": 72072.0,
+        "stages": {
+          "coalition_retraining": 72072.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -1457,6 +1555,15 @@
         "user_groups_0.json": "f7e5429d76094cfa15aa0ce9080e7429604ae7636316893e1713ac408230687f",
         "mislabel_targets_0.json": "0495b93304b3439fd2352259e5e806dbb3d62e039c044dc6d0a9f9fa055e2d9e",
         "contributions_k[100.0]_T[0.95].json": "464dc6e4c681a9110ab9035939584bc3a2ff5ff7a494dc31911342ea4875f432"
+      },
+      "timing": {
+        "total_seconds": 75780.0,
+        "stages": {
+          "coalition_retraining": 75780.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -1549,6 +1656,15 @@
         "user_groups_0.json": "f7e5429d76094cfa15aa0ce9080e7429604ae7636316893e1713ac408230687f",
         "mislabel_targets_0.json": "dc229e22b3068f0c1c3e248b5990022f959d08682066b3abf85c039b6fb7a26c",
         "contributions_k[100.0]_T[0.95].json": "56a516ec0e3f50359fd99692f00f3535bbe2101ce56769e858ac5c31c4e33a62"
+      },
+      "timing": {
+        "total_seconds": 72396.0,
+        "stages": {
+          "coalition_retraining": 72396.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -1641,6 +1757,15 @@
         "user_groups_0.json": "50f3d5a88ed75a797771d8869372b4ec5935a9aa7e17fab566413dc295025ba8",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.95].json": "f84264e52bd9b5c43e0a2aa0c4250c9a0fc459d8c97094691b7256b0d83ff664"
+      },
+      "timing": {
+        "total_seconds": 72216.0,
+        "stages": {
+          "coalition_retraining": 72216.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -1733,6 +1858,15 @@
         "user_groups_0.json": "7a08738fc4575c2bcc290c76bf044c32ae531dcdefe41117f9f1286e06ab6687",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.95].json": "c8414a31258d4736bd8ee8ab3f05c45e352fb71cc5693180c2a6ac031287823d"
+      },
+      "timing": {
+        "total_seconds": 75816.0,
+        "stages": {
+          "coalition_retraining": 75816.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -1825,6 +1959,15 @@
         "user_groups_0.json": "aed5d0e3b296369e01033801c586d83bde2fd8d3153bb0e45930e7febde0049b",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.95].json": "315469b7cb2b3beeafb2e07a3e0f0670afdf15d97bb3eaf2c341dc5676653cca"
+      },
+      "timing": {
+        "total_seconds": 72468.0,
+        "stages": {
+          "coalition_retraining": 72468.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -1917,6 +2060,15 @@
         "user_groups_0.json": "a90a3c694a1a5e93f0077cf1bc1b12d4612a553f4af517c41645acbcc38ca01f",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.95].json": "b126b6b0f76e16ee129ff6c3c134210569f6130f215acd337124e1795cb6192c"
+      },
+      "timing": {
+        "total_seconds": 76068.0,
+        "stages": {
+          "coalition_retraining": 76068.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -2009,7 +2161,8 @@
         "user_groups_0.json": "1f131e742cde62371c9e0d76e6601fb354602f36cbf12bb1865ecd2fc3f5ff45",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.95].json": "1160869d48f058e4da3cfa421f022fada881de49983ac12d5dc51ed9572c8156"
-      }
+      },
+      "timing": null
     },
     {
       "key": "mnist_epochs[20]_localep[1]_iternum[1]_numusers[10]_dist[3]_numNoniid[0]_numMislabel[2]",
@@ -2101,6 +2254,15 @@
         "user_groups_0.json": "1f131e742cde62371c9e0d76e6601fb354602f36cbf12bb1865ecd2fc3f5ff45",
         "mislabel_targets_0.json": "02c87f04121d6ba23d30cd56f1c0fb42e1ff8d2daae78276a40b2f488bf2d1af",
         "contributions_k[100.0]_T[0.95].json": "cbf769bac6695e83f40c9430a98904aac784390fc73382fba5700406cb68375c"
+      },
+      "timing": {
+        "total_seconds": 87696.0,
+        "stages": {
+          "coalition_retraining": 87696.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -2193,6 +2355,15 @@
         "user_groups_0.json": "1f131e742cde62371c9e0d76e6601fb354602f36cbf12bb1865ecd2fc3f5ff45",
         "mislabel_targets_0.json": "c95a4d1ac481a22b4cb2c132c3328ce89a7ab2e33062ebd2cf4fb00a5016af85",
         "contributions_k[100.0]_T[0.95].json": "270ad47db9265449e12de85590be1552847ef111b063e3adc532ee08b2938422"
+      },
+      "timing": {
+        "total_seconds": 87804.0,
+        "stages": {
+          "coalition_retraining": 87804.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -2285,6 +2456,15 @@
         "user_groups_0.json": "1f131e742cde62371c9e0d76e6601fb354602f36cbf12bb1865ecd2fc3f5ff45",
         "mislabel_targets_0.json": "960d8a5516f6e559fb3f7a36de476d9b799512ed95c3a8726a7490641979276e",
         "contributions_k[100.0]_T[0.95].json": "d5d1978a93f7138c41c20b84ac00a8a4c352aa3e586f7b195cafba57d611db39"
+      },
+      "timing": {
+        "total_seconds": 87588.0,
+        "stages": {
+          "coalition_retraining": 87588.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -2377,6 +2557,15 @@
         "user_groups_0.json": "1f131e742cde62371c9e0d76e6601fb354602f36cbf12bb1865ecd2fc3f5ff45",
         "mislabel_targets_0.json": "94c2f372115718263a53b0880eb372cc8df128ef8d3937311328a4b5b775a4e4",
         "contributions_k[100.0]_T[0.95].json": "3b0ad1d1a9418ce4f122305b04be92beb70884f080acfb15f381dd36262c14be"
+      },
+      "timing": {
+        "total_seconds": 87876.0,
+        "stages": {
+          "coalition_retraining": 87876.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -2469,6 +2658,15 @@
         "user_groups_0.json": "c53397b78aabf5b66dcfdef37fb73fa0f9d01495c3cd46c4d7241f07c30f5f32",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.95].json": "0b4f32ee35bdd09dad58c06a0d73cecb8fd3dfa008869c56ee83208eb89bc5c5"
+      },
+      "timing": {
+        "total_seconds": 78300.0,
+        "stages": {
+          "coalition_retraining": 78300.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -2561,6 +2759,15 @@
         "user_groups_0.json": "ccc7cc684af02c3a46edba50ed41cabcc8eb182f1d30b700fd0d76c97acc3218",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.95].json": "6236f546c3a97d1137572bad740ea2b94f5644039594363f8080d71f5c0b9ef3"
+      },
+      "timing": {
+        "total_seconds": 87768.0,
+        "stages": {
+          "coalition_retraining": 87768.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -2653,6 +2860,15 @@
         "user_groups_0.json": "c0c28019cb291dd59299a78fd41d2e3bb9294ab87318a2311ac2c98626b985a1",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.95].json": "16bdf92bb9f0cc959860b9e4dd58a084f113e8cdd5d6378bd7889f5c89504446"
+      },
+      "timing": {
+        "total_seconds": 87156.0,
+        "stages": {
+          "coalition_retraining": 87156.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     },
     {
@@ -2745,6 +2961,15 @@
         "user_groups_0.json": "d30c66c482ddd13c45dce8dd63aca9be62050317a7cab384a8e41513a127c80d",
         "mislabel_targets_0.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
         "contributions_k[100.0]_T[0.95].json": "9ae4f6bf358b7a49330e76f19e90329284e9309a9a785b9fe50bfb60391d9e92"
+      },
+      "timing": {
+        "total_seconds": 77580.0,
+        "stages": {
+          "coalition_retraining": 77580.0
+        },
+        "rounds": 20,
+        "seeds": 1,
+        "source": "exact_shapley_wall_clock"
       }
     }
   ]

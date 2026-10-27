@@ -27,6 +27,7 @@ from .anchors import (
 )
 from .embeddings import apply_overrides, extract_client_embeddings, load_embedding_cache
 from .models import build_task_model
+from .timing import StageTimer
 from .utility import assemble_parzen_utility, client_local_statistics, make_parzen_utility
 
 PROJECT = Path(__file__).resolve().parents[2]
@@ -265,6 +266,7 @@ def prepare_setting_utility(
     validation_indices = torch.randperm(
         len(test_dataset), generator=validation_generator
     )[: args.validation_size].tolist()
+    timer = StageTimer()
 
     if args.encoder == "anchor":
         positions = {global_index: row for row, global_index in enumerate(all_indices)}
@@ -287,25 +289,27 @@ def prepare_setting_utility(
         anchor_path = Path(args.anchor_dir) / f"{key}.pt"
         if not anchor_path.is_file():
             raise FileNotFoundError(anchor_path)
-        model = build_task_model(dataset)
-        model.load_state_dict(
-            torch.load(anchor_path, map_location="cpu", weights_only=True)
-        )
-        model.to(device)
-        embeddings, labels = extract_embeddings(model, train_loader, device)
-        validation_embeddings, validation_labels = extract_embeddings(
-            model, validation_loader, device
-        )
-        parzen = make_parzen_utility(
-            embeddings,
-            labels,
-            client_rows,
-            validation_embeddings,
-            validation_labels,
-            kernel_temperature=args.kernel_temperature,
-            batch_size=args.parzen_batch_size,
-            device=device,
-        )
+        with timer.stage("embedding_extraction"):
+            model = build_task_model(dataset)
+            model.load_state_dict(
+                torch.load(anchor_path, map_location="cpu", weights_only=True)
+            )
+            model.to(device)
+            embeddings, labels = extract_embeddings(model, train_loader, device)
+            validation_embeddings, validation_labels = extract_embeddings(
+                model, validation_loader, device
+            )
+        with timer.stage("parzen_index_build"):
+            parzen = make_parzen_utility(
+                embeddings,
+                labels,
+                client_rows,
+                validation_embeddings,
+                validation_labels,
+                kernel_temperature=args.kernel_temperature,
+                batch_size=args.parzen_batch_size,
+                device=device,
+            )
         anchor_checkpoint = str(anchor_path.resolve())
         embedding_source = f"anchor:{anchor_checkpoint}"
     else:
@@ -323,17 +327,18 @@ def prepare_setting_utility(
             else None
         )
 
-        if test_cache is not None:
-            raw_validation_embeddings, validation_labels = test_cache.select(validation_indices)
-        else:
-            raw_validation_embeddings, validation_labels = extract_client_embeddings(
-                encoder,
-                test_dataset,
-                validation_indices,
-                {},
-                batch_size=args.feature_batch_size,
-                device=device,
-            )
+        with timer.stage("embedding_extraction"):
+            if test_cache is not None:
+                raw_validation_embeddings, validation_labels = test_cache.select(validation_indices)
+            else:
+                raw_validation_embeddings, validation_labels = extract_client_embeddings(
+                    encoder,
+                    test_dataset,
+                    validation_indices,
+                    {},
+                    batch_size=args.feature_batch_size,
+                    device=device,
+                )
         # Server-side broadcast prep: normalize once, share across clients.
         validation_broadcast = F.normalize(
             raw_validation_embeddings.detach().float(), p=2, dim=-1
@@ -343,30 +348,33 @@ def prepare_setting_utility(
         statistics = []
         for player in range(n_players):
             client_indices = groups[player]
-            if train_cache is not None:
-                client_embeddings, clean_labels = train_cache.select(client_indices)
-                client_labels = apply_overrides(client_indices, clean_labels, overrides)
-            else:
-                client_embeddings, client_labels = extract_client_embeddings(
-                    encoder,
-                    train_dataset,
-                    client_indices,
-                    overrides,
-                    batch_size=args.feature_batch_size,
-                    device=device,
+            with timer.stage("embedding_extraction"):
+                if train_cache is not None:
+                    client_embeddings, clean_labels = train_cache.select(client_indices)
+                    client_labels = apply_overrides(client_indices, clean_labels, overrides)
+                else:
+                    client_embeddings, client_labels = extract_client_embeddings(
+                        encoder,
+                        train_dataset,
+                        client_indices,
+                        overrides,
+                        batch_size=args.feature_batch_size,
+                        device=device,
+                    )
+            with timer.stage("parzen_index_build"):
+                statistics.append(
+                    client_local_statistics(
+                        client_embeddings,
+                        client_labels,
+                        validation_broadcast,
+                        classes,
+                        kernel_temperature=args.kernel_temperature,
+                        batch_size=args.parzen_batch_size,
+                        device=device,
+                    )
                 )
-            statistics.append(
-                client_local_statistics(
-                    client_embeddings,
-                    client_labels,
-                    validation_broadcast,
-                    classes,
-                    kernel_temperature=args.kernel_temperature,
-                    batch_size=args.parzen_batch_size,
-                    device=device,
-                )
-            )
-        parzen = assemble_parzen_utility(statistics, validation_labels, classes)
+        with timer.stage("parzen_index_build"):
+            parzen = assemble_parzen_utility(statistics, validation_labels, classes)
         anchor_checkpoint = None
         embedding_source = f"encoder:{args.encoder}"
 
@@ -381,5 +389,6 @@ def prepare_setting_utility(
         "anchor_checkpoint": anchor_checkpoint,
         "embedding_source": embedding_source,
         "kernel_temperature": args.kernel_temperature,
+        "timing": dict(timer.stages),
     }
     return parzen, metadata
