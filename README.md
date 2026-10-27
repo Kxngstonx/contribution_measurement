@@ -16,11 +16,11 @@ PCC로 비교해 보여 줍니다.
 Python 3.10 이상. 아래 코드를 통해 패키지 설치와 데이터셋(MNIST / Fashion-MNIST / CIFAR-10, 약 330 MB) 다운로드를 진행합니다.
 
 ```bash
-pip install -e . && python -m demo --download-data
+pip install -e . && python -m demo
 ```
 
 - 설치 패키지: `numpy`, `torch`, `torchvision`, `matplotlib`, `Pillow`
-- 데이터셋은 torchvision을 통해 `data/{mnist,fmnist,cifar}` 경로에 다운로드 합니다.
+- `--download-data`: 데이터셋은 torchvision을 통해 `data/{mnist,fmnist,cifar}` 경로에 다운로드 합니다.
 
 ## Folder Structure
 
