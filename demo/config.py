@@ -11,7 +11,7 @@ if str(PROJECT / "src") not in sys.path:
 
 # The scripts default to ../SPACE/data; the demo always uses the repo's own copy.
 DATA_ROOT = PROJECT / "data"
-REFERENCE_DIR = PROJECT / "assets" / "reference"
+REFERENCE_DIR = PROJECT / "assets"
 ANCHOR_DIR = PROJECT / "artifacts" / "anchors"
 CACHE_DIR = PROJECT / "artifacts" / "demo_cache"
 MANIFEST = PROJECT / "configs" / "exact_shapley_ground_truth.json"

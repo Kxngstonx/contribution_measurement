@@ -31,7 +31,7 @@ from .utility import assemble_parzen_utility, client_local_statistics, make_parz
 
 PROJECT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_ROOT = Path(os.environ.get("DATA_ROOT", str(PROJECT / "data")))
-DEFAULT_REFERENCE = PROJECT / "assets" / "reference"
+DEFAULT_REFERENCE = PROJECT / "assets"
 DEFAULT_MANIFEST = PROJECT / "configs" / "exact_shapley_ground_truth.json"
 
 # Anchor training protocol (frozen since the GT sweep): 5 epochs of SGD on the
