@@ -72,7 +72,6 @@ LOG_DATASET_DONE = "{title} {label}: 완료  PCC {pcc:.3f}  ({elapsed:.1f}초)"
 RESULT_TITLE = {"parzen": "Parzen-Shapley 기여도 평가 결과", "trac": "TRAC 기여도 평가 결과"}
 RESULT_SOURCE = {"real": "실제 계산", "replay": "저장된 결과", "cache": "캐시"}
 RESULT_LINE = "{title} {label}: PCC {pcc:.3f} ({source}{extra})"
-RESULT_ACCURACY = ", 글로벌 모델 정확도 {accuracy:.3f}"
 RESULT_ROUNDS = ", {rounds}라운드"
 RESULT_TIME = "측정 시간 {ours}  ·  Ground Truth {gt}"
 

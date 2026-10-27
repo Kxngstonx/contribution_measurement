@@ -246,8 +246,6 @@ class ResultScreen(tk.Frame):
         extra = ""
         if result.rounds is not None:
             extra += texts.RESULT_ROUNDS.format(rounds=result.rounds)
-        if result.accuracy is not None:
-            extra += texts.RESULT_ACCURACY.format(accuracy=result.accuracy)
         lines = [texts.RESULT_LINE.format(
             title=config.DATASET_TITLES[result.dataset], label=result.label,
             pcc=result.pcc, source=texts.RESULT_SOURCE[result.source], extra=extra)]
