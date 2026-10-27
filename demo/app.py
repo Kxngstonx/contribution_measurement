@@ -404,7 +404,7 @@ def export(out_dir, method: str, mode: str, rounds: int, device: str,
         ours = format_seconds(timing) if timing is not None else "?"
         gt = format_seconds(result.gt_seconds) if result.gt_seconds is not None else "?"
         print(f"{one} {result.dataset} {result.label}: PCC {result.pcc:.3f} ({result.source})"
-              f"  time {ours} vs GT {gt}", flush=True)
+              f"  time {ours} vs Ground Truth {gt}", flush=True)
     for path in saved:
         print(f"saved -> {path}", flush=True)
     return saved

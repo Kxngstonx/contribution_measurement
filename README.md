@@ -44,5 +44,5 @@ python -m demo --export figs --dataset mnist --setting mislabel-4          # 창
 TRAC은 라운드별 PCC) → 결과 화면. 결과 화면은 선택한 환경에 대해 결과를 시각화합니다.
 
 1. 클라이언트별 기여도 막대그래프
-2. Ground Truth Shapley value 대비 산점도와 PCC
+2. Ground Truth 대비 산점도와 PCC
 3. 측정 시간 비교: Ground Truth와 선택한 방법의 소요 시간을 로그 눈금 막대로 그리고, 방법의 소요 시간이 Ground Truth의 몇 %인지 표기
